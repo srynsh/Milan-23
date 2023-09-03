@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .OverallScoresContainer{
+        height: 20rem;
+    }
+    .canvas-container{
+        height: 20rem;
+        width: 60%;
+        margin: auto;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    @media (max-width: 640px) {
+        .canvas-container{
+            height: 30rem;
+            width: 80%;
+            margin: auto;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        .OverallScoresContainer{
+            height: 30rem;
+        }
+    }
+    @font-face {
+        font-family: 'Amboy-Black';
+        src: url('./Parkinson - Amboy-Black.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .events-container{
+        width: 95%;
+        margin: auto;
+    }
+    .events-heading{
+        font-family: 'Amboy-Black';
+        font-size: 2rem;
+        margin: 2.5rem auto;
+    }
+    .event-boxes{
+        font-family: 'Amboy-Black';
+        list-style: none;
+        background-color: #f6b276;
+        font-size: 1.4rem;
+        margin: 2px;
+        padding: 6px;
+        width: 15%;
+        transition: 0.4s ease-in-out;
+        @apply text-center
+        cursor-pointer
+        
+    }
+    .event-boxes:hover{
+        transform: translateY(-6px);
+    }
+    @media (max-width: 640px) {
+        .event-boxes{
+            list-style: none;
+            background-color: #f6b276;
+            font-size: 1rem;
+            margin: 2px;
+            padding: 4px;
+            width: 20%;
+            @apply text-center
+        }
+    }
+    .box-active{
+        background-color: #390035;
+        color: #f6b276;
+    }
+    
+}
