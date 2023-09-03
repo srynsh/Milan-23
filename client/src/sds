@@ -1,0 +1,15 @@
+{showNav ? (
+        <>
+          <div className="close-btn" onClick={() => setShowNav(false)}>
+            <div className="close-line-1"></div>
+            <div className="close-line-2"></div>
+          </div>
+          <Navbar showNav={showNav} />
+        </>
+      ) : (
+        <div className="hamburger" onClick={() => setShowNav(true)}>
+          <div className="ham-rec1"></div>
+          <div className="ham-rec1"></div>
+          <div className="ham-rec1"></div>
+        </div>
+      )}

@@ -1,0 +1,51 @@
+[
+  {
+    "HOSTEL": "CHARAKA",
+    "LOGOURL": "https://public.flourish.studio/country-flags/svg/au.svg",
+    "DAY 1": 0,
+    "DAY 2": 20,
+    "DAY 3": 50
+  },
+  {
+    "HOSTEL": "BHABHA",
+    "LOGOURL": "https://public.flourish.studio/country-flags/svg/at.svg",
+    "DAY 1": 0,
+    "DAY 2": 10,
+    "DAY 3": 30
+  },
+  {
+    "HOSTEL": "RAMAN",
+    "LOGOURL": "https://public.flourish.studio/country-flags/svg/be.svg",
+    "DAY 1": 10,
+    "DAY 2": 30,
+    "DAY 3": 60
+  },
+  {
+    "HOSTEL": "CHROME",
+    "LOGOURL": "https://public.flourish.studio/country-flags/svg/bb.svg",
+    "DAY 1": 0,
+    "DAY 2": 20,
+    "DAY 3": 40
+  },
+  {
+    "HOSTEL": "EDGE",
+    "LOGOURL": "https://public.flourish.studio/country-flags/svg/au.svg",
+    "DAY 1": 0,
+    "DAY 2": 10,
+    "DAY 3": 40
+  },
+  {
+    "HOSTEL": "FIREFOX",
+    "LOGOURL": "https://public.flourish.studio/country-flags/svg/au.svg",
+    "DAY 1": 10,
+    "DAY 2": 40,
+    "DAY 3": 80
+  },
+  {
+    "HOSTEL": "GOOGLE",
+    "LOGOURL": "https://public.flourish.studio/country-flags/svg/au.svg",
+    "DAY 1": 10,
+    "DAY 2": 60,
+    "DAY 3": 90
+  }
+]

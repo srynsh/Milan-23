@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+
+
+
+
+/* Common styles */
+:root {
+  --primary-color: #a40035;
+  --secondary-color: #39003540;
+  --background-color: #39003540;
+  --box-shadow-color: #39003540;
+  --font-family: Arial, sans-serif;
+}
+/* main */
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Make sure the main container takes up at least the full viewport height */
+}
+.content{
+flex:1;
+}
+.svg{
+  width:100vw;
+  height:80%;
+  color:red;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-blend-mode: color-burn;
+}
+
+
+/* CSS for ReactCalendar component */
+.calendar-container {
+  font-family: var(--font-family);
+  max-width: 300px;
+  margin: 0 auto;
+  background: #FDD1AA;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--box-shadow-color);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+  color: var(--primary-color);
+  font-size: 24px;
+}
+
+.calendar-header button {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.calendar-header button:hover {
+  background-color: #4a2d6d; /* Darken the color on hover */
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  max-width: 100%; 
+}
+
+
+.calendar-day {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.day{
+  color: #390035;
+}
+.day:hover{
+  color:white;
+}
+.calender-week-day{
+  display: flex;
+  align-items: right;
+}
+.week-day{
+  text-align: center;
+  font-weight: 700;
+  padding:8px 4px; 
+  font-size:16px;
+}
+
+.calendar-day:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.calendar-day.selected {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.events-dialog {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--box-shadow-color);
+  margin-top: 10px;
+}
+
+
+.close-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.close-button:hover {
+  background-color: #4a2d6d; /* Darken the color on hover */
+}
+
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.dialog-header span {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.events-list h3,
+.competitions-list h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.events-list ul,
+.competitions-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.events-list li,
+.competitions-list li {
+  margin-bottom: 10px;
+}
+
+.events-list h4,
+.competitions-list h4 {
+  color: var(--primary-color);
+  font-size: 18px;
+}
+
+.events-list p,
+.competitions-list p {
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.events-list p:last-child,
+.competitions-list p:last-child {
+  margin-bottom: 0;
+}
+
+
+@media (min-width: 1100px) {
+  .calendar-container {
+    max-width: 500px;
+  }
+
+  .calendar-header h2 {
+    font-size: 28px;
+    margin-left: 8px;
+  }
+
+  .calendar {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+
+  .calendar-day {
+    width: 50px;
+    height: 50px;
+    margin-left: 2px;
+    margin-top: 2px;
+  }
+  .day {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+
+/* CSS for Profile component */
+.container {
+  font-family: var(--font-family);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.form-group {
+  display: flex;
+  width: 50%;
+  flex-wrap: nowrap;
+  gap:8px;
+  align-items: center;
+  text-align: left;
+  border-bottom:10px;
+  border-left:1rem;
+}
+.form-group select {
+  flex: 1;
+  padding: 8px;
+  border: 2px solid var(--primary-color); 
+  border-radius: 8px; 
+  font-size: 14px;
+  color: #333;
+
+}
+.form-label {
+  @apply pt-8 pb-8 pl-8 pr-8 font-mono text-base font-normal capitalize;
+
+
+  color: var(--primary-color);
+}
+
+input[type="text"],
+input[type="tel"],
+select {
+  flex: 1;
+  padding: 6px;
+  border-bottom: 3px solid var(--primary-color);
+  border-top:2px solid var(--primary-color);
+  border-left: 2px solid var(--primary-color);
+  border-right: 2px solid var(--primary-color);
+  box-sizing: border-box;
+  box-shadow: 1px 2px var(--secondary-color);
+  border-radius:4px;
+  font-size: 14px;
+  color: #333;
+}
+
+input[type="tel"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 4px rgba(164, 0, 53, 0.5);
+}
+
+
+.submit-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: #4a2d6d;
+}
+
+
+/* Multiselect styles */
+.custom-multiselect-container {
+  width: 95%;
+  height: auto;
+  border: 2px solid var(--primary-color);
+  background-color: #FDD1AA;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--box-shadow-color);
+}
+
+.custom-multiselect-selected-text {
+  color: #700035;
+}
+
+.custom-multiselect-placeholder {
+  color: #700035;
+}
+
+.custom-multiselect-option {
+  background-color: #FDD1AA;
+  color: #700035;
+  border: 2px solid var(--primary-color);
+}
+
+.custom-multiselect-selected {
+  background-color: #700035;
+  color: white;
+}
+.gap{
+  height:40px;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #f9f9f9;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  width:100vw;
+}
+
+.footer-info {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-location, .footer-contact {
+  color: #000;
+}
+
+.footer-follow-icons {
+  display: flex;
+  gap: 10px;
+  color: #000;
+}
+
+/* Icon styles */
+.icon {
+  font-size: 24px;
+}
+
+/* Heading styles */
+h3 {
+  color: #390035;
+}
+
+/* Link styles */
+a {
+  color: #A11A2B;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .footer-location,.footer-contact {
+    margin-bottom: 20px; 
+    width:100%;
+    text-align:center;
+  }
+
+  .footer-follow-icons {
+    margin-top: 10px; 
+  }
+
+  .icon {
+    font-size: 20px; 
+  }
+
+}
+
+
+
+/* Responsive styles */
+
+
+@media (max-width: 1100px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-group {
+    width: 100%;
+    max-width: 95%;
+    margin: 10px 0;
+  }
+  .submit-button{
+    margin-left: 10%;
+  }
+}
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base{
+    .inputborder{
+        @apply my-4 border-2 border-solid;
+    }
+}
