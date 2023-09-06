@@ -59,6 +59,8 @@ const TeamList = () =>
               .replace("./assets/team/", "")
               .replace(".jpeg", "")
               .replace(".jpg", "")
+              .replace(".png", "")
+              .replace(".PNG", "")
               .replace(".JPG", "")
               .toUpperCase()}
           </div>

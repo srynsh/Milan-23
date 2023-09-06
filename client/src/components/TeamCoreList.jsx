@@ -1,9 +1,9 @@
 export default [
   {
     dom: "Creatives",
-    heads: ["./assets/team/Adheena.jpeg"],
+    heads: ["./assets/team/Adheena S.jpg"],
     cores: [
-      "./assets/team/Harigovind P.heic",
+      "./assets/team/Harigovind P.jpeg",
       "./assets/team/Anay Nitin Umalkar.jpg",
       "./assets/team/SHRIPADH SURESH.jpeg",
       "./assets/team/Aditya Heshi.jpg",
@@ -21,7 +21,7 @@ export default [
       "./assets/team/Korrapati Sai Geetha Bhavana.jpeg",
     ],
     cores: [
-      "./assets/team/Samuel john lakra.jpg",
+      "./assets/team/Samuel John Lakra.jpeg",
       "./assets/team/Anjireddy Anek.jpeg",
       "./assets/team/Pasalapudi Srikrishna Satvik.jpg",
       "./assets/team/Laasya Choppalli.jpeg",
@@ -34,7 +34,7 @@ export default [
     dom: "Finance",
       heads: ["./assets/team/Bommineni Vishwajith Reddy.jpg"],
     cores: [
-      "./assets/team/Rakesh Varshith.jpeg",
+      "./assets/team/Palem Rakesh Varshith.jpeg",
       "./assets/team/Manikanta Varun Varma Nadimpalli.jpeg",
     ],
   },
@@ -47,11 +47,11 @@ export default [
     ],
     cores: [
       "./assets/team/Adhith T.jpg",
-      "./assets/team/Nihar Karthikeya.jpeg",
+      "./assets/team/Chelamakuri Nihar Kartikeya.jpeg",
       "./assets/team/Ajay Krishnan K.jpeg",
       "./assets/team/LENKA YASWITH KRISHNA VAMSI.jpeg",
       "./assets/team/Kilaru Sai Manasa Veena.jpg",
-      "./assets/team/Abhinay Sadineni.jpeg",
+      "./assets/team/Abhinay Sadineni.png",
     ],
   },
   {
