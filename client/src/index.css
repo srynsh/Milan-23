@@ -405,7 +405,7 @@ ion-icon {
 .tp-domain-head-c {
   display: flex;
   justify-content: center;
-  flex-direction: row ;
+  flex-direction: row;
   align-items: center;
   gap: 3vw;
 }
@@ -541,12 +541,25 @@ ion-icon {
   flex-direction: row;
   width: 100vw;
   height: 100vh;
-  /* background: rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(4px); */
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(4px);
   z-index: 998;
+  transition: 0.5s;
 }
 
-.navbar-blur{
+.navbar-hide {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  width: 200vw;
+  height: 100vh;
+  /* background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(4px); */
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.navbar-blur {
   flex-grow: 1;
   background: rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(4px);
@@ -566,6 +579,23 @@ ion-icon {
   position: fixed;
   right: 0;
   border-left: 1px solid #390035;
+  transition: 0.5s;
+}
+
+.navbar-options-hide {
+  padding: 10vh 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 40vw;
+  height: 80%;
+  background: #ffd1a8;
+  position: fixed;
+  right: 0;
+  border-left: 1px solid #390035;
+  visibility: hidden;
+  transition:0.5s;
 }
 
 .navbar-pending {
@@ -589,6 +619,10 @@ ion-icon {
   margin: -15px;
   border-radius: 15px;
   cursor: default;
+}
+
+.navbar-active:hover{
+  text-decoration: none;
 }
 
 .navbar-pending:hover {
@@ -672,7 +706,6 @@ ion-icon {
 }
 
 @media only screen and (max-width: 1000px) {
-
   .team-page {
     background-clip: inherit;
   }
@@ -789,12 +822,21 @@ ion-icon {
     gap: 8vh;
     justify-content: center;
   }
+  .navbar-options-hide {
+    width: 100vw;
+    padding: 10vh 0;
+    position: absolute;
+    gap: 8vh;
+    justify-content: center;
+  }
   .navbar-pending {
     font-size: 2rem;
+    text-decoration: none;
   }
 
   .navbar-active {
     font-size: 2rem;
+    text-decoration: none;
   }
 }
 
@@ -879,7 +921,7 @@ ion-icon {
     font-family: "ArianaPro";
     font-size: 1.3rem;
     padding: 10px 20px;
-  } 
+  }
 
   .main-ovr-stat {
     width: 70vw;
@@ -1016,13 +1058,13 @@ ion-icon {
     cursor: pointer;
     transition: 0.5s;
   }
-  
+
   .close-btn:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
       rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
       rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
-  
+
   .close-line-1 {
     width: 35px;
     height: 5px;
@@ -1030,7 +1072,7 @@ ion-icon {
     border-radius: 10px;
     transform: translateY(1.5px) rotate(45deg);
   }
-  
+
   .close-line-2 {
     width: 35px;
     height: 5px;

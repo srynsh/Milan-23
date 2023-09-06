@@ -8,7 +8,6 @@ import { OverallScores } from "../components/OvrLeaderboard";
 
 const Home = () => {
   const [raceGraph, setRaceGraph] = useState(true);
-  const [showNav, setShowNav] = useState(false);
   return (
     <>
       <div className="main">

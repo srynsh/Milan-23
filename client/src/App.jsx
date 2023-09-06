@@ -16,10 +16,10 @@ function App() {
         <div className="ham-rec1"></div>
         <div className="ham-rec1"></div>
       </div>
-      {showNav && <Navbar showNav={showNav} />}
+      <Navbar showNav={showNav} setShowNav={setShowNav}/>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/calendar" element={<Calendar />}/>
+        <Route path="/calendar" element={<Calendar />} />
         <Route path="/team" element={<Team />} />
         <Route path="/schedule" element={<OverallScores />} />
         <Route path="*" element={<Error />} />
