@@ -4,14 +4,13 @@ import Navbar from "../components/Navbar";
 import BlockRace from "../components/BlockRace";
 import Footer from "../components/Footer";
 import Hamburger from "../components/Hamburger";
-import {OverallScores} from "../components/OvrLeaderboard";
+import { OverallScores } from "../components/OvrLeaderboard";
 
 const Home = () => {
   const [raceGraph, setRaceGraph] = useState(true);
   const [showNav, setShowNav] = useState(false);
   return (
     <>
-      
       <div className="main">
         <div className="main-bg">
           <div className="main-bg-vector">
@@ -82,6 +81,6 @@ const Home = () => {
       </div>
     </>
   );
-}
+};
 
 export default Home;

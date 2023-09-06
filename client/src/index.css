@@ -36,6 +36,10 @@
   font-family: Inter;
 }
 
+a {
+  text-decoration: none;
+}
+
 .main {
   width: 100vw;
   height: 100vh;
@@ -219,7 +223,6 @@
 .main-pic {
   width: 100vw;
   height: 100vh;
-  background: #ffd1a8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -234,6 +237,8 @@ footer {
   width: 100%;
   align-items: center;
   margin-top: 4vw;
+  background: #fff;
+  margin-bottom: 7vh;
 }
 
 .footer-img img {
@@ -328,11 +333,11 @@ ion-icon {
 .team-page {
   display: flex;
   flex-direction: column;
-  background: url("./assets/bg-vectors/team-bg.svg");
   background: #ffd1a8 url("./assets/bg-vectors/team-bg.svg");
   overflow-x: hidden;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: contain;
+  padding-bottom: 10vh;
 }
 
 .tp-oc {
@@ -340,7 +345,7 @@ ion-icon {
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
 }
 
 .tp-logo img {
@@ -365,7 +370,14 @@ ion-icon {
   width: 400px;
   height: 400px;
   background: #390035;
+  transition: 0.3s;
   margin-top: 5vh;
+}
+
+.tp-oc-img-f:hover {
+  transform: scale(1.01);
+  box-shadow: 2px 2px 12px 3px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
 }
 
 .tp-oc-name {
@@ -376,35 +388,26 @@ ion-icon {
   margin-top: 3vh;
 }
 
-.tp-head {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-}
-
 .tp-domain {
-  padding-top: 40vh;
-  margin-bottom: -20vh;
-}
-
-.tp-domain-space {
-  height: 140vh;
-}
-
-.tp-domain-warp {
-  display: flex;
-  flex-direction: row;
-  width: 170vw;
-  height: 100vh;
+  height: max-content;
+  width: 100vw;
+  margin-top: 10vh;
 }
 
 .tp-domain-head {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+}
+
+.tp-domain-head-c {
+  display: flex;
+  justify-content: center;
+  flex-direction: row ;
+  align-items: center;
+  gap: 3vw;
 }
 
 .tp-domain-head-w {
@@ -416,7 +419,6 @@ ion-icon {
 }
 
 .tp-domain-name {
-  margin-top: -10vh;
   font-size: 4rem;
   padding: 20px 30px;
   border-radius: 1rem;
@@ -452,7 +454,14 @@ ion-icon {
   height: 300px;
   background: #390035;
   margin-top: 6vh;
+  transition: 0.3s;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.tp-domain-head-f:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 2px 12px 3px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
 }
 
 .tp-domain-head-name {
@@ -462,12 +471,14 @@ ion-icon {
   font-weight: 600;
   margin-top: 3vh;
   max-width: min-content;
+  text-align: center;
 }
 
 .tp-domain-core {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10vh;
 }
 
 .tp-domain-core-h {
@@ -479,7 +490,6 @@ ion-icon {
   font-family: "Amboy";
   font-weight: 700;
   letter-spacing: 0.2rem;
-  margin-top: 4vh;
   margin-bottom: 3vh;
 }
 
@@ -489,7 +499,7 @@ ion-icon {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2vw;
-  max-width: 60vw;
+  padding: 0 10vw;
 }
 
 .tp-domain-core-i-c {
@@ -503,7 +513,14 @@ ion-icon {
   width: 230px;
   height: 230px;
   background: #390035;
+  transition: 0.3s;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.tp-domain-core-i-c-f:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 2px 12px 3px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
 }
 
 .tp-domain-core-i-c-name {
@@ -512,6 +529,8 @@ ion-icon {
   font-family: "Amboy";
   font-weight: 600;
   margin-top: 3vh;
+  max-width: min-content;
+  text-align: center;
 }
 
 /* NAVBAR */
@@ -744,6 +763,10 @@ ion-icon {
 
   .tp-domain-head-name {
     font-size: 2rem;
+  }
+
+  .tp-domain-head-c {
+    flex-direction: column;
   }
 
   .tp-domain-head-f {
