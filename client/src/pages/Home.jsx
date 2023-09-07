@@ -42,9 +42,15 @@ const Home = () => {
                 </div>
               </div>
               <div className="main-mid-carousel">
-                <img src="./assets/events/image_2.jpeg" id="img1" />
-                <img src="./assets/events/image_2.jpeg" id="img2" />
-                <img src="./assets/events/image_2.jpeg" id="img3" />
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/YYgBsC1Ee10?si=dnGQXs66GlHqU5Pz?autoplay=1"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
               </div>
             </section>
             <section className="main-mascot">
