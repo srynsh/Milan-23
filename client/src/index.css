@@ -153,7 +153,12 @@ a {
 }
 
 .main-mid-text {
-  width: 50vw;
+  width: 38vw;
+  background: #390035;
+  border-radius: 5rem;
+  background: rgba(112, 0, 53, 0.16);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 3vw;
 }
 
 .main-mid-text-head h2 {
@@ -171,12 +176,100 @@ a {
   margin-top: 45px;
 }
 
-.main-mid-carousel img {
-  width: 30vw;
-  margin-left: 8vw;
+.main-mid-carousel{
+  /* margin-left: 5vw; */
+  width: 40vw;
 }
 
+.main-mid-carousel img {
+  width: 20vw;
+  margin-left: 5vw;
+  position: relative;
+}
+
+
+@media only screen and (max-width: 1400px) {
+  #img1 {
+    right: 0px;
+    top: 22px;
+  }
+  
+  #img2 {
+    left: 165px;
+    bottom: 20px;
+    z-index: 2;
+  }
+  
+  #img3 {
+    bottom: 340px;
+    right: -330px;
+  }
+  
+}
+
+#img1:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+  z-index: 5;
+  border: 10px solid black;
+  padding: 0.5vw;
+  margin-left: 4vw;
+  background-color: #390035;
+}
+#img2:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+  z-index: 5;
+  border: 10px solid black;
+  padding: 0.5vw;
+  margin-left: 4vw;
+  background-color: #390035;
+}#img3:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+  z-index: 5;
+  border: 10px solid black;
+  padding: 0.5vw;
+  background-color: #390035;
+  margin-left: 4vw;
+}
+
+.main-mascot {
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  background: #ffd1a8;
+  align-items: center;
+}
+
+.mascot-image {
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mascot-image img {
+  height: 70%;
+}
+
+.mascot-desc {
+  font-family: "ArianaPro";
+  width: 50vw;
+  font-size: 1.9rem;
+  color: #390035;
+  padding-right: 5vw;
+}
+
+.pablo {
+  font-size: 2.1rem;
+  font-weight: 600;
+}
+
+
+
 .main-ovr {
+  margin-top: 10vh;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -226,6 +319,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #ffd1a8;
 }
 
 /* FOOTER */
@@ -595,7 +689,7 @@ ion-icon {
   right: 0;
   border-left: 1px solid #390035;
   visibility: hidden;
-  transition:0.5s;
+  transition: 0.5s;
 }
 
 .navbar-pending {
@@ -621,7 +715,7 @@ ion-icon {
   cursor: default;
 }
 
-.navbar-active:hover{
+.navbar-active:hover {
   text-decoration: none;
 }
 
@@ -866,6 +960,7 @@ ion-icon {
   .main-mid-text {
     width: max-content;
     text-align: center;
+    background: #700035;
   }
   .main-head-text h1 {
     font-size: 5.5rem;

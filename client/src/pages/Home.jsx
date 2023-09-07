@@ -42,7 +42,27 @@ const Home = () => {
                 </div>
               </div>
               <div className="main-mid-carousel">
-                <img src="./assets/events/image_2.jpeg" />
+                <img src="./assets/events/image_2.jpeg" id="img1" />
+                <img src="./assets/events/image_2.jpeg" id="img2" />
+                <img src="./assets/events/image_2.jpeg" id="img3" />
+              </div>
+            </section>
+            <section className="main-mascot">
+              <div className="mascot-image">
+                <img src="./assets/logos/pablo.jpeg" alt="mascot" />
+              </div>
+              <div className="mascot-desc">
+                Introducing our mesmerizing mascot <span className="pablo">PABLO</span>, the harbinger of luck
+                and boundless excitement! 🎉🐾 Get ready to embrace the positive
+                vibes and cheer it brings to every corner of our event. From
+                boosting confidence to fostering unity, our mascot is here to
+                write add another chapter of success and unforgettable memories.
+                For the first time ever in Milan, a mascot is becoming a part of
+                our incredible journey. Let its presence light up the event with
+                optimism and joy, as we embark on this adventure together.
+                Believe in the magic, feel the energy, and let the good times
+                roll with our lucky charm by your side.🌟 Do watch out for this
+                guy!
               </div>
             </section>
             <section className="main-ovr">
