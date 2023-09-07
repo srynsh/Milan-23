@@ -176,7 +176,7 @@ a {
   margin-top: 45px;
 }
 
-.main-mid-carousel{
+.main-mid-carousel {
   /* margin-left: 5vw; */
   width: 40vw;
 }
@@ -187,24 +187,22 @@ a {
   position: relative;
 }
 
-
 @media only screen and (max-width: 1400px) {
   #img1 {
     right: 0px;
     top: 22px;
   }
-  
+
   #img2 {
     left: 165px;
     bottom: 20px;
     z-index: 2;
   }
-  
+
   #img3 {
     bottom: 340px;
     right: -330px;
   }
-  
 }
 
 #img1:hover {
@@ -224,7 +222,8 @@ a {
   padding: 0.5vw;
   margin-left: 4vw;
   background-color: #390035;
-}#img3:hover {
+}
+#img3:hover {
   transform: scale(1.1);
   transition: 0.5s;
   z-index: 5;
@@ -264,9 +263,29 @@ a {
 .pablo {
   font-size: 2.1rem;
   font-weight: 600;
+  font-family: "Arianapro";
 }
 
+@media only screen and (max-width: 1000px) {
+  .main-mascot {
+    padding-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
 
+  .mascot-image img {
+    height: 30vh;
+  }
+
+  .mascot-desc {
+  font-size: 1rem;
+  width: 80vw;
+  padding: 0vw;
+  text-align: center;
+  margin-top: 5vh;
+  }
+}
 
 .main-ovr {
   margin-top: 10vh;
@@ -961,6 +980,8 @@ ion-icon {
     width: max-content;
     text-align: center;
     background: #700035;
+    padding:4vh 1vw;
+
   }
   .main-head-text h1 {
     font-size: 5.5rem;
@@ -990,10 +1011,11 @@ ion-icon {
 
   .main-mid-text-desc {
     width: 90vw;
+    padding-top: 2vh;
   }
 
   .main-mid-text-desc p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     width: 90vw;
     font-family: "ArianaPro";
   }
@@ -1019,7 +1041,7 @@ ion-icon {
   }
 
   .main-ovr-stat {
-    width: 70vw;
+    width: 80vw;
   }
 }
 
