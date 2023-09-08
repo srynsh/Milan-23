@@ -1244,3 +1244,20 @@ ion-icon {
 .blockrace div {
   height: 100%;
 }
+
+
+.profile-icon {
+  width: fit-content;
+  padding: 15px;
+  border-radius: 50%;
+  background: #700035;
+  position: fixed;
+  right: 5vw;
+  top: 13vh;
+  cursor: pointer;
+}
+
+#profile-ico {
+  color: #FFD1A8;
+}
+

@@ -1,12 +1,12 @@
 import {React,useState,useEffect} from 'react'
-import { SportsBoysGraphs } from '../../../Milan-Leaderboard/src/SportsBoysGraphs';
-import { SportsGirlsGraphs} from '../../../Milan-Leaderboard/src/SportsGirlsGraphs'
-import { CultiGraphs } from "../../../Milan-Leaderboard/src/CultiGraphs";
-import {TechyGraphs} from '../../../Milan-Leaderboard/src/TechyGraphs';
-import { SportsBoysTable } from '../../../Milan-Leaderboard/src/SportsBoysTable';
-import { SportsGirlsTable} from '../../../Milan-Leaderboard/src/SportsGirlsTable'
-import { CultiTable } from "../../../Milan-Leaderboard/src/CultiTable";
-import {TechyTable} from '../../../Milan-Leaderboard/src/TechyTable';
+import { SportsBoysGraphs } from '../components/SportsBoysGraphs';
+import { SportsGirlsGraphs} from '../components/SportsGirlsGraphs'
+import { CultiGraphs } from "../components/CultiGraphs";
+import {TechyGraphs} from '../components/TechyGraphs';
+import { SportsBoysTable } from '../components/SportsBoysTable';
+import { SportsGirlsTable} from '../components/SportsGirlsTable'
+import { CultiTable } from "../components/CultiTable";
+import {TechyTable} from '../components/TechyTable';
 
 export const Events = () => {
   const [WhichEvent, setWhichEvent] = useState('sportsboys');

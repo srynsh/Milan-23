@@ -2,7 +2,7 @@ import React from 'react'
 import Profile from '../components/Profile'
 import Footer from '../components/Footer'
 
-const Profile = () => {
+const ProfilePage = () => {
   return (
     <div>
       <Profile/>
@@ -11,4 +11,4 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default ProfilePage;

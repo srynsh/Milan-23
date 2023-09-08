@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Calendar from "./pages/Calendar";
 import { useState } from "react";
 import { OverallScores } from "./components/OvrLeaderboard";
+import ProfilePage from "./pages/ProfilePage"
+// import { Events } from "./pages/Events";
 
 function App() {
   const [showNav, setShowNav] = useState(false);
@@ -21,7 +23,8 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/team" element={<Team />} />
-        <Route path="/schedule" element={<OverallScores />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        {/* <Route path="/events" element={<Events />} /> */}
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>
