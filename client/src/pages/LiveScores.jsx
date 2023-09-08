@@ -1,7 +1,7 @@
 import React from 'react'
-import { CricketScores } from './CricketScores'
-import { FootballScore } from './FootballScore'
-import { BadmintonScore } from './BadmintonScore'
+import { CricketScores } from '../components/CricketScores'
+import { FootballScore } from '../components/FootballScore'
+import { BadmintonScore } from '../components/BadmintonScore'
 
 export const LiveScores = () => {
   return (
