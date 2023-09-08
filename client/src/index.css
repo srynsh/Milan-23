@@ -16,6 +16,11 @@
   -webkit-text-size-adjust: 100%; 
 } */
 
+html {
+  scroll-behavior: smooth;
+  color:#390035;
+}
+
 @font-face {
   font-family: "Amboy";
   src: url("../fonts/Parkinson\ -\ Amboy-Black.otf");
@@ -458,7 +463,7 @@ ion-icon {
 .team-page {
   display: flex;
   flex-direction: column;
-  background: #ffd1a8 url("./assets/bg-vectors/team-bg.svg");
+  background: #FFD1A8 url("./assets/bg-vectors/team-bg.svg");
   overflow-x: hidden;
   background-repeat: repeat;
   background-size: contain;
@@ -688,7 +693,7 @@ ion-icon {
   flex-grow: 1;
   background: rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(4px);
-  transition: 1s;
+  transition: 0.5s;
 }
 
 .navbar-options {

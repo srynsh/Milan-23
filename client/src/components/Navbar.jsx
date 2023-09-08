@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 function Navbar({ showNav, setShowNav }) {
   return (
     <div className={showNav ? "navbar" : "navbar-hide"}>
+      <div className="navbar-blur" onClick={()=> setShowNav(!showNav)}/>
       <div className={showNav ? "navbar-options" : "navbar-options-hide"}>
         <NavLink
           onClick={() => setShowNav(!showNav)}
