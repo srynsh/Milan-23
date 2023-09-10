@@ -2,7 +2,7 @@ import { useState } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import '../profile & calender.css';
 
-const ProfileComponent = () => {
+const Profile = () => {
   // options Data set import from the backend
   const options = [
     { name: "option 1", id: 1 },
@@ -193,4 +193,4 @@ const ProfileComponent = () => {
   );
 };
 
-export default ProfileComponent;
+export default Profile;
