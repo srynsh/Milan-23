@@ -5,7 +5,7 @@ import BlockRace from "../components/BlockRace";
 import Footer from "../components/Footer";
 import Hamburger from "../components/Hamburger";
 import { OverallScores } from "../components/OvrLeaderboard";
-
+import '../mainpage.css'
 const Home = () => {
   const [raceGraph, setRaceGraph] = useState(true);
   return (
