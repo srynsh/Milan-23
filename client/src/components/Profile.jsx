@@ -150,6 +150,15 @@ const Profile = () => {
                 showArrow
                 groupBy="category"
                 selectionLimit={5}
+                hidePlaceholder={true}
+                style={{
+                  searchBox:{
+                    border:0,
+                  },
+                  chips:{
+                    background:'rgba(111, 0, 53, 1) 4%',
+                  }
+                }}
               />
             </div>
           </div>
@@ -171,6 +180,14 @@ const Profile = () => {
                 className="inputborder custom-multiselect-container"
                 showArrow
                 groupBy="category"
+                style={{
+                  searchBox:{
+                    border:0,
+                  },
+                  chips:{
+                    background:'rgba(111, 0, 53, 1) 4%',
+                  }
+                }}
               />
             </div>
           </div>

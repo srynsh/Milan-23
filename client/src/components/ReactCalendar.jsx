@@ -164,7 +164,8 @@ const ReactCalendar = () => {
 
   return (
     <div className="calendar-dov" style={{
-      width:'100vw',
+      width:'99vw',
+      height:'max-content',
       display:'flex',
       justifyContent:'center',
       alignItems:'center',
@@ -175,11 +176,10 @@ const ReactCalendar = () => {
           <h2>{currentMonth}</h2>
           <button onClick={handleMonthChange}>Change Month</button>
         </div>
-        <div className="calendar">{renderCalendar()}
+        <div className="calendar">{renderCalendar()}</div>
         {renderEventsDialog()}
       </div>
     </div>
-  </div>
   );
 };
 

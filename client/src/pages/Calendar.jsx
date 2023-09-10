@@ -11,7 +11,7 @@ const Calendar = () => {
   const navigate = useNavigate();
   
   return (
-    <div>
+    <div className="main-bg">
       <div className="profile-icon" onClick={()=>navigate('/Profile')}>
         <ion-icon name="person" id="profile-ico"></ion-icon>
       </div>
