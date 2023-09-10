@@ -164,8 +164,7 @@ const ReactCalendar = () => {
 
   return (
     <div className="calendar-dov" style={{
-      width:'98vw',
-      height:'max-content',
+      width:'100vw',
       display:'flex',
       justifyContent:'center',
       alignItems:'center',
