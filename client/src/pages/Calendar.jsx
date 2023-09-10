@@ -12,7 +12,7 @@ const Calendar = () => {
   
   return (
     <div>
-      <div className="profile-icon" onClick={handleclick}>
+      <div className="profile-icon" onClick={() => navigate('/profile')}>
         <ion-icon name="person" id="profile-ico"></ion-icon>
       </div>
       <ReactCalendar />
