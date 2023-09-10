@@ -151,6 +151,7 @@ const Profile = () => {
                 groupBy="category"
                 selectionLimit={5}
                 hidePlaceholder={true}
+                selectedValues={User.supportedTeams}
                 style={{
                   searchBox:{
                     border:0,
@@ -179,6 +180,7 @@ const Profile = () => {
                 showCheckbox
                 className="inputborder custom-multiselect-container"
                 showArrow
+                selectedValues={User.Events}
                 groupBy="category"
                 style={{
                   searchBox:{
