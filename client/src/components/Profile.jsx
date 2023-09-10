@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import "../profile & calender.css";
 import axios from "axios";
+import Cookies from 'js-cookie'
+
 
 const Profile = () => {
   // options Data set import from the backend
@@ -28,28 +30,32 @@ const Profile = () => {
   });
   
 
-  const headers = {};
   useEffect(() => {
-    // Fetch user details
     axios
-      .get("https://cb84-106-195-71-118.ngrok-free.app/profile", headers)
+      .get("http://localhost:8000/profile", {
+        withCredentials: true,
+      })
       .then((response) => {
-        const userData = response.data;
+        console.log(response.data.user);
+        const userData = response.data.user;
         // Update the User state with user details
         setUser({
-          ...User,
           avatar: userData.avatar_url,
           name: userData.display_name,
           email: userData.email,
           supportedTeams: userData.supportedTeams,
-          Events: userData.preferedEvents,
+          events: userData.preferredEvents,
         });
       })
       .catch((error) => {
         console.error("Error fetching user details: ", error);
       });
-  }, []);
-
+  }, []); // Empty dependency array to run the effect only once on component mount
+  
+  useEffect(() => {
+    console.log(User); // Log the updated User state here
+  }, [User]); // Add User as a dependency to this effect
+  
   // Handling selections/Changes in the Form
 
   const handleChange = (e) => {
