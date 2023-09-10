@@ -4,14 +4,12 @@ import Navbar from "../components/Navbar";
 import BlockRace from "../components/BlockRace";
 import Footer from "../components/Footer";
 import Hamburger from "../components/Hamburger";
-import {OverallScores} from "../components/OvrLeaderboard";
+import { OverallScores } from "../components/OvrLeaderboard";
 
 const Home = () => {
   const [raceGraph, setRaceGraph] = useState(true);
-  const [showNav, setShowNav] = useState(false);
   return (
     <>
-      
       <div className="main">
         <div className="main-bg">
           <div className="main-bg-vector">
@@ -44,7 +42,34 @@ const Home = () => {
                 </div>
               </div>
               <div className="main-mid-carousel">
-                <img src="./assets/events/image_2.jpeg" />
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/YYgBsC1Ee10?si=dnGQXs66GlHqU5Pz?autoplay=1"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </section>
+            <section className="main-mascot">
+              <div className="mascot-image">
+                <img src="./assets/logos/pablo.jpeg" alt="mascot" />
+              </div>
+              <div className="mascot-desc">
+                Introducing our mesmerizing mascot <br />
+                <span className="pablo">PABLO</span>
+                <br /> the harbinger of luck and boundless excitement! 🎉🐾 Get
+                ready to embrace the positive vibes and cheer it brings to every
+                corner of our event. From boosting confidence to fostering
+                unity, our mascot is here to write add another chapter of
+                success and unforgettable memories. For the first time ever in
+                Milan, a mascot is becoming a part of our incredible journey.
+                Let its presence light up the event with optimism and joy, as we
+                embark on this adventure together. Believe in the magic, feel
+                the energy, and let the good times roll with our lucky charm by
+                your side.🌟 Do watch out for this guy!
               </div>
             </section>
             <section className="main-ovr">
@@ -82,6 +107,6 @@ const Home = () => {
       </div>
     </>
   );
-}
+};
 
 export default Home;

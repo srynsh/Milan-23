@@ -7,6 +7,8 @@ import Calendar from "./pages/Calendar";
 import { useState } from "react";
 import { OverallScores } from "./components/OvrLeaderboard";
 import Profile from "./pages/Profile";
+import ProfilePage from "./pages/ProfilePage"
+import { Events } from "./pages/Events";
 
 function App() {
   const [showNav, setShowNav] = useState(false);
@@ -17,12 +19,13 @@ function App() {
         <div className="ham-rec1"></div>
         <div className="ham-rec1"></div>
       </div>
-      {showNav && <Navbar showNav={showNav} />}
+      <Navbar showNav={showNav} setShowNav={setShowNav}/>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/calendar" element={<Calendar />}/>
+        <Route path="/calendar" element={<Calendar />} />
         <Route path="/team" element={<Team />} />
-        <Route path="/schedule" element={<OverallScores />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/events" element={<Events />} />
         <Route path="*" element={<Error />} />
         <Route path="/Profile" element={<Profile/>}/>
       </Routes>

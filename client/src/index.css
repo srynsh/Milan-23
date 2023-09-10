@@ -16,6 +16,11 @@
   -webkit-text-size-adjust: 100%; 
 } */
 
+html {
+  scroll-behavior: smooth;
+  color: #390035;
+}
+
 @font-face {
   font-family: "Amboy";
   src: url("../fonts/Parkinson\ -\ Amboy-Black.otf");
@@ -34,6 +39,10 @@
   margin: 0;
   padding: 0;
   font-family: Inter;
+}
+
+a {
+  text-decoration: none;
 }
 
 .main {
@@ -149,7 +158,12 @@
 }
 
 .main-mid-text {
-  width: 50vw;
+  width: 38vw;
+  background: #390035;
+  border-radius: 5rem;
+  background: rgba(112, 0, 53, 0.16);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 3vw;
 }
 
 .main-mid-text-head h2 {
@@ -167,12 +181,131 @@
   margin-top: 45px;
 }
 
+.main-mid-carousel {
+  /* margin-left: 5vw; */
+  width: 40vw;
+}
+
 .main-mid-carousel img {
-  width: 30vw;
-  margin-left: 8vw;
+  width: 20vw;
+  margin-left: 5vw;
+  position: relative;
+}
+
+@media only screen and (max-width: 1400px) {
+  #img1 {
+    right: 0px;
+    top: 22px;
+  }
+
+  #img2 {
+    left: 165px;
+    bottom: 20px;
+    z-index: 2;
+  }
+
+  #img3 {
+    bottom: 340px;
+    right: -330px;
+  }
+}
+
+#img1:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+  z-index: 5;
+  border: 10px solid black;
+  padding: 0.5vw;
+  margin-left: 4vw;
+  background-color: #390035;
+}
+#img2:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+  z-index: 5;
+  border: 10px solid black;
+  padding: 0.5vw;
+  margin-left: 4vw;
+  background-color: #390035;
+}
+#img3:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+  z-index: 5;
+  border: 10px solid black;
+  padding: 0.5vw;
+  background-color: #390035;
+  margin-left: 4vw;
+}
+
+.main-mascot {
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  background: #ffd1a8;
+  align-items: center;
+}
+
+.mascot-image {
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mascot-image img {
+  height: 60vh;
+}
+
+.mascot-desc {
+  font-family: "ArianaPro";
+  width: 50vw;
+  font-size: 1.9rem;
+  color: #390035;
+  padding-right: 5vw;
+}
+
+.pablo {
+  font-size: 2.1rem;
+  font-weight: 600;
+  font-family: "Arianapro";
+}
+
+@media only screen and (max-width: 1000px) {
+  .main-mascot {
+    padding-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .mascot-image img {
+    height: 30vh;
+  }
+
+  .mascot-desc {
+    font-size: 1rem;
+    width: 80vw;
+    padding: 0vw;
+    text-align: center;
+    margin-top: 5vh;
+  }
+}
+
+.main-mid-carousel {
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-mid-carousel iframe {
+  width: 80%;
+  height: 50vh;
 }
 
 .main-ovr {
+  margin-top: 10vh;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -219,10 +352,10 @@
 .main-pic {
   width: 100vw;
   height: 100vh;
-  background: #ffd1a8;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #ffd1a8;
 }
 
 /* FOOTER */
@@ -234,6 +367,8 @@ footer {
   width: 100%;
   align-items: center;
   margin-top: 4vw;
+  background: #fff;
+  margin-bottom: 7vh;
 }
 
 .footer-img img {
@@ -328,11 +463,11 @@ ion-icon {
 .team-page {
   display: flex;
   flex-direction: column;
-  background: url("./assets/bg-vectors/team-bg.svg");
   background: #ffd1a8 url("./assets/bg-vectors/team-bg.svg");
   overflow-x: hidden;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: contain;
+  padding-bottom: 10vh;
 }
 
 .tp-oc {
@@ -340,7 +475,7 @@ ion-icon {
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
 }
 
 .tp-logo img {
@@ -365,7 +500,14 @@ ion-icon {
   width: 400px;
   height: 400px;
   background: #390035;
+  transition: 0.3s;
   margin-top: 5vh;
+}
+
+.tp-oc-img-f:hover {
+  transform: scale(1.01);
+  box-shadow: 2px 2px 12px 3px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
 }
 
 .tp-oc-name {
@@ -376,35 +518,26 @@ ion-icon {
   margin-top: 3vh;
 }
 
-.tp-head {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-}
-
 .tp-domain {
-  padding-top: 40vh;
-  margin-bottom: -20vh;
-}
-
-.tp-domain-space {
-  height: 140vh;
-}
-
-.tp-domain-warp {
-  display: flex;
-  flex-direction: row;
-  width: 170vw;
-  height: 100vh;
+  height: max-content;
+  width: 100vw;
+  margin-top: 10vh;
 }
 
 .tp-domain-head {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+}
+
+.tp-domain-head-c {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 3vw;
 }
 
 .tp-domain-head-w {
@@ -416,7 +549,6 @@ ion-icon {
 }
 
 .tp-domain-name {
-  margin-top: -10vh;
   font-size: 4rem;
   padding: 20px 30px;
   border-radius: 1rem;
@@ -452,7 +584,14 @@ ion-icon {
   height: 300px;
   background: #390035;
   margin-top: 6vh;
+  transition: 0.3s;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.tp-domain-head-f:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 2px 12px 3px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
 }
 
 .tp-domain-head-name {
@@ -462,12 +601,14 @@ ion-icon {
   font-weight: 600;
   margin-top: 3vh;
   max-width: min-content;
+  text-align: center;
 }
 
 .tp-domain-core {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10vh;
 }
 
 .tp-domain-core-h {
@@ -479,7 +620,6 @@ ion-icon {
   font-family: "Amboy";
   font-weight: 700;
   letter-spacing: 0.2rem;
-  margin-top: 4vh;
   margin-bottom: 3vh;
 }
 
@@ -489,7 +629,7 @@ ion-icon {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2vw;
-  max-width: 60vw;
+  padding: 0 10vw;
 }
 
 .tp-domain-core-i-c {
@@ -503,7 +643,14 @@ ion-icon {
   width: 230px;
   height: 230px;
   background: #390035;
+  transition: 0.3s;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.tp-domain-core-i-c-f:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 2px 12px 3px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
 }
 
 .tp-domain-core-i-c-name {
@@ -512,26 +659,41 @@ ion-icon {
   font-family: "Amboy";
   font-weight: 600;
   margin-top: 3vh;
+  max-width: min-content;
+  text-align: center;
 }
 
 /* NAVBAR */
 
 .navbar {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: row;
   width: 100vw;
   height: 100vh;
-  /* background: rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(4px); */
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(4px);
   z-index: 998;
+  transition: 0.5s;
 }
 
-.navbar-blur{
+.navbar-hide {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  width: 200vw;
+  height: 100vh;
+  /* background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(4px); */
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.navbar-blur {
   flex-grow: 1;
   background: rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(4px);
-  transition: 1s;
+  transition: 0.5s;
 }
 
 .navbar-options {
@@ -544,9 +706,26 @@ ion-icon {
   width: 40vw;
   height: 80%;
   background: #ffd1a8;
-  position: absolute;
+  position: fixed;
   right: 0;
   border-left: 1px solid #390035;
+  transition: 0.5s;
+}
+
+.navbar-options-hide {
+  padding: 10vh 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 40vw;
+  height: 80%;
+  background: #ffd1a8;
+  position: fixed;
+  right: 0;
+  border-left: 1px solid #390035;
+  visibility: hidden;
+  transition: 0.5s;
 }
 
 .navbar-pending {
@@ -572,7 +751,12 @@ ion-icon {
   cursor: default;
 }
 
+.navbar-active:hover {
+  text-decoration: none;
+}
+
 .navbar-pending:hover {
+  text-decoration: none;
   background: #390035;
   color: #ffd1a8;
   padding: 15px 20px;
@@ -587,7 +771,7 @@ ion-icon {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   right: 5vw;
   top: 2vh;
   border-radius: 50%;
@@ -652,7 +836,6 @@ ion-icon {
 }
 
 @media only screen and (max-width: 1000px) {
-
   .team-page {
     background-clip: inherit;
   }
@@ -746,6 +929,10 @@ ion-icon {
     font-size: 2rem;
   }
 
+  .tp-domain-head-c {
+    flex-direction: column;
+  }
+
   .tp-domain-head-f {
     width: 250px;
     height: 250px;
@@ -765,12 +952,21 @@ ion-icon {
     gap: 8vh;
     justify-content: center;
   }
+  .navbar-options-hide {
+    width: 100vw;
+    padding: 10vh 0;
+    position: absolute;
+    gap: 8vh;
+    justify-content: center;
+  }
   .navbar-pending {
     font-size: 2rem;
+    text-decoration: none;
   }
 
   .navbar-active {
     font-size: 2rem;
+    text-decoration: none;
   }
 }
 
@@ -800,6 +996,8 @@ ion-icon {
   .main-mid-text {
     width: max-content;
     text-align: center;
+    background: #700035;
+    padding: 4vh 1vw;
   }
   .main-head-text h1 {
     font-size: 5.5rem;
@@ -816,30 +1014,42 @@ ion-icon {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
     padding: 0;
-    flex-wrap: wrap;
+  }
+
+  .main-mid-text {
+    padding: 5vh 2vw;
   }
 
   .main-mid-text-head h2 {
-    font-size: 1.85rem;
+    font-size: 1.75rem;
     font-family: "ArianaPro";
   }
 
   .main-mid-text-desc {
     width: 90vw;
+    padding-top: 2vh;
   }
 
   .main-mid-text-desc p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     width: 90vw;
     font-family: "ArianaPro";
   }
 
-  .main-mid-carousel img {
-    width: 50vw;
-    margin-top: 5vh;
+  .main-mid-carousel {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-mid-carousel iframe {
+    width: 91vw;
+    height: 53vw;
   }
 
   .main-ovr {
@@ -855,10 +1065,10 @@ ion-icon {
     font-family: "ArianaPro";
     font-size: 1.3rem;
     padding: 10px 20px;
-  } 
+  }
 
   .main-ovr-stat {
-    width: 70vw;
+    width: 80vw;
   }
 }
 
@@ -992,13 +1202,13 @@ ion-icon {
     cursor: pointer;
     transition: 0.5s;
   }
-  
+
   .close-btn:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
       rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
       rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
-  
+
   .close-line-1 {
     width: 35px;
     height: 5px;
@@ -1006,7 +1216,7 @@ ion-icon {
     border-radius: 10px;
     transform: translateY(1.5px) rotate(45deg);
   }
-  
+
   .close-line-2 {
     width: 35px;
     height: 5px;
@@ -1033,4 +1243,90 @@ ion-icon {
 
 .blockrace div {
   height: 100%;
+}
+
+.profile-icon {
+  width: fit-content;
+  padding: 15px;
+  border-radius: 50%;
+  background: #700035;
+  position: fixed;
+  right: 5vw;
+  top: 13vh;
+  cursor: pointer;
+}
+
+#profile-ico {
+  color: #ffd1a8;
+}
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: #000 /* url("./assets/bg-vectors/team-bg.svg") */;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.error-page-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Amboy";
+  font-size: 4rem;
+  color: #a40035;
+}
+
+@keyframes error {
+  0% {
+    color: #fff;
+  }
+
+  50% {
+    color: #a11a2b;
+  }
+
+  100% {
+    color: #fff;
+  }
+}
+
+@keyframes error-hover {
+  0% {
+    color: #000;
+  }
+
+  50% {
+    color: #a11a2b;
+  }
+
+  100% {
+    color: #000;
+  }
+}
+
+.error-page-t-m {
+  text-align: center;
+  font-size: 7rem;
+  color: #fff;
+  margin-top: 30px;
+  font-family: "Amboy";
+  transition: 0.5s;
+  animation: error 2s infinite linear;
+}
+
+.error-page-t-m:hover {
+  text-decoration: none;
+  background-color: #ffd1a8;
+  margin-top: 10px;
+  padding: 20px 30px;
+  border-radius: 2rem;
+  color: #000;
+  transition: 0.5s;
+  animation: error-hover infinite linear;
 }
