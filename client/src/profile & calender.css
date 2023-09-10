@@ -224,62 +224,6 @@ flex:1;
 }
 
 
-/* CSS for Profile component */
-.container {
-  font-family: var(--font-family);
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px 0;
-}
-
-.form-group {
-  display: flex;
-  width: 50%;
-  gap:8px;
-  align-items: center;
-  text-align: left;
-  border-bottom:10px;
-  border-left:1rem;
-}
-.form-group select {
-  flex: 1;
-  padding: 8px;
-  border: 2px solid var(--primary-color); 
-  border-radius: 8px; 
-  font-size: 14px;
-  color: #333;
-
-}
-.form-label {
-  @apply pt-8 pb-8 pl-8 pr-8 font-mono text-base font-normal capitalize;
-
-
-  color: var(--primary-color);
-}
-
-input[type="text"],
-input[type="tel"],
-select {
-  flex: 1;
-  padding: 6px;
-  border-bottom: 3px solid var(--primary-color);
-  border-top:2px solid var(--primary-color);
-  border-left: 2px solid var(--primary-color);
-  border-right: 2px solid var(--primary-color);
-  box-sizing: border-box;
-  box-shadow: 1px 2px var(--secondary-color);
-  border-radius:4px;
-  font-size: 14px;
-  color: #333;
-}
-
-input[type="tel"]:focus,
-select:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 4px rgba(164, 0, 53, 0.5);
-}
-
 
 .submit-button {
   background-color: var(--primary-color);
@@ -296,49 +240,10 @@ select:focus {
   background-color: #4a2d6d;
 }
 
-
-/* Multiselect styles */
-.custom-multiselect-container {
-  width: 90%;
-  height: auto;
-  border: 2px solid var(--primary-color);
-  background-color: #FDD1AA;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px var(--box-shadow-color);
-}
-.gap{
-  height:40px;
-}
-
-/* Heading styles */
-h3 {
-  color: #390035;
-}
-
-/* Link styles */
-a {
-  color: #A11A2B;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-
 /* Responsive styles */
 
 
 @media (max-width: 2000px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-  }
-  .form-group {
-    width: 100%;
-    max-width: 95%;
-    margin: 10px 0;
-  }
   .submit-button{
     margin-left: 10%;
   }

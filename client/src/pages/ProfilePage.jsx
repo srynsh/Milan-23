@@ -4,7 +4,7 @@ import Footer from '../components/Footer'
 
 const ProfilePage = () => {
   return (
-    <div className='mt-8'>
+    <div className='w-3/4 mt-8'>
       <Profile/>
       <Footer/>
     </div>
