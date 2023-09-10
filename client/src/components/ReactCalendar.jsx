@@ -169,7 +169,7 @@ const ReactCalendar = () => {
       display:'flex',
       justifyContent:'center',
       alignItems:'center',
-      padding:'15vh 10vh'
+      padding:'15vh 0'
     }}>
       <div className="calendar-container">
         <div className="calendar-header">
