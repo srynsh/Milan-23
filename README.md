@@ -1,6 +1,6 @@
 # Milan'23
 
-# Getting Started
+# Getting Started.
 ## Run
 ### ```npm run dev``` 
 or
