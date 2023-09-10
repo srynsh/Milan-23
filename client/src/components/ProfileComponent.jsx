@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import '../profile & calender.css';
 
-const Profile = () => {
+const ProfileComponent = () => {
   // options Data set import from the backend
   const options = [
     { name: "option 1", id: 1 },
@@ -24,7 +24,6 @@ const Profile = () => {
     tel: "",
     block: "-1",
     events: [],
-    competitions: [],
   });
 
   // Handling selections/Changes in the Form
@@ -44,13 +43,6 @@ const Profile = () => {
     setUser((prevUser) => ({ ...prevUser, events: selectedList }));
   };
 
-  const handleCompetitionsSelect = (selectedList, selectedItem) => {
-    setUser((prevUser) => ({ ...prevUser, competitions: selectedList }));
-  };
-
-  const handleCompetitionsRemove = (selectedList, removedItem) => {
-    setUser((prevUser) => ({ ...prevUser, competitions: selectedList }));
-  };
 
   // Upon submitting the form
 
@@ -77,13 +69,12 @@ const Profile = () => {
       return;
     }
 
-    if (User.events.length === 0 || User.competitions.length === 0) {
-      alert("Please choose at least one option from Events & Competitions.");
+    if (User.events.length === 0 ) {
+      alert("Please choose at least one option from Events");
       return;
     }
 
     User.events.sort(sortByOptionId);
-    User.competitions.sort(sortByOptionId);
     console.log(User);
   };
 
@@ -104,23 +95,14 @@ const Profile = () => {
   };
   // fetching data
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const getname = [];
-  //     const reqData = await fetch("");
-  //     const resData = await reqData.json();
 
-  //     for (let i = 0; i < resData.length; i++) {
-  //       getname.push(resData[i].name);
-  //     }
-  //     setOptions(getname);
-  //   };
-  // }, []);
+
+  
   return (
     <div className="container">
       <h1 className="p-8 text-xl font-bold uppercase ">Profile Details</h1>
       <form onSubmit={handleSubmit} name="myForm" className="flex-col justify-center">
-        <div className="gap-4 mb-8 md:flex sd:w-full layer-1">
+        <div className="flex gap-4 mb-8 sd:w-full layer-1">
         <div className="form-group">
           <label htmlFor="name" className="form-label">
             Name: &nbsp;
@@ -180,8 +162,8 @@ const Profile = () => {
           </select>
         </div>
         </div>
-        <div className="container flex w-full gap-4 sd:flex-col justify-evenly ">
-          <div className="w-3/4">
+        <div className="container gap-4 sd:flex-col justify-evenly ">
+          <div>
             <Multiselect
               name="events"
               id="events"
@@ -192,40 +174,13 @@ const Profile = () => {
               onRemove={handleEventsRemove}
               displayValue="name"
               showCheckbox
-              className="w-full border-gray-500 inputborder custom-multiselect-container"
+              className="inputborder custom-multiselect-container"
               showArrow
-              selectedValuesCssClass="custom-multiselect-selected-text"
-              placeholderCssClass="custom-multiselect-placeholder"
-              optionsListCssClass="custom-multiselect-option"
               groupBy="category"
             />
             {User.events.length === 0 && (
               <p className="mt-2 text-red-500">
                 Please select at least one event.
-              </p>
-            )}
-          </div>
-          <div className="w-3/4">
-            <Multiselect
-              name="competitions"
-              id="competitions"
-              isObject={true}
-              placeholder="Select Competitions"
-              options={options}
-              onSelect={handleCompetitionsSelect}
-              onRemove={handleCompetitionsRemove}
-              displayValue="name"
-              showCheckbox
-              className="w-full border-gray-500 inputborder custom-multiselect-container"
-              showArrow
-              selectedValuesCssClass="custom-multiselect-selected-text"
-              placeholderCssClass="custom-multiselect-placeholder"
-              optionsListCssClass="custom-multiselect-option"
-              groupBy="category"
-            />
-            {User.competitions.length === 0 && (
-              <p className="mt-2 text-red-500">
-                Please select at least one competition.
               </p>
             )}
           </div>
@@ -238,4 +193,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfileComponent;

@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Calendar from "./pages/Calendar";
 import { useState } from "react";
 import { OverallScores } from "./components/OvrLeaderboard";
+import Profile from "./pages/Profile";
 
 function App() {
   const [showNav, setShowNav] = useState(false);
@@ -23,6 +24,7 @@ function App() {
         <Route path="/team" element={<Team />} />
         <Route path="/schedule" element={<OverallScores />} />
         <Route path="*" element={<Error />} />
+        <Route path="/Profile" element={<Profile/>}/>
       </Routes>
     </Router>
   );

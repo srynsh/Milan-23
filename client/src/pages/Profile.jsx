@@ -1,11 +1,11 @@
 import React from 'react'
-import Profile from '../components/Profile'
+import ProfileComponent from '../components/ProfileComponent'
 import Footer from '../components/Footer'
 
 const Profile = () => {
   return (
-    <div>
-      <Profile/>
+    <div className='mt-8'>
+      <ProfileComponent/>
       <Footer/>
     </div>
   )

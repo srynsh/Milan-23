@@ -1,7 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
 
 
+@font-face {
+  font-family: "Amboy";
+  src: url("../fonts/Parkinson\ -\ Amboy-Black.otf");
+}
 
+@font-face {
+  font-family: "OctoberDevanagari";
+  src: url("../fonts/OctoberDevanagari.ttf");
+}
+
+@font-face {
+  font-family: "ArianaPro";
+  src: url("../fonts/Ariana Pro Regular.otf");
+}
 
 /* Common styles */
 :root {
@@ -9,7 +22,7 @@
   --secondary-color: #39003540;
   --background-color: #39003540;
   --box-shadow-color: #39003540;
-  --font-family: Arial, sans-serif;
+  --font-family:Amboy,OctoberDevanagari ;
 }
 /* main */
 .main {
@@ -222,7 +235,6 @@ flex:1;
 .form-group {
   display: flex;
   width: 50%;
-  flex-wrap: nowrap;
   gap:8px;
   align-items: center;
   text-align: left;
@@ -287,63 +299,15 @@ select:focus {
 
 /* Multiselect styles */
 .custom-multiselect-container {
-  width: 95%;
+  width: 90%;
   height: auto;
   border: 2px solid var(--primary-color);
   background-color: #FDD1AA;
   border-radius: 8px;
   box-shadow: 0 4px 12px var(--box-shadow-color);
 }
-
-.custom-multiselect-selected-text {
-  color: #700035;
-}
-
-.custom-multiselect-placeholder {
-  color: #700035;
-}
-
-.custom-multiselect-option {
-  background-color: #FDD1AA;
-  color: #700035;
-  border: 2px solid var(--primary-color);
-}
-
-.custom-multiselect-selected {
-  background-color: #700035;
-  color: white;
-}
 .gap{
   height:40px;
-}
-
-/* Footer styles */
-.footer {
-  background-color: #f9f9f9;
-  padding: 20px;
-  display: flex;
-  justify-content: space-around;
-  width:100vw;
-}
-
-.footer-info {
-  display: flex;
-  gap: 20px;
-}
-
-.footer-location, .footer-contact {
-  color: #000;
-}
-
-.footer-follow-icons {
-  display: flex;
-  gap: 10px;
-  color: #000;
-}
-
-/* Icon styles */
-.icon {
-  font-size: 24px;
 }
 
 /* Heading styles */
@@ -362,34 +326,10 @@ a:hover {
 }
 
 
-@media (max-width: 768px) {
-  .footer {
-    flex-direction: column;
-    align-items: center; 
-  }
-
-  .footer-location,.footer-contact {
-    margin-bottom: 20px; 
-    width:100%;
-    text-align:center;
-  }
-
-  .footer-follow-icons {
-    margin-top: 10px; 
-  }
-
-  .icon {
-    font-size: 20px; 
-  }
-
-}
-
-
-
 /* Responsive styles */
 
 
-@media (max-width: 1100px) {
+@media (max-width: 2000px) {
   .container {
     flex-direction: column;
     align-items: center;
