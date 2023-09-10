@@ -1,11 +1,11 @@
 import React from 'react'
-import ProfileComponent from '../components/ProfileComponent'
+import Profile from '../components/Profile'
 import Footer from '../components/Footer'
 
 const ProfilePage = () => {
   return (
     <div className='mt-8'>
-      <ProfileComponent/>
+      <Profile/>
       <Footer/>
     </div>
   )
