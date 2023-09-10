@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 
 const handleclick = () => {
-  // Use window.location.href to redirect the user to the specified URL
+  //Use window.location.href to redirect the user to the specified URL
   window.location.href = 'http://localhost:8000/auth/google';
 }
 
@@ -12,7 +12,7 @@ const Calendar = () => {
   
   return (
     <div>
-      <div className="profile-icon" onClick={handleclick}>
+      <div className="profile-icon" onClick={()=>navigate('/Profile')}>
         <ion-icon name="person" id="profile-ico"></ion-icon>
       </div>
       <ReactCalendar />

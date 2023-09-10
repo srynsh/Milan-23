@@ -29,7 +29,7 @@ export const Events = () => {
         {WhichEvent === 'culti' ? <CultiGraphs /> : null}
         {WhichEvent === 'techy' ? <TechyGraphs /> : null}
     </div>
-    <div className="w-5/6 text-center mx-auto my-4 rounded-2xl">
+    <div className="w-5/6 mx-auto my-4 text-center rounded-2xl">
         {WhichEvent === 'sportsboys' ? <SportsBoysTable /> : null}
         {WhichEvent === 'sportsgirls' ? <SportsGirlsTable /> : null}
         {WhichEvent === 'culti' ? <CultiTable /> : null}

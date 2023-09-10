@@ -110,6 +110,7 @@ const ReactCalendar = () => {
   };
 
   return (
+    <div className="box">
     <div className="calendar-container">
       <div className="calendar-header">
         <h2>{currentMonth}</h2>
@@ -118,6 +119,7 @@ const ReactCalendar = () => {
       <div className="calendar">{renderCalendar()}</div>
       {renderEventsDialog()}
     </div>
+  </div>
   );
 };
 

@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import "../profile & calender.css";
 import axios from "axios";
-import Cookies from 'js-cookie'
-
 
 const Profile = () => {
   // options Data set import from the backend
