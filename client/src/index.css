@@ -1330,3 +1330,8 @@ ion-icon {
   transition: 0.5s;
   animation: error-hover infinite linear;
 }
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

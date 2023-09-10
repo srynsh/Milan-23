@@ -3,27 +3,18 @@ import '../profile & calender.css';
 
 const eventsData = {
   '2023-09-01': [
-    { id: 1, title: 'Event 1', body: 'Event 1 description', time: '10:00 AM' },
-    { id: 2, title: 'Event 2', body: 'Event 2 description', time: '2:00 PM' }
+    { id: 1, title: 'Event 1', body: 'Event 1 description', time: '10:00 AM', category: 'Culti' },
+    { id: 2, title: 'Event 2', body: 'Event 2 description', time: '2:00 PM', category: 'Sci-Fi' }
   ],
   '2023-09-15': [
-    { id: 3, title: 'Event 3', body: 'Event 3 description', time: '3:30 PM' }
+    { id: 3, title: 'Event 3', body: 'Event 3 description', time: '3:30 PM', category: 'Sports' }
   ],
   '2023-10-05': [
-    { id: 4, title: 'Event 4', body: 'Event 4 description', time: '11:00 AM' }
+    { id: 4, title: 'Event 4', body: 'Event 4 description', time: '11:00 AM', category: 'Culti' }
   ],
   '2023-10-20': [
-    { id: 5, title: 'Event 5', body: 'Event 5 description', time: '4:00 PM' },
-    { id: 6, title: 'Event 6', body: 'Event 6 description', time: '6:30 PM' }
-  ],
-};
-
-const competitionsData = {
-  '2023-09-05': [
-    { id: 7, title: 'Competition 1', body: 'Competition 1 description', time: '9:00 AM' }
-  ],
-  '2023-10-10': [
-    { id: 8, title: 'Competition 2', body: 'Competition 2 description', time: '2:00 PM' }
+    { id: 5, title: 'Event 5', body: 'Event 5 description', time: '4:00 PM', category: 'Sci-Fi' },
+    { id: 6, title: 'Event 6', body: 'Event 6 description', time: '6:30 PM', category: 'Sports' }
   ],
 };
 
@@ -71,17 +62,17 @@ const ReactCalendar = () => {
     return calendarDays;
   };
 
-  const renderEventsDialog = () => {
-    if (!selectedDate) return null;
-    const events = eventsData[selectedDate] || [];
+  const EventsDialog = ({ selectedDate, events, category }) => {
     return (
       <div className="events-dialog">
         <div className="dialog-header">
           <span>{selectedDate}</span>
-          <button onClick={() => setSelectedDate(null) }className="close-button" >Close</button>
+          <button onClick={() => setSelectedDate(null)} className="close-button">
+            Close
+          </button>
         </div>
         <div className="events-list">
-          <h3>Events:</h3>
+          <h3>{`${category} Events:`}</h3>
           {events.length > 0 ? (
             <ul>
               {events.map((event) => (
@@ -93,39 +84,30 @@ const ReactCalendar = () => {
               ))}
             </ul>
           ) : (
-            <p>No events for this day.</p>
+            <p>{`No ${category} events for this day.`}</p>
           )}
         </div>
       </div>
     );
   };
-  const renderCompetitionsModal =()=>{
+
+  const renderEventsDialog = () => {
     if (!selectedDate) return null;
-    const competitions = competitionsData[selectedDate] || [];
-    return(
-      <div className="events-dialog">
-        <div className="dialog-header">
-          <span>{selectedDate}</span>
-        </div>
-      <div className="competitions-list">
-          <h3>Competitions:</h3>
-          {competitions.length > 0 ? (
-            <ul>
-              {competitions.map((competition) => (
-                <li key={competition.id}>
-                  <h4>{competition.title}</h4>
-                  <p>{competition.body}</p>
-                  <p>Time: {competition.time}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No competitions for this day.</p>
-          )}
-        </div>
-        </div>
+    const events = eventsData[selectedDate] || [];
+
+    // Filter events by category
+    const cultiEvents = events.filter(event => event.category === 'Culti');
+    const sciFiEvents = events.filter(event => event.category === 'Sci-Fi');
+    const sportsEvents = events.filter(event => event.category === 'Sports');
+
+    return (
+      <div>
+        <EventsDialog selectedDate={selectedDate} events={cultiEvents} category="Culti" />
+        <EventsDialog selectedDate={selectedDate} events={sciFiEvents} category="Sci-Fi" />
+        <EventsDialog selectedDate={selectedDate} events={sportsEvents} category="Sports" />
+      </div>
     );
-  }
+  };
 
   return (
     <div className="calendar-container">
@@ -135,7 +117,6 @@ const ReactCalendar = () => {
       </div>
       <div className="calendar">{renderCalendar()}</div>
       {renderEventsDialog()}
-      {renderCompetitionsModal()}
     </div>
   );
 };

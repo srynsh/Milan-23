@@ -92,13 +92,13 @@ const Profile = () => {
 
   return (
     <div className="container">
-      <h1 className="p-8 text-xl font-bold uppercase ">Profile Details</h1>
+      <h1 className="">Profile Details</h1>
       <form
         onSubmit={handleSubmit}
         name="myForm"
-        className="flex-col justify-center"
+        className=""
       >
-        <div className="flex gap-4 mb-8 sd:w-full layer-1">
+        <div className="layer1">
           <div className="form-group">
             <label htmlFor="name" className="form-label">
               Name: &nbsp;
@@ -113,7 +113,7 @@ const Profile = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="Email" className="form-label sd:w-full">
+            <label htmlFor="Email" className="form-label ">
               Email: &nbsp;
             </label>
             <input
@@ -126,7 +126,7 @@ const Profile = () => {
             />
           </div>
         </div>
-        <div className="gap-4 mb-8 md:flex layer-2 ">
+        <div className=" layer-2">
           <div className="form-group">
             <label htmlFor="supportingTeams" className="form-label">
               Block: &nbsp;
@@ -153,7 +153,7 @@ const Profile = () => {
             <label htmlFor="Events" className="form-label">
               Events: &nbsp;
             </label>
-            <div className="min-w-full">
+            <div className="">
               <Multiselect
                 name="events"
                 id="events"

@@ -1,10 +1,13 @@
 import Profile from '../components/Profile'
 import Footer from '../components/Footer'
+import "../profile & calender.css";
 
 const ProfilePage = () => {
   return (
-    <div className='mt-8'>
-      <Profile/>
+    <div>
+      <div className='box'>
+        <Profile/>
+      </div>
       <Footer/>
     </div>
   )
