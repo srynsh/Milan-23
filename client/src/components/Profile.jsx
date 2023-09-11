@@ -128,7 +128,18 @@ const Profile = () => {
       alert("Please enter a valid name.");
       return;
     }
-    console.log(User);
+    //console.log(User);
+    axios.post("http://localhost:8000/profile/update",User,{
+      withCredentials: true,
+    })
+    .then((data) => {
+      if(data.status === 200){
+        alert("Profile Updated Successfully");
+      }
+      else{
+        alert("Error updating profile");
+      }
+    })
   };
 
   const validateName = (name) => {
