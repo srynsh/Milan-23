@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import './livescore.css';
-import { Football } from "./components/Football";
-import { Hockey } from "./components/Hockey";
-import { Cricket } from "./components/Cricket";
-import { Basketball } from './components/Basketball';
-import { Badminton } from './components/Badminton';
-import { Squash } from "./components/Squash";
-import { TableTennis } from "./components/TableTennis";
-import { Tennis } from "./components/Tennis";
-import { Volleyball } from "./components/Volleyball";
+import '../livescore.css';
+import { Football } from "../components/Football";
+import { Hockey } from "../components/Hockey";
+import { Cricket } from "../components/Cricket";
+import { Basketball } from '../components/Basketball';
+import { Badminton } from '../components/Badminton';
+import { Squash } from "../components/Squash";
+import { TableTennis } from "../components/TableTennis";
+import { Tennis } from "../components/Tennis";
+import { Volleyball } from "../components/Volleyball";
 
 export const LiveScoresPage = () => {
   const [eventsdata, setEventsdata] = useState(null);
