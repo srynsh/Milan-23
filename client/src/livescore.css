@@ -8,7 +8,7 @@
     }
     @font-face {
         font-family: 'Amboy-Black';
-        src: url('../public/fonts/Parkinson\ -\ Amboy-Black.otf') format('opentype');
+        src: url('../fonts/Parkinson\ -\ Amboy-Black.otf') format('opentype');
         font-weight: normal;
         font-style: normal;
     }
@@ -16,7 +16,7 @@
         font-family: 'Amboy-Black';
     }
     .livescore-sports-box{
-        background: url('../public/assets/bg-vectors/LiveScoresbg.png'),#ffd1a8 no-repeat;
+        background: url('../assets/bg-vectors/LiveScoresbg.png'),#ffd1a8 no-repeat;
         background-size: cover;
         min-height: 10rem;
     }

@@ -31,7 +31,7 @@ function Navbar({ showNav, setShowNav }) {
               : "navbar-pending"
           }
         >
-          SCHEDULE
+          EVENTS
         </NavLink>
         <NavLink
           onClick={() => setShowNav(!showNav)}
@@ -58,19 +58,6 @@ function Navbar({ showNav, setShowNav }) {
           }
         >
           CALENDAR
-        </NavLink>
-        <NavLink
-          onClick={() => setShowNav(!showNav)}
-          to="/leaderboard"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "navbar-pending"
-              : isActive
-              ? "navbar-active"
-              : "navbar-pending"
-          }
-        >
-          LEADERBOARD
         </NavLink>
         <NavLink
           onClick={() => setShowNav(!showNav)}
