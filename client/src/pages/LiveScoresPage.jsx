@@ -88,6 +88,7 @@ export const LiveScoresPage = () => {
 
   return (
     <>
+    <div className='liveScore-box p-4'>
     <div className='text-center rounded-xl bg-[#a40035] mx-auto my-12 lg:my-16 w-2/5 md:w-1/5 lg:w-1/6 text-2xl lg:text-4xl p-2 Parkinson text-white shadow-md shadow-[#00000078]'>
       Live Score
     </div>
@@ -102,6 +103,7 @@ export const LiveScoresPage = () => {
       )
       )   : null
     }
-    </>
+    </div>
+   </>
   )
 }
