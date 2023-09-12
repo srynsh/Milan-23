@@ -35,6 +35,19 @@ function Navbar({ showNav, setShowNav }) {
         </NavLink>
         <NavLink
           onClick={() => setShowNav(!showNav)}
+          to="/livescore"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "navbar-pending"
+              : isActive
+              ? "navbar-active"
+              : "navbar-pending"
+          }
+        >
+          LIVE SCORE
+        </NavLink>
+        <NavLink
+          onClick={() => setShowNav(!showNav)}
           to="/calendar"
           className={({ isActive, isPending }) =>
             isPending
