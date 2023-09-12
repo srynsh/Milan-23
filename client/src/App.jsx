@@ -5,8 +5,9 @@ import Error from "./pages/Error";
 import Navbar from "./components/Navbar";
 import Calendar from "./pages/Calendar";
 import { useState } from "react";
+import {LiveScoresPage} from './pages/LiveScoresPage';
 import { OverallScores } from "./components/OvrLeaderboard";
-import ProfilePage from "./pages/ProfilePage"
+import ProfilePage from "./pages/ProfilePage";
 import { Events } from "./pages/Events";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/team" element={<Team />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/livescore" element={<LiveScoresPage />} />
         <Route path="*" element={<Error />} />
         <Route path="/Profile" element={<ProfilePage/>}/>
       </Routes>
