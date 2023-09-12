@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components{
-    body{
+    .liveScore-box{
         background-color: #390035;
     }
     @font-face {
