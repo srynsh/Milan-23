@@ -16,7 +16,7 @@
         font-family: 'Amboy-Black';
     }
     .livescore-sports-box{
-        background: url('./components/Group14.png'),#ffd1a8 no-repeat;
+        background: url('../public/assets/bg-vectors/LiveScoresbg.png.png'),#ffd1a8 no-repeat;
         background-size: cover;
         min-height: 10rem;
     }
