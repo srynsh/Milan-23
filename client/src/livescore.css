@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    body{
+        background-color: #390035;
+    }
+    @font-face {
+        font-family: 'Amboy-Black';
+        src: url('../public/Parkinson\ -\ Amboy-Black.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .Parkinson{
+        font-family: 'Amboy-Black';
+    }
+    .livescore-sports-box{
+        background: url('./components/Group14.png'),#ffd1a8 no-repeat;
+        background-size: cover;
+        min-height: 10rem;
+    }
+}
+
