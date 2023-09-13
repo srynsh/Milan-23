@@ -3,6 +3,7 @@ import { EffectCoverflow, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import '../mainpage.css'
 
 const images = [
   "./assets/events/image_1.jpeg",

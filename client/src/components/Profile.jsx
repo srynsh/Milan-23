@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import "../profile & calender.css";
 import axios from "axios";
+//import input_event from  "events.json"
 
 const Profile = () => {
   useEffect(()=> {
@@ -10,7 +11,7 @@ const Profile = () => {
   const url = import.meta.env.VITE_BACKEND_URL+"profile"
   useEffect(()=> {console.log(url)}, [url])
   // options Data set import from the backend
-  const options = [
+  const [eoptions,esetoptions] =useState( [
     "option1",
     "option2",
     "option3",
@@ -20,7 +21,48 @@ const Profile = () => {
     "option7",
     "option8",
     "option9",
-  ];
+  ]);
+  const [toptions,tsetoptions] =useState([
+    "option1",
+    "option2",
+  ])
+
+  //console.log(input_event) 
+  fetch('./events.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    const inputList = data.inputList;
+    esetoptions(inputList);
+    
+    // You can use 'inputList' here or perform any other operations with it
+  })
+  .catch(error => {
+    console.error('Error fetching or parsing JSON:', error);
+  });
+
+  fetch('./teams.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    const inputList = data.inputList;
+    tsetoptions(inputList);
+    
+    // You can use 'inputList' here or perform any other operations with it
+  })
+  .catch(error => {
+    console.error('Error fetching or parsing JSON:', error);
+  })
+
+
 
   //User Details Import from Backend
 
@@ -46,7 +88,7 @@ const Profile = () => {
           name: userData.display_name,
           email: userData.email,
           supportedTeams: userData.supportedTeams,
-          events: userData.preferredEvents,
+          events: userData.preferedEvents,
         });
       })
       .catch((error) => {
@@ -90,7 +132,18 @@ const Profile = () => {
       alert("Please enter a valid name.");
       return;
     }
-    console.log(User);
+    //console.log(User);
+    axios.post("http://localhost:8000/profile/update",User,{
+      withCredentials: true,
+    })
+    .then((data) => {
+      if(data.status === 200){
+        alert("Profile Updated Successfully");
+      }
+      else{
+        alert("Error updating profile");
+      }
+    })
   };
 
   const validateName = (name) => {
@@ -146,7 +199,7 @@ const Profile = () => {
                 isObject={false}
                 placeholder="Search Teams &nbsp;"
                 displayValue="supportingTeams"
-                options={options}
+                options={toptions}
                 onSelect={handleBlocksSelect}
                 onremove={handleBlocksRemove}
                 showCheckbox
@@ -177,14 +230,14 @@ const Profile = () => {
                 id="events"
                 isObject={false}
                 placeholder="Search Events"
-                options={options}
+                options={eoptions}
                 onSelect={handleEventsSelect}
                 onRemove={handleEventsRemove}
                 displayValue="name"
                 showCheckbox
                 className="inputborder custom-multiselect-container"
                 showArrow
-                selectedValues={User.Events}
+                selectedValues={User.events}
                 groupBy="category"
                 style={{
                   searchBox:{

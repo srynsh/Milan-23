@@ -164,6 +164,7 @@ a {
   background: rgba(112, 0, 53, 0.16);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 3vw;
+  flex-grow: 1;
 }
 
 .main-mid-text-head h2 {
@@ -307,7 +308,7 @@ a {
 .main-ovr {
   margin-top: 10vh;
   width: 100vw;
-  height: 100vh;
+  height: 110vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -704,7 +705,7 @@ ion-icon {
   align-items: center;
   /* gap: 2vh; */
   width: 40vw;
-  height: 80%;
+  height: 100%;
   background: #ffd1a8;
   position: fixed;
   right: 0;
@@ -719,7 +720,7 @@ ion-icon {
   justify-content: space-between;
   align-items: center;
   width: 40vw;
-  height: 80%;
+  height: 100%;
   background: #ffd1a8;
   position: fixed;
   right: 0;
@@ -1234,11 +1235,13 @@ ion-icon {
 
 .blockrace {
   width: 100%;
-  height: 100%;
+  height: max-content;
 }
 
 .blockrace iframe {
   height: 100%;
+  /* padding: 5vh; */
+  border-radius: 20px;
 }
 
 .blockrace div {

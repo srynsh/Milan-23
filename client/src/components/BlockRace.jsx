@@ -1,8 +1,10 @@
+
+import '../mainpage.css'
 const BlockRace = () => {
   return (
-    <div>
-      Blockrace
-    </div>
+    <>
+      <EmbeddedContent />
+    </>
   );
 };
 
@@ -16,7 +18,7 @@ function EmbeddedContent() {
         style={{ width: "100%", height: "600px" }}
         sandbox="allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
       ></iframe>
-      <div
+      {/* <div
         style={{
           width: "100%",
           marginTop: "4px",
@@ -40,7 +42,7 @@ function EmbeddedContent() {
             }}
           />
         </a>
-      </div>
+      </div> */}
     </div>
   );
 }

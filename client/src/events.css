@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components{
+    .events-page{
+        background: url('../public/assets/bg-vectors/team-bg.svg') , #FFD1A8;    
+    }
     .OverallScoresContainer{
         height: 20rem;
     }
