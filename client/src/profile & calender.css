@@ -14,9 +14,6 @@
   font-family: "ArianaPro";
   src: url("../fonts/Ariana Pro Regular.otf");
 }
-.profile-bg{
-  overflow:hidden;
-}
 /* Common styles */
 :root {
   --primary-color: #a40035;

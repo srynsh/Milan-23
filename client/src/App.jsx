@@ -9,6 +9,7 @@ import { OverallScores } from "./components/OvrLeaderboard";
 import ProfilePage from "./pages/ProfilePage"
 import { Events } from "./pages/Events";
 
+
 function App() {
   const [showNav, setShowNav] = useState(false);
   return (

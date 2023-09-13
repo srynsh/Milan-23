@@ -4,6 +4,11 @@ import "../profile & calender.css";
 import axios from "axios";
 
 const Profile = () => {
+  useEffect(()=> {
+  console.log("BACKEND URL:",import.meta.env.VITE_BACKEND_URL)
+  }, [])
+  const url = import.meta.env.VITE_BACKEND_URL+"profile"
+  useEffect(()=> {console.log(url)}, [url])
   // options Data set import from the backend
   const options = [
     "option1",
@@ -26,15 +31,14 @@ const Profile = () => {
     supportedTeams: [],
     Events: [],
   });
-  
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/profile", {
+      .get(import.meta.env.VITE_BACKEND_URL+"profile", {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data.user);
+        console.log("GIVING DATA",response.data);
         const userData = response.data.user;
         // Update the User state with user details
         setUser({
