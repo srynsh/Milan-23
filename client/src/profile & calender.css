@@ -47,6 +47,7 @@
 .form-group {
   width: 100%;
   margin: 1rem 0;
+  transition:all 1s ease-in-out;
 }
 
 .layer1 {

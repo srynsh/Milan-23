@@ -216,7 +216,7 @@ const Profile = () => {
             <label htmlFor="supportingTeams" className="form-label">
               Block: &nbsp;
             </label>
-            <div>
+            <div style={{transition:'all 1s ease-in'}}>
               <Multiselect
                 name="supportingTeams"
                 id="supportingTeams"
@@ -236,12 +236,17 @@ const Profile = () => {
                 style={{
                   multiselectContainer:{
                     marginBottom: isBlocksMultiselectClicked ? "240px" : "0",
+                    transition: "margin 1s ease-in-out",
                   },
                   searchBox: {
                     border: 0,
+                    height:'30px',
                   },
                   chips: {
                     background: "rgba(111, 0, 53, 1) 4%",
+                  },
+                  searchWrapper:{
+                    alignItems:'center',
                   },
                 }}
               />
@@ -275,13 +280,18 @@ const Profile = () => {
                 groupBy="category"
                 style={{
                   multiselectContainer:{
-                    marginBottom: isEventsMultiselectClicked ? "240px" : "0",
+                    marginBottom: isEventsMultiselectClicked ? "260px" : "0",
+                    transition: "margin 1s ease-in-out",
                   },
                   searchBox: {
                     border: 0,
+                    height:'30px',
                   },
                   chips: {
                     background: "rgba(111, 0, 53, 1) 4%",
+                  },
+                  searchWrapper:{
+                    alignItems:'center',
                   },
                 }}
               />
