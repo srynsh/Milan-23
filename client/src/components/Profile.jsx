@@ -155,6 +155,27 @@ const Profile = () => {
   const validateName = (name) => {
     return /^[A-Za-z\s]+$/.test(name);
   };
+  const [isEventsMultiselectClicked, setIsEventsMultiselectClicked] = useState(
+    false
+  );
+
+  const handleEventsMultiselectFocus = () => {
+    setIsEventsMultiselectClicked(true);
+  };
+  const handleEventsMultiselectBlur = () => {
+    setIsEventsMultiselectClicked(false);
+  };
+  const [isBlocksMultiselectClicked, setIsBlocksMultiselectClicked] = useState(
+    false
+  );
+  const handleBlocksMultiselectFocus = () => {
+    setIsBlocksMultiselectClicked(true);
+  };
+
+  const handleBlocksMultiselectBlur = () => {
+    setIsBlocksMultiselectClicked(false);
+  };
+
 
   return (
     <div className="container">
@@ -189,7 +210,9 @@ const Profile = () => {
           </div>
         </div>
         <div className=" layer-2">
-          <div className="form-group">
+          <div className="form-group"
+          onFocus={handleBlocksMultiselectFocus}
+          onBlur={handleBlocksMultiselectBlur}>
             <label htmlFor="supportingTeams" className="form-label">
               Block: &nbsp;
             </label>
@@ -207,10 +230,13 @@ const Profile = () => {
                 className="inputborder custom-multiselect-container"
                 showArrow
                 groupBy="category"
-                selectionLimit={5}
+                selectionLimit={1}
                 hidePlaceholder={true}
                 selectedValues={User.supportedTeams}
                 style={{
+                  multiselectContainer:{
+                    marginBottom: isBlocksMultiselectClicked ? "240px" : "0",
+                  },
                   searchBox: {
                     border: 0,
                   },
@@ -226,7 +252,9 @@ const Profile = () => {
               )}
             </div>
           </div>
-          <div className="form-group">
+          <div className="form-group"
+          onFocus={handleEventsMultiselectFocus}
+          onBlur={handleEventsMultiselectBlur}>
             <label htmlFor="Events" className="form-label">
               Events: &nbsp;
             </label>
@@ -246,6 +274,9 @@ const Profile = () => {
                 selectedValues={User.events}
                 groupBy="category"
                 style={{
+                  multiselectContainer:{
+                    marginBottom: isEventsMultiselectClicked ? "240px" : "0",
+                  },
                   searchBox: {
                     border: 0,
                   },
