@@ -12,6 +12,7 @@ import { Events } from "./pages/Events";
 import SocketManager from "./utils/sockethandler";
 import SocketContext, { socket } from './context/socket'
 import LiveScoreProvider from "./context/LiveScoreProvider";
+import Sponsors from "./pages/Sponsors";
 
 function App() {
   // const [eventdata, seteventdata] = useState([])
@@ -38,6 +39,7 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/events" element={<Events />} />
             <Route path="/livescore" element={<LiveScoresPage />} />
+            <Route path="/sponsors" element={<Sponsors />} />
             <Route path="*" element={<Error />} />
             <Route path="/Profile" element={<ProfilePage />} />
           </Routes>

@@ -55,7 +55,7 @@ const Home = () => {
             </section>
             <section className="main-mascot">
               <div className="mascot-image">
-                <img src="./assets/logos/mascot.png" alt="mascot" />
+                <img src="./assets/logos/pablo.jpeg" alt="mascot" />
               </div>
               <div className="mascot-desc">
                 Introducing our mesmerizing mascot <br />

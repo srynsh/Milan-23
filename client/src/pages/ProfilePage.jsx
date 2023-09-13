@@ -4,7 +4,7 @@ import "../profile & calender.css";
 
 const ProfilePage = () => {
   return (
-    <div>
+    <>
       <div className="main-bg profile-bg" style={{
         width: "99vw",
         justifyContent: "center",
@@ -15,7 +15,7 @@ const ProfilePage = () => {
       <Profile />
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

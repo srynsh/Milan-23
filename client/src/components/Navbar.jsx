@@ -85,6 +85,19 @@ function Navbar({ showNav, setShowNav }) {
         >
           TEAM
         </NavLink>
+        <NavLink
+          onClick={() => setShowNav(!showNav)}
+          to="/Profile"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "navbar-pending"
+              : isActive
+              ? "navbar-active"
+              : "navbar-pending"
+          }
+        >
+          Profile
+        </NavLink>
       </div>
     </div>
   );
