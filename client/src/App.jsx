@@ -11,6 +11,7 @@ import ProfilePage from "./pages/ProfilePage";
 import { Events } from "./pages/Events";
 import Sponsors from "./pages/Sponsors";
 
+
 function App() {
   const [showNav, setShowNav] = useState(false);
   return (
