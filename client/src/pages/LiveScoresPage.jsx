@@ -9,32 +9,34 @@ import { Squash } from "../components/Squash";
 import { TableTennis } from "../components/TableTennis";
 import { Tennis } from "../components/Tennis";
 import { Volleyball } from "../components/Volleyball";
+import { livescore } from '../utils/livescore';
+import { LiveScoreState } from '../context/LiveScoreProvider';
 
 export const LiveScoresPage = () => {
   const [eventsdata, setEventsdata] = useState(null);
+  const livescore = LiveScoreState()
+  // useEffect(() => {
+  //   function upDateScores() {
+  //     fetch("./demo2.json")
+  //       .then(response => {
+  //         if (!response.ok) {
+  //           throw new Error(`Network response was not ok. Status: ${response.status}`);
+  //         }
+  //         return response.json();
+  //       })
+  //       .then(data => {
+  //         setEventsdata(data);
 
-  useEffect(() => {
-    function upDateScores() {
-      fetch("./demo2.json")
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`Network response was not ok. Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          setEventsdata(data);
+  //       })
+  //       .catch(error =>{
+  //         console.error(error);
+  //       });
+  //   }
 
-        })
-        .catch(error =>{
-          console.error(error);
-        });
-    }
-
-    upDateScores();
-    const intervalId = setInterval(upDateScores, 5000);
-    return () => clearInterval(intervalId);
-  }, []);
+  //   upDateScores();
+  //   const intervalId = setInterval(upDateScores, 5000);
+  //   return () => clearInterval(intervalId);
+  // }, []);
   
   function DisplayScores(indData){
       if(indData.sport === "Football"){
@@ -87,19 +89,20 @@ export const LiveScoresPage = () => {
 
 
   return (
+    
     <>
     <div className='liveScore-box p-4'>
     <div className='text-center rounded-xl bg-[#a40035] mx-auto my-12 lg:my-16 w-2/5 md:w-1/5 lg:w-1/6 text-2xl lg:text-4xl p-2 Parkinson text-white shadow-md shadow-[#00000078]'>
       Live Score
     </div>
     {
-    eventsdata != null ? (
-        eventsdata.length == [] ? (
+    livescore.events != null ? (
+      livescore.events.length == [] ? (
         <div className='my-16 mx-4 text-2xl md:text-4xl lg:text-5xl text-center Parkinson text-white '>
           Currently No Matches are going on
         </div>
       ) : (
-      eventsdata.map(DisplayScores)
+        livescore.events.map(DisplayScores)
       )
       )   : null
     }
