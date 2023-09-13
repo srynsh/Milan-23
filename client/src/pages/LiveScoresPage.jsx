@@ -9,7 +9,6 @@ import { Squash } from "../components/Squash";
 import { TableTennis } from "../components/TableTennis";
 import { Tennis } from "../components/Tennis";
 import { Volleyball } from "../components/Volleyball";
-import { livescore } from '../utils/livescore';
 import { LiveScoreState } from '../context/LiveScoreProvider';
 
 export const LiveScoresPage = () => {
