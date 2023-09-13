@@ -5,13 +5,8 @@ import axios from "axios";
 //import input_event from  "events.json"
 
 const Profile = () => {
-  useEffect(()=> {
-  console.log("BACKEND URL:",import.meta.env.VITE_BACKEND_URL)
-  }, [])
-  const url = import.meta.env.VITE_BACKEND_URL+"profile"
-  useEffect(()=> {console.log(url)}, [url])
   // options Data set import from the backend
-  const [eoptions,esetoptions] =useState( [
+  const [eoptions, esetoptions] = useState([
     "option1",
     "option2",
     "option3",
@@ -22,53 +17,51 @@ const Profile = () => {
     "option8",
     "option9",
   ]);
-  const [toptions,tsetoptions] =useState([
-    "option1",
-    "option2",
-  ])
+  const [toptions, tsetoptions] = useState(["option1", "option2"]);
 
-  //console.log(input_event) 
-  fetch('./events.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    const inputList = data.inputList;
-    esetoptions(inputList);
-    
-    // You can use 'inputList' here or perform any other operations with it
-  })
-  .catch(error => {
-    console.error('Error fetching or parsing JSON:', error);
-  });
+  const [eventsValid, setEventsValid] = useState(false);
+  const [teamsValid, setTeamsValid] = useState(false);
 
-  fetch('./teams.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    const inputList = data.inputList;
-    tsetoptions(inputList);
-    
-    // You can use 'inputList' here or perform any other operations with it
-  })
-  .catch(error => {
-    console.error('Error fetching or parsing JSON:', error);
-  })
+  //console.log(input_event)
+  fetch("./events.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const inputList = data.inputList;
+      esetoptions(inputList);
 
+      // You can use 'inputList' here or perform any other operations with it
+    })
+    .catch((error) => {
+      console.error("Error fetching or parsing JSON:", error);
+    });
 
+  fetch("./teams.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const inputList = data.inputList;
+      tsetoptions(inputList);
+
+      // You can use 'inputList' here or perform any other operations with it
+    })
+    .catch((error) => {
+      console.error("Error fetching or parsing JSON:", error);
+    });
 
   //User Details Import from Backend
 
   const [User, setUser] = useState({
     avatar: "",
-    name: "", 
+    name: "",
     email: "",
     supportedTeams: [],
     Events: [],
@@ -76,11 +69,11 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(import.meta.env.VITE_BACKEND_URL+"profile", {
+      .get(import.meta.env.VITE_BACKEND_URL + "profile", {
         withCredentials: true,
       })
       .then((response) => {
-        console.log("GIVING DATA",response.data);
+        console.log("GIVING DATA", response.data);
         const userData = response.data.user;
         // Update the User state with user details
         setUser({
@@ -95,11 +88,11 @@ const Profile = () => {
         console.error("Error fetching user details: ", error);
       });
   }, []); // Empty dependency array to run the effect only once on component mount
-  
+
   useEffect(() => {
     console.log(User); // Log the updated User state here
   }, [User]); // Add User as a dependency to this effect
-  
+
   // Handling selections/Changes in the Form
 
   const handleChange = (e) => {
@@ -109,18 +102,23 @@ const Profile = () => {
     });
   };
 
-  const handleEventsSelect = (selectedList, selectedItem) => {
-    setUser((prevUser) => ({ ...prevUser, events: selectedList }));
-  };
 
   const handleEventsRemove = (selectedList, removedItem) => {
     setUser((prevUser) => ({ ...prevUser, events: selectedList }));
   };
-  const handleBlocksSelect = (selectedList, selectedItem) => {
-    setUser((prevUser) => ({ ...prevUser, supportingTeams: selectedList }));
-  };
+
   const handleBlocksRemove = (selectedList, removedItem) => {
     setUser((prevUser) => ({ ...prevUser, events: selectedList }));
+  };
+
+  const handleEventsSelect = (selectedList, selectedItem) => {
+    setUser((prevUser) => ({ ...prevUser, events: selectedList }));
+    setEventsValid(selectedList.length > 0);
+  };
+
+  const handleBlocksSelect = (selectedList, selectedItem) => {
+    setUser((prevUser) => ({ ...prevUser, supportingTeams: selectedList }));
+    setTeamsValid(selectedList.length > 0);
   };
 
   // Upon submitting the form
@@ -132,33 +130,36 @@ const Profile = () => {
       alert("Please enter a valid name.");
       return;
     }
+    if(!eventsValid){
+      alert("Please select atleast one Event!");
+      return;
+    }
+    if(!teamsValid){
+      alert("Please select atleast one Team!");
+      return;
+    }
     //console.log(User);
-    axios.post("http://localhost:8000/profile/update",User,{
-      withCredentials: true,
-    })
-    .then((data) => {
-      if(data.status === 200){
-        alert("Profile Updated Successfully");
-      }
-      else{
-        alert("Error updating profile");
-      }
-    })
+    axios
+      .post("http://localhost:8000/profile/update", User, {
+        withCredentials: true,
+      })
+      .then((data) => {
+        if (data.status === 200) {
+          alert("Profile Updated Successfully");
+        } else {
+          alert("Error updating profile");
+        }
+      });
   };
 
   const validateName = (name) => {
     return /^[A-Za-z\s]+$/.test(name);
   };
 
-
   return (
     <div className="container">
       <h1 className="">Profile Details</h1>
-      <form
-        onSubmit={handleSubmit}
-        name="myForm"
-        className=""
-      >
+      <form onSubmit={handleSubmit} name="myForm" className="">
         <div className="layer1">
           <div className="form-group">
             <label htmlFor="name" className="form-label">
@@ -210,14 +211,19 @@ const Profile = () => {
                 hidePlaceholder={true}
                 selectedValues={User.supportedTeams}
                 style={{
-                  searchBox:{
-                    border:0,
+                  searchBox: {
+                    border: 0,
                   },
-                  chips:{
-                    background:'rgba(111, 0, 53, 1) 4%',
-                  }
+                  chips: {
+                    background: "rgba(111, 0, 53, 1) 4%",
+                  },
                 }}
               />
+              {!teamsValid && (
+                <div className="error-message">
+                  Please select at least one team.
+                </div>
+              )}
             </div>
           </div>
           <div className="form-group">
@@ -240,20 +246,31 @@ const Profile = () => {
                 selectedValues={User.events}
                 groupBy="category"
                 style={{
-                  searchBox:{
-                    border:0,
+                  searchBox: {
+                    border: 0,
                   },
-                  chips:{
-                    background:'rgba(111, 0, 53, 1) 4%',
-                  }
+                  chips: {
+                    background: "rgba(111, 0, 53, 1) 4%",
+                  },
                 }}
               />
+              {!eventsValid && (
+                <div className="error-message">
+                  Please select at least one event.
+                </div>
+              )}
             </div>
           </div>
         </div>
-        <button type="submit" onSubmit={handleSubmit} className="submit-button">
-          Submit
-        </button>
+        <div>
+          <button
+            type="submit"
+            onSubmit={handleSubmit}
+            className="submit-button"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );
