@@ -9,6 +9,7 @@ import {LiveScoresPage} from './pages/LiveScoresPage';
 import { OverallScores } from "./components/OvrLeaderboard";
 import ProfilePage from "./pages/ProfilePage";
 import { Events } from "./pages/Events";
+import Sponsors from "./pages/Sponsors";
 
 function App() {
   const [showNav, setShowNav] = useState(false);
@@ -27,6 +28,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/events" element={<Events />} />
         <Route path="/livescore" element={<LiveScoresPage />} />
+        <Route path="/sponsors" element={<Sponsors />} />
         <Route path="*" element={<Error />} />
         <Route path="/Profile" element={<ProfilePage/>}/>
       </Routes>
