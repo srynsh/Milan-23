@@ -42,11 +42,8 @@ useEffect(() => {
         email: userData.email,
         supportedTeams: userData.supportedTeams,
         events: userData.preferedEvents,
-<<<<<<< HEAD
       });
-=======
-      });    
->>>>>>> 662f2ca8ef4487c603f17e709ebeefecaae2027e
+
     })
 
     .catch((error) => {
@@ -54,7 +51,7 @@ useEffect(() => {
     });
 
           //set the valid variable  to true if the user has already selected the events and teams
-<<<<<<< HEAD
+
           setTimeout(() => {
             setLoading(false);
           }, 1300);
@@ -92,9 +89,6 @@ useEffect(() => {
     });
 }, []);
 
-=======
-    
->>>>>>> 662f2ca8ef4487c603f17e709ebeefecaae2027e
 
 
 
