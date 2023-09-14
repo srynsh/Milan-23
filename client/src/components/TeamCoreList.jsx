@@ -5,9 +5,8 @@ export default [
     cores: [
       "./assets/team/Harigovind P.jpeg",
       "./assets/team/Anay Nitin Umalkar.jpg",
-      "./assets/team/SHRIPADH SURESH.jpeg",
+      "./assets/team/SHRIPADH SURESH.jpg",
       "./assets/team/Aditya Heshi.jpg",
-      "./assets/team/Swarnima Siddhartha.jpeg",
       "./assets/team/Thameem Rasheed.JPG",
       "./assets/team/Radhika Rajesh Bondre.jpg",
       "./assets/team/Shreeya Subhash Kalel.jpg",
@@ -24,7 +23,6 @@ export default [
       "./assets/team/Samuel John Lakra.jpeg",
       "./assets/team/Anjireddy Anek.jpeg",
       "./assets/team/Pasalapudi Srikrishna Satvik.jpg",
-      "./assets/team/Laasya Choppalli.jpeg",
       "./assets/team/Y Adarsh Reddy.jpg",
       "./assets/team/Kosaraju Jyothsna Abhay.jpg",
       "./assets/team/Sudarshan Shivashankar.jpg",

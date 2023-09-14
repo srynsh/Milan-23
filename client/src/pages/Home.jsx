@@ -1,11 +1,11 @@
 import { useState } from "react";
 import CoverflowGallery from "../components/Swiper";
-import Navbar from "../components/Navbar";
 import BlockRace from "../components/BlockRace";
 import Footer from "../components/Footer";
-import Hamburger from "../components/Hamburger";
 import { OverallScores } from "../components/OvrLeaderboard";
 import '../mainpage.css'
+
+
 const Home = () => {
   const [raceGraph, setRaceGraph] = useState(true);
   return (
@@ -55,7 +55,7 @@ const Home = () => {
             </section>
             <section className="main-mascot">
               <div className="mascot-image">
-                <img src="./assets/logos/pablo.jpeg" alt="mascot" />
+                <img src="./assets/logos/pablo.png" alt="mascot" />
               </div>
               <div className="mascot-desc">
                 Introducing our mesmerizing mascot <br />

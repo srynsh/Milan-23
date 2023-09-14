@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +9,9 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+
+import Axios from "axios";
+
 
 ChartJS.register(
   CategoryScale,

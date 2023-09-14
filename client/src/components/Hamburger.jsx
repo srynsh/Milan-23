@@ -1,3 +1,5 @@
+import '../mainpage.css'
+
 const Hamburger = () => {
 return (
     <div className="hamburger">
