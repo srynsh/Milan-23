@@ -42,7 +42,11 @@ useEffect(() => {
         email: userData.email,
         supportedTeams: userData.supportedTeams,
         events: userData.preferedEvents,
+<<<<<<< HEAD
       });
+=======
+      });    
+>>>>>>> 662f2ca8ef4487c603f17e709ebeefecaae2027e
     })
 
     .catch((error) => {
@@ -50,6 +54,7 @@ useEffect(() => {
     });
 
           //set the valid variable  to true if the user has already selected the events and teams
+<<<<<<< HEAD
           setTimeout(() => {
             setLoading(false);
           }, 1300);
@@ -87,6 +92,9 @@ useEffect(() => {
     });
 }, []);
 
+=======
+    
+>>>>>>> 662f2ca8ef4487c603f17e709ebeefecaae2027e
 
 
 
@@ -198,15 +206,6 @@ useEffect(() => {
   };
 
   return (
-    <div className="div">
-      {loading ? (<Loading style={{
-        width:'99vw',
-        height:'max-content',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        padding:'15vh 0'
-      }}/>) : (
         <div className="calendar-dov" style={{
           width:'99vw',
           height:'max-content',
@@ -224,8 +223,7 @@ useEffect(() => {
             {renderEventsDialog()}
           </div>
         </div>
-      )}
-    </div>
+   
   );
 };
 
