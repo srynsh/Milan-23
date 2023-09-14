@@ -45,15 +45,10 @@ export const CultiTable = () => {
   useEffect(() => {
     const fetchScore = async () => {
       setloading(true)
-      console.log('hi');
-      if(autofetch()){
-        console.log('inside')
-        const { data } = await axios.get('./src/data/culty.json')
-        console.log(data)
-        setscores(data.scores)
-        setgameNames(data.eventNames)
-        setblockNames(data.blocks);
-      }
+      const { data } = await axios.get(import.meta.env.VITE_BACKEND_URL+'culty')
+      setscores(data.scores)
+      setgameNames(data.eventNames)
+      setblockNames(data.blocks);
       setloading(false)
     }
     fetchScore();

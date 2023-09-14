@@ -26,7 +26,7 @@ export const TechyTable = () => {
   useEffect(() => {
     const fetchScore = async () => {
       setloading(true)
-      const { data } = await axios.get(import.meta.env.VITE_TECHY)
+      const { data } = await axios.get(import.meta.env.VITE_BACKEND_URL+'techy')
       setscores(data.scores)
       setgameNames(data.eventNames)
       setblockNames(data.blocks);

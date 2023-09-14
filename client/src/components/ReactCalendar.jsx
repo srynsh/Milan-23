@@ -15,6 +15,7 @@ const ReactCalendar = () => {
   });
   const [loading, setLoading] = useState(false);
   const [transformedEventData, setTransformedEventData] = useState({});
+  const [filteredEvents, setFilteredEvents] = useState({});
   const [currentMonth, setCurrentMonth] = useState("SEPTEMBER");
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -67,12 +68,12 @@ const ReactCalendar = () => {
   useEffect(() => {
     const selectedTeams = User.supportedTeams;
     const selectedEvents = User.events;
-    const filteredEvents = {};
+    const updatedFilteredEvents = {};
 
     Object.keys(transformedEventData).forEach((date) => {
       const eventsOnDate = transformedEventData[date];
       const filteredDateEvents = eventsOnDate.filter((event) => {
-        const teamsInBody = event.body.split(",").map((team) => team.trim());
+        const teamsInBody = event.body.split(',').map((team) => team.trim());
         const isTeamSelected = selectedTeams.some((selectedTeam) =>
           teamsInBody.includes(selectedTeam)
         );
@@ -82,10 +83,14 @@ const ReactCalendar = () => {
       });
 
       if (filteredDateEvents.length > 0) {
-        filteredEvents[date] = filteredDateEvents;
+        updatedFilteredEvents[date] = filteredDateEvents;
       }
     });
-  }, []);
+
+    // Update the state with the filtered events
+    setFilteredEvents(updatedFilteredEvents);
+    console.log(updatedFilteredEvents);
+  }, [User.supportedTeams, User.events, transformedEventData]);
 
   // Handle date click
   const handleDateClick = (date) => {

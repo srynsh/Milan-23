@@ -10,6 +10,11 @@ import { Server } from 'socket.io'; import http from "http";
 import dotenv from 'dotenv';
 import pkg from 'pg';
 import url from 'url';
+import { scheduleJob } from 'node-schedule';
+import fs from 'fs/promises';
+import path from 'path';
+import schedule from 'node-schedule'
+import axios from 'axios';
 
 //get environment variables
 dotenv.config();
@@ -162,19 +167,19 @@ io.on('connection', (socket) => {
 
     socket.on("remove_match", (data) => {
         const id = data.id;
-        try{
+        try {
             console.log("event removed")
             const index = eventdata.findIndex((event) => event.id === id);
-            if(index >=0 && index < eventdata.length  ){
+            if (index >= 0 && index < eventdata.length) {
                 eventdata.splice(index, 1)
             }
-            const newdata = {id: id}
+            const newdata = { id: id }
             socket.broadcast.emit("event_removed", newdata)
             socket.emit("event_removed", newdata)
             console.log(newdata, eventdata)
             socket.broadcast.emit("clientupdates", eventdata)
-        }catch(e) {
-            socket.emit("info_message", {message: "Event not found"})
+        } catch (e) {
+            socket.emit("info_message", { message: "Event not found" })
         }
     })
 
@@ -194,8 +199,8 @@ app.use(cookieParser());
 passport.use('user-google',
     new GoogleStrategy(
         {
-            clientID: process.env.CLIENT_ID2,
-            clientSecret: process.env.CLIENT_SECRET2,
+            clientID: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET,
             callbackURL: '/auth/google/callback',
             scope: ['profile', 'email'],
         },
@@ -209,8 +214,8 @@ passport.use('user-google',
 passport.use('admin-google',
     new GoogleStrategy(
         {
-            clientID: process.env.CLIENT_ID2,
-            clientSecret: process.env.CLIENT_SECRET2,
+            clientID: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET,
             callbackURL: '/auth/google/admin/callback',
             scope: ['profile', 'email'],
         },
@@ -293,6 +298,80 @@ app.get('/auth/google/admin/callback',
 );
 
 
+//send leaderboard data
+app.get('/leaderboard', async (req, res) => {
+    const filePath = path.join(__dirname, 'data', 'leaderboard.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const jsonData = JSON.parse(data);
+    res.send(jsonData);
+})
+
+//send techy data
+app.get('/techy', async (req, res) => {
+    const filePath = path.join(__dirname, 'data', 'techy.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const jsonData = JSON.parse(data);
+    res.send(jsonData);
+})
+
+//send culty data
+app.get('/culty', async (req, res) => {
+    const filePath = path.join(__dirname, 'data', 'culty.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const jsonData = JSON.parse(data);
+    res.send(jsonData);
+})
+
+//send sports boys data
+app.get('/sports_boys', async (req, res) => {
+    const filePath = path.join(__dirname, 'data', 'sports_boys.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const jsonData = JSON.parse(data);
+    res.send(jsonData);
+})
+
+//send sports girls data
+app.get('/sports_girls', async (req, res) => {
+    const filePath = path.join(__dirname, 'data', 'sports_girls.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const jsonData = JSON.parse(data);
+    res.send(jsonData);
+})
+
+
+async function fetchDataAndWriteToFile(url, fileName) {
+    try {
+      const response = await axios.get(url);
+      const data = response.data;
+      const filePath = path.join(__dirname, 'data', fileName);
+      fs.writeFileSync(filePath, JSON.stringify(data));
+      console.log(`Data from ${url} has been written to ${filePath}`);
+    } catch (error) {
+      console.error(`Error fetching data from ${url}:`, error);
+    }
+  }
+
+//update the data folder with new data for every 5 hours
+const updateData = schedule.scheduleJob('* /1 * * * *', async function(){
+    // Fetch and write leaderboard data
+  await fetchDataAndWriteToFile(process.env.LEADERBOARD, 'leaderboard.json');
+
+  // Fetch and write techy data
+  await fetchDataAndWriteToFile(process.env.TECHY, 'techy.json');
+
+  // Fetch and write culty data
+  await fetchDataAndWriteToFile(process.env.CULTY, 'culty.json');
+
+  // Fetch and write sports boys data
+  await fetchDataAndWriteToFile(process.env.SPORTS_BOYS, 'sports_boys.json');
+
+  // Fetch and write sports girls data
+  await fetchDataAndWriteToFile(process.env.SPORTS_GIRLS, 'sports_girls.json');
+
+})
+
+
+
 
 const verifyUser = (req, res, next) => {
     const cookie = req.cookies.authtoken;
@@ -342,7 +421,7 @@ app.get('/profile', verifyUser, async (req, res) => {
         preferedEvents: events_array
     }
     console.log(user_object, "user fetched");
-    res.json({ success: true,auth: true, user: user_object });
+    res.json({ success: true, auth: true, user: user_object });
 })
 
 app.get('/hello', async (req, res) => {

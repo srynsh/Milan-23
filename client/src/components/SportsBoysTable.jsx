@@ -25,7 +25,7 @@ export const SportsBoysTable = () => {
   useEffect(() => {
     const fetchScore = async () => {
       setloading(true)
-      const { data } = await axios.get(import.meta.env.VITE_SPORTS_BOYS)
+      const { data } = await axios.get(import.meta.env.VITE_BACKEND_URL+'sports_boys')
       setscores(data.scores)
       setgameNames(data.eventNames)
       setblockNames(data.blocks);

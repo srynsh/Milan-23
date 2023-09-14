@@ -26,11 +26,10 @@ export const SportsGirlsTable = () => {
   useEffect(() => {
     const fetchScore = async () => {
       setloading(true)
-      const { data } = await axios.get(import.meta.env.VITE_SPORTS_GIRLS)
+      const { data } = await axios.get(import.meta.env.VITE_BACKEND_URL+'sports_girls')
       setscores(data.scores)
       setgameNames(data.eventNames)
       setblockNames(data.blocks);
-      
       setloading(false)
     }
     fetchScore();
