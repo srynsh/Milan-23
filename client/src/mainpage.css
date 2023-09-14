@@ -150,11 +150,12 @@ a {
 
 .main-mid {
   width: 100vw;
-  height: 100vh;
+  height: max-content;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0 3vw;
+  padding-bottom: 4vh;
 }
 
 .main-mid-text {
@@ -241,7 +242,8 @@ a {
 
 .main-mascot {
   width: 100vw;
-  height: 90vh;
+  height: max-content;
+  padding: 5vh;
   display: flex;
   background: #ffd1a8;
   align-items: center;
@@ -255,7 +257,7 @@ a {
 }
 
 .mascot-image img {
-  height: 60vh;
+  height: 80vh;
 }
 
 .mascot-desc {
@@ -1239,8 +1241,9 @@ ion-icon {
 }
 
 .blockrace iframe {
-  height: 100%;
-  /* padding: 5vh; */
+  height: 55vh;
+  width: inherit;
+  padding: 1vh;
   border-radius: 20px;
 }
 
@@ -1333,8 +1336,3 @@ ion-icon {
   transition: 0.5s;
   animation: error-hover infinite linear;
 }
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

@@ -1,3 +1,5 @@
+import '../mainpage.css'
+
 const Footer = () => {
   return (
     <footer>

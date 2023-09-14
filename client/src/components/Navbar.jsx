@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
-
+import '../mainpage.css'
 function Navbar({ showNav, setShowNav }) {
   return (
     <div className={showNav ? "navbar" : "navbar-hide"}>
