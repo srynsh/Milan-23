@@ -1,61 +1,10 @@
-import React, { useEffect, useState } from "react";
+import{ useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "./loading";
 import "../profile & calender.css";
 
 
-const eventsData = {
-  "2023-09-01": [
-    {
-      id: 1,
-      title: "Event 1",
-      body: "Event 1 description",
-      time: "10:00 AM",
-      category: "Culti",
-    },
-    {
-      id: 2,
-      title: "Event 2",
-      body: "Event 2 description",
-      time: "2:00 PM",
-      category: "Sci-Fi",
-    },
-  ],
-  "2023-09-15": [
-    {
-      id: 3,
-      title: "Event 3",
-      body: "Event 3 description",
-      time: "3:30 PM",
-      category: "Sports",
-    },
-  ],
-  "2023-10-05": [
-    {
-      id: 4,
-      title: "Event 4",
-      body: "Event 4 description",
-      time: "11:00 AM",
-      category: "Culti",
-    },
-  ],
-  "2023-10-20": [
-    {
-      id: 5,
-      title: "Event 5",
-      body: "Event 5 description",
-      time: "4:00 PM",
-      category: "Sci-Fi",
-    },
-    {
-      id: 6,
-      title: "Event 6",
-      body: "Event 6 description",
-      time: "6:30 PM",
-      category: "Sports",
-    },
-  ],
-};
+let eventsData = {};
 
 const ReactCalendar = () => {
 
@@ -94,18 +43,6 @@ useEffect(() => {
         supportedTeams: userData.supportedTeams,
         events: userData.preferedEvents,
       });
-
-    
-      if (userData.supportedTeams.length > 0) {
-        setTeamsValid(true);
-        setteamplaceholder("");
-      }
-      if (userData.preferedEvents.length > 0) {
-        setEventsValid(true);
-        seteventplaceholder("");
-        console.log(eventplaceholder)
-      }
-    
     })
 
     .catch((error) => {
@@ -116,9 +53,41 @@ useEffect(() => {
           setTimeout(() => {
             setLoading(false);
           }, 1300);
-    
+}, []);
 
-}, []); // Empty dependency array to run the effect only once on component mount
+
+const [transformedEventData, setTransformedEventData] = useState({});
+
+useEffect(() => {
+  fetch('https://sheetdb.io/api/v1/fct6fqk2soxi0')
+    .then((res) => res.json())
+    .then((data) => {
+      // Initialize an empty object to store the transformed data
+      const transformedData = {};
+      
+      data.forEach((event) => {
+        const { Date, ID, Title, Description, Time, Category } = event;
+
+        if (!transformedData[Date]) {
+          transformedData[Date] = [];
+        }
+        transformedData[Date].push({
+          id: ID,
+          title: Title,
+          body: Description,
+          time: Time,
+          category: Category,
+        });
+      });
+
+      setTransformedEventData(transformedData);
+    })
+    .catch((error) => {
+      console.error("Error fetching event details: ", error);
+    });
+}, []);
+
+
 
 
   const [currentMonth, setCurrentMonth] = useState("September");
@@ -154,7 +123,7 @@ useEffect(() => {
         .padStart(2, "0")}`;
       calendarDays.push(
         <div
-          key={i + 6}
+          key={i + 36}
           className={`calendar-day ${selectedDate === date ? "selected" : ""}`}
           onClick={() => handleDateClick(date)}
         >
@@ -200,7 +169,7 @@ useEffect(() => {
 
   const renderEventsDialog = () => {
     if (!selectedDate) return null;
-    const events = eventsData[selectedDate] || [];
+    const events =  transformedEventData[selectedDate] || [];
 
     // Filter events by category
     const cultiEvents = events.filter((event) => event.category === "Culti");
