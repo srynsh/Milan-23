@@ -14,68 +14,82 @@ import Paper from "@mui/material/Paper";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
+import axios from 'axios';
 
 export const SportsBoysTable = () => {
+  const [gameNames, setgameNames] = useState([])
+  const [blockNames, setblockNames] = useState([])
+
+  useEffect(() => {
+    const fetchScore = async () => {
+      const { data } = await axios.get(import.meta.env.VITE_SPORTS_BOYS)
+      setscores(data.scores)
+      setgameNames(data.eventNames)
+      setblockNames(data.blocks);
+    }
+    fetchScore();
+  }, [])
+  
   const [scores, setscores] = useState({
     '1': [
       100, 40, 10, 10,
-       20, 10, 70, 10
+      20, 10, 70, 10
     ],
     '2': [
       70, 100, 10, 20,
-      10,  10, 40, 10
+      10, 10, 40, 10
     ],
     '3': [
       70, 40, 10, 100,
-      20, 10, 10,   0
+      20, 10, 10, 0
     ],
     '4': [
       100, 20, 10, 10,
-       40, 70, 10, 10
+      40, 70, 10, 10
     ],
     '5': [
       100, 10, 10, 20,
-       70, 10, 40, 10
+      70, 10, 40, 10
     ],
     '6': [
       100, 20, 10, 40,
-       10, 70, 10, 10
+      10, 70, 10, 10
     ],
     '7': [
-      10, 10, 70,  40,
+      10, 10, 70, 40,
       10, 10, 20, 100
     ],
     '8': [
-      10,  40, 20, 10,
+      10, 40, 20, 10,
       10, 100, 70, 10
     ],
     '9': [
-       10, 10, 20, 70,
+      10, 10, 20, 70,
       100, 10, 40, 10
     ],
     '10': [
       100, 70, 20, 10,
-       10, 10, 40, 10
+      10, 10, 40, 10
     ],
     '11': [
-      50,  5,  5, 20,
-       5, 35, 10,  5
+      50, 5, 5, 20,
+      5, 35, 10, 5
     ],
     '12': [
-      20, 10,  40, 10,
+      20, 10, 40, 10,
       70, 10, 100, 10
     ],
     '13': [
-      80,  20, 20, 140,
-      20, 200, 40,  20
+      80, 20, 20, 140,
+      20, 200, 40, 20
     ],
     '14': [
       210, 21, 21, 84,
       147, 42, 21, 21
     ],
     '15': [
-      300,  30,  30, 30,
-       60, 210, 150, 30
+      300, 30, 30, 30,
+      60, 210, 150, 30
     ]
   });
   const Theme = createTheme({
@@ -84,38 +98,38 @@ export const SportsBoysTable = () => {
     },
     palette: {
       mode: "light",
-      background: { 
-        paper: "#f6b276", 
+      background: {
+        paper: "#f6b276",
       },
     },
   });
-  const gameNames = [
-    "Cricket",
-    "Football",
-    "Hockey",
-    "Volleyball",
-    "Basketball",
-    "Badminton",
-    "Tennis",
-    "Table Tennis",
-    "Carrom",
-    "Chess",
-    "Squash",
-    "Weightlifting",
-    "Esports",
-    "Aquatics",
-    "Athletics",
-  ].map((el) => el.toUpperCase());
-  const blockNames = [
-    "CHARAKA",
-    "SUSURUTA",
-    "KAUTILYA",
-    "VYASA",
-    "BRAHMAGUPTA",
-    "VARAHAMIHIRA",
-    "RAMANUJA",
-    "KAPILA",
-  ];
+  // const gameNames = [
+  //   "Cricket",
+  //   "Football",
+  //   "Hockey",
+  //   "Volleyball",
+  //   "Basketball",
+  //   "Badminton",
+  //   "Tennis",
+  //   "Table Tennis",
+  //   "Carrom",
+  //   "Chess",
+  //   "Squash",
+  //   "Weightlifting",
+  //   "Esports",
+  //   "Aquatics",
+  //   "Athletics",
+  // ].map((el) => el.toUpperCase());
+  // const blockNames = [
+  //   "CHARAKA",
+  //   "SUSURUTA",
+  //   "KAUTILYA",
+  //   "VYASA",
+  //   "BRAHMAGUPTA",
+  //   "VARAHAMIHIRA",
+  //   "RAMANUJA",
+  //   "KAPILA",
+  // ];
 
   const tableHeaders = ["Block", "Points"].map((el) => el.toUpperCase());
   let itemRows = [];
@@ -148,7 +162,7 @@ export const SportsBoysTable = () => {
         </AccordionSummary>
         <AccordionDetails>
           <TableContainer component={Paper}>
-            <Table sx={{ xs: {minWidth: 650 } }} aria-label="simple table">
+            <Table sx={{ xs: { minWidth: 650 } }} aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell
@@ -198,7 +212,7 @@ export const SportsBoysTable = () => {
     );
     itemRows.push(item);
   }
-  
+
 
   return (
     <Box

@@ -14,8 +14,22 @@ import Paper from "@mui/material/Paper";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
+import axios from 'axios';
+
 
 export const TechyTable = () => {
+  const [gameNames, setgameNames] = useState([])
+  const [blockNames, setblockNames] = useState([])
+
+  useEffect(() => {
+    const fetchScore = async () => {
+      const { data } = await axios.get(import.meta.env.VITE_TECHY)
+      setscores(data.scores)
+      setgameNames(data.eventNames)
+      setblockNames(data.blocks);
+    }
+    fetchScore();
+  }, [])
   const [scores, setscores] = useState({
     '1': [
       100, 40, 10, 10,
@@ -89,33 +103,33 @@ export const TechyTable = () => {
       },
     },
   });
-  const gameNames = [
-    "GAME JAM",
-"ROBO SOCCER",
-"CAPTURE THE FLAG",
-"HACKATHON",
-"ASTRONOMY QUIZ",
-"IDEATHON",
-"CODEGOLF",
-"WATER ROCKETRY",
-"CAD MODELING",
-"RC CAR RACING",
-"SOLVE THE CASE"
-  ].map((el) => el.toUpperCase());
-  const blockNames = [
-    "ARYABHATTA",
-    "BHASKARA",
-    "MAITREYI",
-    "GARGI",
-    "CHARAKA",
-    "SUSURUTA",
-    "KAUTILYA",
-    "VYASA",
-    "BRAHMAGUPTA",
-    "VARAHAMIHIRA",
-    "RAMANUJA",
-    "KAPILA",
-  ];
+//   const gameNames = [
+//     "GAME JAM",
+// "ROBO SOCCER",
+// "CAPTURE THE FLAG",
+// "HACKATHON",
+// "ASTRONOMY QUIZ",
+// "IDEATHON",
+// "CODEGOLF",
+// "WATER ROCKETRY",
+// "CAD MODELING",
+// "RC CAR RACING",
+// "SOLVE THE CASE"
+//   ].map((el) => el.toUpperCase());
+//   const blockNames = [
+//     "ARYABHATTA",
+//     "BHASKARA",
+//     "MAITREYI",
+//     "GARGI",
+//     "CHARAKA",
+//     "SUSURUTA",
+//     "KAUTILYA",
+//     "VYASA",
+//     "BRAHMAGUPTA",
+//     "VARAHAMIHIRA",
+//     "RAMANUJA",
+//     "KAPILA",
+//   ];
 
   const tableHeaders = ["Block", "Points"].map((el) => el.toUpperCase());
   let itemRows = [];

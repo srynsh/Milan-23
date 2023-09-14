@@ -14,9 +14,23 @@ import Paper from "@mui/material/Paper";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
+import axios from 'axios';
 
 
 export const SportsGirlsTable = () => {
+  const [gameNames, setgameNames] = useState([])
+  const [blockNames, setblockNames] = useState([])
+
+  useEffect(() => {
+    const fetchScore = async () => {
+      const { data } = await axios.get(import.meta.env.VITE_SPORTS_GIRLS)
+      setscores(data.scores)
+      setgameNames(data.eventNames)
+      setblockNames(data.blocks);
+    }
+    fetchScore();
+  }, [])
+
   const [scores, setscores] = useState({
     '1': [ 70, 40, 20, 100 ],
     '2': [ 100, 0, 40, 70 ],
@@ -45,24 +59,24 @@ export const SportsGirlsTable = () => {
       },
     },
   });
-  const gameNames = [
-    "CRICKET",
-    "FOOTBALL",
-    "DODGE BALL",
-    "VOLLEYBALL",
-    "BASKETBALL",
-    "BADMINTON",
-    "TENNIS",
-    "TABLE TENNIS",
-    "CARROM",
-    "CHESS",
-    "SQUASH",
-    "WEIGHTLIFTING",
-    "ESPORTS",
-    "AQUATICS",
-    "ATHLETICS",
-  ].map((el) => el.toUpperCase());
-  const blockNames = ["ARYABHATTA", "BHASKARA", "MAITREYI", "GARGI"];
+  // const gameNames = [
+  //   "CRICKET",
+  //   "FOOTBALL",
+  //   "DODGE BALL",
+  //   "VOLLEYBALL",
+  //   "BASKETBALL",
+  //   "BADMINTON",
+  //   "TENNIS",
+  //   "TABLE TENNIS",
+  //   "CARROM",
+  //   "CHESS",
+  //   "SQUASH",
+  //   "WEIGHTLIFTING",
+  //   "ESPORTS",
+  //   "AQUATICS",
+  //   "ATHLETICS",
+  // ].map((el) => el.toUpperCase());
+  // const blockNames = ["ARYABHATTA", "BHASKARA", "MAITREYI", "GARGI"];
   const tableHeaders = ["Block", "Points"].map((el) => el.toUpperCase());
   let itemRows = [];
   for (var event = 0; event < 15; event++) {
