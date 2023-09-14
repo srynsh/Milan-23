@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Loading from "./loading";
+import Loading from "./Loading";
 import axios from "axios";
 import "../profile & calender.css";
 
