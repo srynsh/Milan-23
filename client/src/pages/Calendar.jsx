@@ -10,14 +10,12 @@ const handleclick = () => {
 
 
 const Calendar = () => {
-  const navigate = useNavigate();
-  
+   const navigate = useNavigate();
   return (
     <div className="main-bg">
       <div className="profile-icon" onClick={handleclick}>
         <ion-icon name="person" id="profile-ico"></ion-icon>
       </div>
-
       <ReactCalendar  />
       <Footer />
     </div>

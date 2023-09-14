@@ -93,19 +93,7 @@ useEffect(() => {
         email: userData.email,
         supportedTeams: userData.supportedTeams,
         events: userData.preferedEvents,
-      });
-
-    
-      if (userData.supportedTeams.length > 0) {
-        setTeamsValid(true);
-        setteamplaceholder("");
-      }
-      if (userData.preferedEvents.length > 0) {
-        setEventsValid(true);
-        seteventplaceholder("");
-        console.log(eventplaceholder)
-      }
-    
+      });    
     })
 
     .catch((error) => {
