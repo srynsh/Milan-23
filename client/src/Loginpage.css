@@ -1,0 +1,25 @@
+/* LoginPage.css */
+
+.login-container {
+    text-align: center;
+    margin-top: 100px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  .login-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3;
+  }
+  

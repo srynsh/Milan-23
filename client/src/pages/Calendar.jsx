@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const handleclick = () => {
   //Use window.location.href to redirect the user to the specified URL
-  window.location.href = 'http://localhost:8000/auth/google';
+  window.location.href = import.meta.env.VITE_BACKEND_URL+'/auth/google';
 }
 
 const Calendar = () => {
