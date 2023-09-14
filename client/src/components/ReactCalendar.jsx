@@ -92,7 +92,7 @@ useEffect(() => {
 
 
 
-  const [currentMonth, setCurrentMonth] = useState("September");
+  const [currentMonth, setCurrentMonth] = useState("SEPTEMBER");
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateClick = (date) => {
@@ -100,16 +100,16 @@ useEffect(() => {
   };
 
   const handleMonthChange = () => {
-    setCurrentMonth(currentMonth === "September" ? "October" : "September");
+    setCurrentMonth(currentMonth === "SEPTEMBER" ? "OCTOBER" : "SEPTEMBER");
   };
 
   const renderCalendar = () => {
-    const month = currentMonth === "September" ? 8 : 9;
+    const month = currentMonth === "SEPTEMBER" ? 8 : 9;
     const year = 2023;
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const calendarDays = [];
     const daysArray =
-      currentMonth === "September"
+      currentMonth === "SEPTEMBER"
         ? ["Fr", "St", "Su", "Mn", "Tu", "Wd", "Th"]
         : ["Sn", "Mn", "Tu", "Wd", "Th", "Fr", "St"];
     for (let i = 0; i < 7; i++) {
@@ -206,12 +206,12 @@ useEffect(() => {
           display:'flex',
           justifyContent:'center',
           alignItems:'center',
-          padding:'15vh 0'
+          padding:'25.8vh 0'
         }}>
           <div className="calendar-container">
             <div className="calendar-header">
               <h2>{currentMonth}</h2>
-              <button onClick={handleMonthChange}>Change Month</button>
+              <button onClick={handleMonthChange}>{"<next/prev>"}</button>
             </div>
             <div className="calendar">{renderCalendar()}</div>
             {renderEventsDialog()}

@@ -35,7 +35,7 @@
 }
 .container {
   width: 100%;
-  max-width: 768px; /* Adjust max-width as needed */
+  max-width: 768px; 
   margin: 0 auto;
   padding: 20px;
   background-color: var(--display-color);
@@ -114,15 +114,29 @@ h1 {
   display: inline-block;
   margin-bottom: 5px;
 }
-
+@media(max-width:640px){
+  .container{
+    max-width:95%;
+  }.main-bg{
+    padding-top:16vh !important;
+  }
+}
 @media (min-width: 640px) {
   .container {
     max-width: 640px;
   }
 }
+@media(width:768px){
+  .container{
+    max-width:95%;
+  }
+}
 @media (min-width: 768px) {
   .container {
     max-width: 768px;
+  }
+  .main-bg{
+    padding-bottom:28.2vh !important;
   }
 }
 @media (min-width: 1024px) {
@@ -186,7 +200,7 @@ h1 {
 .calendar-header button {
   background-color: var(--primary-color);
   color: #fff;
-  padding: 8px 12px;
+  padding: 4px 6px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
