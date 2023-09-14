@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import "../profile & calender.css";
 import axios from "axios";
+import Loading from "./loading";
 //import input_event from  "events.json"
 
 const Profile = () => {
@@ -21,6 +22,10 @@ const Profile = () => {
 
   const [eventsValid, setEventsValid] = useState(false);
   const [teamsValid, setTeamsValid] = useState(false);
+  const [teamplaceholder, setteamplaceholder] = useState("Search Blocks");
+  const [eventplaceholder, seteventplaceholder] = useState("Search Events");
+  const [loading, setLoading] = useState(true);
+
 
   //console.log(input_event)
   useEffect(() => {
@@ -67,18 +72,26 @@ const Profile = () => {
     name: "",
     email: "",
     supportedTeams: [],
-    Events: [],
+    events: [],
   });
 
   useEffect(() => {
+    setLoading(true);                
     axios
       .get(import.meta.env.VITE_BACKEND_URL + "profile", {
         withCredentials: true,
       })
       .then((response) => {
-        console.log("GIVING DATA", response.data);
+         //res.auth is false then redirect to login page
+        if (!response.data.auth) {
+          window.location.href = "/login";
+        }
+        //console.log(response.data);
+        //console.log("GIVING DATA", response.data);
         const userData = response.data.user;
         // Update the User state with user details
+     
+
         setUser({
           avatar: userData.avatar_url,
           name: userData.display_name,
@@ -86,14 +99,34 @@ const Profile = () => {
           supportedTeams: userData.supportedTeams,
           events: userData.preferedEvents,
         });
+
+      
+        if (userData.supportedTeams.length > 0) {
+          setTeamsValid(true);
+          setteamplaceholder("");
+        }
+        if (userData.preferedEvents.length > 0) {
+          setEventsValid(true);
+          seteventplaceholder("");
+          console.log(eventplaceholder)
+        }
+      
       })
+
       .catch((error) => {
         console.error("Error fetching user details: ", error);
       });
+
+            //set the valid variable  to true if the user has already selected the events and teams
+            setTimeout(() => {
+              setLoading(false);
+            }, 2000);
+      
+
   }, []); // Empty dependency array to run the effect only once on component mount
 
   useEffect(() => {
-    console.log(User); // Log the updated User state here
+    //console.log(User); // Log the updated User state here
   }, [User]); // Add User as a dependency to this effect
 
   // Handling selections/Changes in the Form
@@ -111,7 +144,7 @@ const Profile = () => {
   };
 
   const handleBlocksRemove = (selectedList, removedItem) => {
-    setUser((prevUser) => ({ ...prevUser, events: selectedList }));
+    setUser((prevUser) => ({ ...prevUser, supportedTeams: selectedList }));
   };
 
   const handleEventsSelect = (selectedList, selectedItem) => {
@@ -120,7 +153,7 @@ const Profile = () => {
   };
 
   const handleBlocksSelect = (selectedList, selectedItem) => {
-    setUser((prevUser) => ({ ...prevUser, supportingTeams: selectedList }));
+    setUser((prevUser) => ({ ...prevUser, supportedTeams: selectedList }));
     setTeamsValid(selectedList.length > 0);
   };
 
@@ -133,11 +166,12 @@ const Profile = () => {
       alert("Please enter a valid name.");
       return;
     }
-    if (!eventsValid) {
+    console.log(User)
+    if (User.events.length == 0) {
       alert("Please select atleast one Event!");
       return;
     }
-    if (!teamsValid) {
+    if (User.supportedTeams.length == 0) {
       alert("Please select atleast one Team!");
       return;
     }
@@ -181,141 +215,135 @@ const Profile = () => {
 
 
   return (
-    <div className="container">
-      <h1 className="">Profile Details</h1>
-      <form onSubmit={handleSubmit} name="myForm" className="">
-        <div className="layer1">
-          <div className="form-group">
-            <label htmlFor="name" className="form-label">
-              Name: &nbsp;
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              className="inputborder"
-              onChange={handleChange}
-              value={User.name}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="Email" className="form-label ">
-              Email: &nbsp;
-            </label>
-            <input
-              type="text"
-              name="Email"
-              id="Email"
-              className="inputborder"
-              value={User.email}
-              disabled
-            />
-          </div>
-        </div>
-        <div className=" layer-2">
-          <div className="form-group"
-            onFocus={handleBlocksMultiselectFocus}
-            onBlur={handleBlocksMultiselectBlur}>
-            <label htmlFor="supportingTeams" className="form-label">
-              Block: &nbsp;
-            </label>
-            <div style={{ transition: 'all 1s ease-in' }}>
-              <Multiselect
-                name="supportingTeams"
-                id="supportingTeams"
-                isObject={false}
-                placeholder="Search Teams &nbsp;"
-                displayValue="supportingTeams"
-                options={toptions}
-                onSelect={handleBlocksSelect}
-                onremove={handleBlocksRemove}
-                showCheckbox
-                className="inputborder custom-multiselect-container"
-                showArrow
-                groupBy="category"
-                selectionLimit={1}
-                hidePlaceholder={true}
-                selectedValues={User.supportedTeams}
-                style={{
-                  multiselectContainer: {
-                    marginBottom: isBlocksMultiselectClicked ? "240px" : "0",
-                    transition: "margin 1s ease-in-out",
-                  },
-                  searchBox: {
-                    border: 0,
-                    height: '30px',
-                  },
-                  chips: {
-                    background: "rgba(111, 0, 53, 1) 4%",
-                  },
-                  searchWrapper: {
-                    alignItems: 'center',
-                  },
-                }}
+    <div>
+      {loading ? (<Loading />) : (
+        <div className="container">
+        <h1 className="">Profile Details</h1>
+        <form onSubmit={handleSubmit} name="myForm" className="">
+          <div className="layer1">
+            <div className="form-group">
+              <label htmlFor="name" className="form-label">
+                Name: &nbsp;
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                className="inputborder"
+                onChange={handleChange}
+                value={User.name}
               />
-              {!teamsValid && (
-                <div className="error-message">
-                  Please select at least one team.
-                </div>
-              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="Email" className="form-label ">
+                Email: &nbsp;
+              </label>
+              <input
+                type="text"
+                name="Email"
+                id="Email"
+                className="inputborder"
+                value={User.email}
+                disabled
+              />
             </div>
           </div>
-          <div className="form-group"
-            onFocus={handleEventsMultiselectFocus}
-            onBlur={handleEventsMultiselectBlur}>
-            <label htmlFor="Events" className="form-label">
-              Events: &nbsp;
-            </label>
-            <div className="">
-              <Multiselect
-                name="events"
-                id="events"
-                isObject={false}
-                placeholder="Search Events"
-                options={eoptions}
-                onSelect={handleEventsSelect}
-                onRemove={handleEventsRemove}
-                displayValue="name"
-                showCheckbox
-                className="inputborder custom-multiselect-container"
-                showArrow
-                selectedValues={User.events}
-                groupBy="category"
-                style={{
-                  multiselectContainer: {
-                    marginBottom: isEventsMultiselectClicked ? "260px" : "0",
-                    transition: "margin 1s ease-in-out",
-                  },
-                  searchBox: {
-                    border: 0,
-                    height: '30px',
-                  },
-                  chips: {
-                    background: "rgba(111, 0, 53, 1) 4%",
-                  },
-                  searchWrapper: {
-                    alignItems: 'center',
-                  },
-                }}
-              />
-              {!eventsValid && (
-                <div className="error-message">
-                  Please select at least one event.
-                </div>
-              )}
+          <div className=" layer-2">
+            <div className="form-group"
+              onFocus={handleBlocksMultiselectFocus}
+              onBlur={handleBlocksMultiselectBlur}>
+              <label htmlFor="supportingTeams" className="form-label">
+                Block: &nbsp;
+              </label>
+              <div style={{ transition: 'all 1s ease-in' }}>
+                <Multiselect
+                  name="supportingTeams"
+                  id="supportingTeams"
+                  isObject={false}
+                  placeholder={teamplaceholder}
+                  displayValue="supportingTeams"
+                  options={toptions}
+                  onSelect={handleBlocksSelect}
+                  onRemove={handleBlocksRemove}
+                  showCheckbox
+                  className="inputborder custom-multiselect-container"
+                  showArrow
+                  groupBy="category"
+                  selectionLimit={1}
+                  hidePlaceholder={true}
+                  selectedValues={User.supportedTeams}
+                  style={{
+                    multiselectContainer: {
+                      marginBottom: isBlocksMultiselectClicked ? "240px" : "0",
+                      transition: "margin 1s ease-in-out",
+                    },
+                    searchBox: {
+                      border: 0,
+                      height: '30px',
+                    },
+                    chips: {
+                      background: "rgba(111, 0, 53, 1) 4%",
+                    },
+                    searchWrapper: {
+                      alignItems: 'center',
+                    },
+                  }}
+                />
+              </div>
+            </div>
+            <div className="form-group"
+              onFocus={handleEventsMultiselectFocus}
+              onBlur={handleEventsMultiselectBlur}>
+              <label htmlFor="Events" className="form-label">
+                Events: &nbsp;
+              </label>
+              <div className="">
+                <Multiselect
+                  name="events"
+                  id="events"
+                  isObject={false}
+                  placeholder={eventplaceholder}
+                  options={eoptions}
+                  onSelect={handleEventsSelect}
+                  onRemove={handleEventsRemove}
+                  displayValue="name"
+                  showCheckbox
+                  className="inputborder custom-multiselect-container"
+                  showArrow
+                  selectedValues={User.events}
+                  groupBy="category"
+                  style={{
+                    multiselectContainer: {
+                      marginBottom: isEventsMultiselectClicked ? "260px" : "0",
+                      transition: "margin 1s ease-in-out",
+                    },
+                    searchBox: {
+                      border: 0,
+                      height: '30px',
+                    },
+                    chips: {
+                      background: "rgba(111, 0, 53, 1) 4%",
+                    },
+                    searchWrapper: {
+                      alignItems: 'center',
+                    },
+                  }}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <button
-            type="submit"
-            onSubmit={handleSubmit}
-            className="submit-button"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+          <div>
+            <button
+              type="submit"
+              onSubmit={handleSubmit}
+              className="submit-button"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+      )}
     </div>
   );
 };
