@@ -23,40 +23,43 @@ const Profile = () => {
   const [teamsValid, setTeamsValid] = useState(false);
 
   //console.log(input_event)
-  fetch("./events.json")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      const inputList = data.inputList;
-      esetoptions(inputList);
+  useEffect(() => {
+    fetch("./events.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const inputList = data.inputList;
+        esetoptions(inputList);
 
-      // You can use 'inputList' here or perform any other operations with it
-    })
-    .catch((error) => {
-      console.error("Error fetching or parsing JSON:", error);
-    });
+        // You can use 'inputList' here or perform any other operations with it
+      })
+      .catch((error) => {
+        console.error("Error fetching or parsing JSON:", error);
+      });
 
-  fetch("./teams.json")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      const inputList = data.inputList;
-      tsetoptions(inputList);
 
-      // You can use 'inputList' here or perform any other operations with it
-    })
-    .catch((error) => {
-      console.error("Error fetching or parsing JSON:", error);
-    });
 
+    fetch("./teams.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const inputList = data.inputList;
+        tsetoptions(inputList);
+
+        // You can use 'inputList' here or perform any other operations with it
+      })
+      .catch((error) => {
+        console.error("Error fetching or parsing JSON:", error);
+      });
+  }, [])
   //User Details Import from Backend
 
   const [User, setUser] = useState({
@@ -130,11 +133,11 @@ const Profile = () => {
       alert("Please enter a valid name.");
       return;
     }
-    if(!eventsValid){
+    if (!eventsValid) {
       alert("Please select atleast one Event!");
       return;
     }
-    if(!teamsValid){
+    if (!teamsValid) {
       alert("Please select atleast one Team!");
       return;
     }
@@ -211,12 +214,12 @@ const Profile = () => {
         </div>
         <div className=" layer-2">
           <div className="form-group"
-          onFocus={handleBlocksMultiselectFocus}
-          onBlur={handleBlocksMultiselectBlur}>
+            onFocus={handleBlocksMultiselectFocus}
+            onBlur={handleBlocksMultiselectBlur}>
             <label htmlFor="supportingTeams" className="form-label">
               Block: &nbsp;
             </label>
-            <div style={{transition:'all 1s ease-in'}}>
+            <div style={{ transition: 'all 1s ease-in' }}>
               <Multiselect
                 name="supportingTeams"
                 id="supportingTeams"
@@ -234,19 +237,19 @@ const Profile = () => {
                 hidePlaceholder={true}
                 selectedValues={User.supportedTeams}
                 style={{
-                  multiselectContainer:{
+                  multiselectContainer: {
                     marginBottom: isBlocksMultiselectClicked ? "240px" : "0",
                     transition: "margin 1s ease-in-out",
                   },
                   searchBox: {
                     border: 0,
-                    height:'30px',
+                    height: '30px',
                   },
                   chips: {
                     background: "rgba(111, 0, 53, 1) 4%",
                   },
-                  searchWrapper:{
-                    alignItems:'center',
+                  searchWrapper: {
+                    alignItems: 'center',
                   },
                 }}
               />
@@ -258,8 +261,8 @@ const Profile = () => {
             </div>
           </div>
           <div className="form-group"
-          onFocus={handleEventsMultiselectFocus}
-          onBlur={handleEventsMultiselectBlur}>
+            onFocus={handleEventsMultiselectFocus}
+            onBlur={handleEventsMultiselectBlur}>
             <label htmlFor="Events" className="form-label">
               Events: &nbsp;
             </label>
@@ -279,19 +282,19 @@ const Profile = () => {
                 selectedValues={User.events}
                 groupBy="category"
                 style={{
-                  multiselectContainer:{
+                  multiselectContainer: {
                     marginBottom: isEventsMultiselectClicked ? "260px" : "0",
                     transition: "margin 1s ease-in-out",
                   },
                   searchBox: {
                     border: 0,
-                    height:'30px',
+                    height: '30px',
                   },
                   chips: {
                     background: "rgba(111, 0, 53, 1) 4%",
                   },
-                  searchWrapper:{
-                    alignItems:'center',
+                  searchWrapper: {
+                    alignItems: 'center',
                   },
                 }}
               />
