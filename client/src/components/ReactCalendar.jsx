@@ -1,117 +1,114 @@
-import{ useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import Loading from "./loading";
+import axios from "axios";
 import "../profile & calender.css";
 
-
-let eventsData = {};
-
 const ReactCalendar = () => {
-
-   //get user profile
-const [User, setUser] = useState({
-  avatar: "",
-  name: "",
-  email: "",
-  supportedTeams: [],
-  events: []
-});
-
-
-const [loading, setLoading] = useState(false);
-
-
-
-useEffect(() => {
-  setLoading(true);                
-  axios
-    .get(import.meta.env.VITE_BACKEND_URL + "profile", {
-      withCredentials: true,
-    })
-    .then((response) => {
-   
-      //console.log(response.data);
-      //console.log("GIVING DATA", response.data);
-      const userData = response.data.user;
-      // Update the User state with user details
-   
-
-      setUser({
-        avatar: userData.avatar_url,
-        name: userData.display_name,
-        email: userData.email,
-        supportedTeams: userData.supportedTeams,
-        events: userData.preferedEvents,
-      });
-
-    })
-
-    .catch((error) => {
-      console.error("Error fetching user details: ", error);
-    });
-
-          //set the valid variable  to true if the user has already selected the events and teams
-
-          setTimeout(() => {
-            setLoading(false);
-          }, 1300);
-}, []);
-
-
-const [transformedEventData, setTransformedEventData] = useState({});
-
-useEffect(() => {
-  fetch('https://sheetdb.io/api/v1/fct6fqk2soxi0')
-    .then((res) => res.json())
-    .then((data) => {
-      // Initialize an empty object to store the transformed data
-      const transformedData = {};
-      
-      data.forEach((event) => {
-        const { Date, ID, Title, Description, Time, Category } = event;
-
-        if (!transformedData[Date]) {
-          transformedData[Date] = [];
-        }
-        transformedData[Date].push({
-          id: ID,
-          title: Title,
-          body: Description,
-          time: Time,
-          category: Category,
-        });
-      });
-
-      setTransformedEventData(transformedData);
-    })
-    .catch((error) => {
-      console.error("Error fetching event details: ", error);
-    });
-}, []);
-
-
-
-
-  const [currentMonth, setCurrentMonth] = useState("September");
+  // Constants
+  // State variables
+  const [User, setUser] = useState({
+    avatar: "",
+    name: "",
+    email: "",
+    supportedTeams: [],
+    events: [],
+  });
+  const [loading, setLoading] = useState(false);
+  const [transformedEventData, setTransformedEventData] = useState({});
+  const [currentMonth, setCurrentMonth] = useState("SEPTEMBER");
   const [selectedDate, setSelectedDate] = useState(null);
 
+  // Fetch user profile
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(import.meta.env.VITE_BACKEND_URL + "profile", {
+        withCredentials: true,
+      })
+      .then((response) => {
+        const userData = response.data.user;
+        setUser({
+          avatar: userData.avatar_url,
+          name: userData.display_name,
+          email: userData.email,
+          supportedTeams: userData.supportedTeams,
+          events: userData.preferedEvents,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching user details: ", error);
+      });
+
+    // Set 'valid' variable to true if user has already selected events and teams
+    setTimeout(() => {
+      setLoading(false);
+    }, 1300);
+  }, []);
+
+  // Fetch event data
+  useEffect(() => {
+    fetch("./eventsSchedule.json")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setTransformedEventData(data);
+        console.log(transformedEventData);
+      })
+      .catch((error) => {
+        console.error("Error fetching or parsing JSON:", error);
+      });
+  }, []);
+
+  //filtering the Events Based on user selections
+  useEffect(() => {
+    const selectedTeams = User.supportedTeams;
+    const selectedEvents = User.events;
+    const filteredEvents = {};
+
+    Object.keys(transformedEventData).forEach((date) => {
+      const eventsOnDate = transformedEventData[date];
+      const filteredDateEvents = eventsOnDate.filter((event) => {
+        const teamsInBody = event.body.split(",").map((team) => team.trim());
+        const isTeamSelected = selectedTeams.some((selectedTeam) =>
+          teamsInBody.includes(selectedTeam)
+        );
+        const isEventSelected = selectedEvents.includes(event.title);
+
+        return isTeamSelected && isEventSelected;
+      });
+
+      if (filteredDateEvents.length > 0) {
+        filteredEvents[date] = filteredDateEvents;
+      }
+    });
+  }, []);
+
+  // Handle date click
   const handleDateClick = (date) => {
     setSelectedDate(date);
   };
 
+  // Handle month change
   const handleMonthChange = () => {
-    setCurrentMonth(currentMonth === "September" ? "October" : "September");
+    setCurrentMonth(currentMonth === "SEPTEMBER" ? "OCTOBER" : "SEPTEMBER");
   };
 
+  // Render calendar
   const renderCalendar = () => {
-    const month = currentMonth === "September" ? 8 : 9;
+    const month = currentMonth === "SEPTEMBER" ? 8 : 9;
     const year = 2023;
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
     const calendarDays = [];
+    const DAYS_IN_MONTH = new Date(year, month + 1, 0).getDate();
     const daysArray =
-      currentMonth === "September"
+      currentMonth === "SEPTEMBER"
         ? ["Fr", "St", "Su", "Mn", "Tu", "Wd", "Th"]
         : ["Sn", "Mn", "Tu", "Wd", "Th", "Fr", "St"];
+
+    // Render day headers
     for (let i = 0; i < 7; i++) {
       calendarDays.push(
         <div key={i} className="calendar-week-day">
@@ -119,15 +116,19 @@ useEffect(() => {
         </div>
       );
     }
-    for (let i = 1; i <= daysInMonth; i++) {
-      const date = `${year}-${(month + 1).toString().padStart(2, "0")}-${i
+
+    // Render calendar days
+    for (let i = 1; i <= DAYS_IN_MONTH; i++) {
+      const formattedDate = `${(month + 1).toString().padStart(2, "0")}/${i
         .toString()
-        .padStart(2, "0")}`;
+        .padStart(2, "0")}/${year}`;
       calendarDays.push(
         <div
           key={i + 36}
-          className={`calendar-day ${selectedDate === date ? "selected" : ""}`}
-          onClick={() => handleDateClick(date)}
+          className={`calendar-day ${
+            selectedDate === formattedDate ? "selected" : ""
+          }`}
+          onClick={() => handleDateClick(formattedDate)}
         >
           <div className="day">{i}</div>
         </div>
@@ -137,6 +138,27 @@ useEffect(() => {
     return calendarDays;
   };
 
+  // Render events dialog
+  const renderEventsDialog = () => {
+    if (!selectedDate) return null;
+    const events = transformedEventData[selectedDate] || [];
+    const categories = [...new Set(events.map((event) => event.category))];
+
+    return (
+      <div>
+        {categories.map((category) => (
+          <EventsDialog
+            key={category}
+            selectedDate={selectedDate}
+            events={events.filter((event) => event.category === category)}
+            category={category}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  // Events dialog component
   const EventsDialog = ({ selectedDate, events, category }) => {
     return (
       <div className="events-dialog">
@@ -169,55 +191,18 @@ useEffect(() => {
     );
   };
 
-  const renderEventsDialog = () => {
-    if (!selectedDate) return null;
-    const events =  transformedEventData[selectedDate] || [];
-
-    // Filter events by category
-    const cultiEvents = events.filter((event) => event.category === "Culti");
-    const sciFiEvents = events.filter((event) => event.category === "Sci-Fi");
-    const sportsEvents = events.filter((event) => event.category === "Sports");
-
-    return (
-      <div>
-        <EventsDialog
-          selectedDate={selectedDate}
-          events={cultiEvents}
-          category="Culti"
-        />
-        <EventsDialog
-          selectedDate={selectedDate}
-          events={sciFiEvents}
-          category="Sci-Fi"
-        />
-        <EventsDialog
-          selectedDate={selectedDate}
-          events={sportsEvents}
-          category="Sports"
-        />
-      </div>
-    );
-  };
-
+  // Render calendar container
   return (
-        <div className="calendar-dov" style={{
-          width:'99vw',
-          height:'max-content',
-          display:'flex',
-          justifyContent:'center',
-          alignItems:'center',
-          padding:'15vh 0'
-        }}>
-          <div className="calendar-container">
-            <div className="calendar-header">
-              <h2>{currentMonth}</h2>
-              <button onClick={handleMonthChange}>Change Month</button>
-            </div>
-            <div className="calendar">{renderCalendar()}</div>
-            {renderEventsDialog()}
-          </div>
+    <div className="calendar-dov">
+      <div className="calendar-container">
+        <div className="calendar-header">
+          <h2>{currentMonth}</h2>
+          <button onClick={handleMonthChange}>{"<next/prev>"}</button>
         </div>
-   
+        <div className="calendar">{renderCalendar()}</div>
+        {renderEventsDialog()}
+      </div>
+    </div>
   );
 };
 

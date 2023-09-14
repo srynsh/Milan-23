@@ -1,20 +1,17 @@
 import Profile from "../components/Profile";
-import Footer from "../components/Footer";
 import "../profile & calender.css";
 
 const ProfilePage = () => {
   return (
     <>
-      <div className="main-bg profile-bg" style={{
-        width: "99vw",
+      <div className="main-bg" style={{
+        width: "100vw",
         justifyContent: "center",
         alignItems: "center",
-        padding: "15vh 0 12vh 0",
-        display:'flex',
+        padding: "25.8vh 0",
       }}>
       <Profile />
       </div>
-      <Footer />
     </>
   );
 };
