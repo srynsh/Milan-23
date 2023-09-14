@@ -47,7 +47,6 @@ const Profile = () => {
       });
 
 
-
     fetch("./teams.json")
       .then((response) => {
         if (!response.ok) {
