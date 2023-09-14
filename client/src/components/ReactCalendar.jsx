@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Loading from "./loading";
 import "../profile & calender.css";
+
 
 const eventsData = {
   "2023-09-01": [
@@ -55,6 +58,69 @@ const eventsData = {
 };
 
 const ReactCalendar = () => {
+
+   //get user profile
+const [User, setUser] = useState({
+  avatar: "",
+  name: "",
+  email: "",
+  supportedTeams: [],
+  events: []
+});
+
+
+const [loading, setLoading] = useState(false);
+
+
+
+useEffect(() => {
+  setLoading(true);                
+  axios
+    .get(import.meta.env.VITE_BACKEND_URL + "profile", {
+      withCredentials: true,
+    })
+    .then((response) => {
+   
+      //console.log(response.data);
+      //console.log("GIVING DATA", response.data);
+      const userData = response.data.user;
+      // Update the User state with user details
+   
+
+      setUser({
+        avatar: userData.avatar_url,
+        name: userData.display_name,
+        email: userData.email,
+        supportedTeams: userData.supportedTeams,
+        events: userData.preferedEvents,
+      });
+
+    
+      if (userData.supportedTeams.length > 0) {
+        setTeamsValid(true);
+        setteamplaceholder("");
+      }
+      if (userData.preferedEvents.length > 0) {
+        setEventsValid(true);
+        seteventplaceholder("");
+        console.log(eventplaceholder)
+      }
+    
+    })
+
+    .catch((error) => {
+      console.error("Error fetching user details: ", error);
+    });
+
+          //set the valid variable  to true if the user has already selected the events and teams
+          setTimeout(() => {
+            setLoading(false);
+          }, 1300);
+    
+
+}, []); // Empty dependency array to run the effect only once on component mount
+
+
   const [currentMonth, setCurrentMonth] = useState("September");
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -163,22 +229,33 @@ const ReactCalendar = () => {
   };
 
   return (
-    <div className="calendar-dov" style={{
-      width:'99vw',
-      height:'max-content',
-      display:'flex',
-      justifyContent:'center',
-      alignItems:'center',
-      padding:'15vh 0'
-    }}>
-      <div className="calendar-container">
-        <div className="calendar-header">
-          <h2>{currentMonth}</h2>
-          <button onClick={handleMonthChange}>Change Month</button>
+    <div className="div">
+      {loading ? (<Loading style={{
+        width:'99vw',
+        height:'max-content',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        padding:'15vh 0'
+      }}/>) : (
+        <div className="calendar-dov" style={{
+          width:'99vw',
+          height:'max-content',
+          display:'flex',
+          justifyContent:'center',
+          alignItems:'center',
+          padding:'15vh 0'
+        }}>
+          <div className="calendar-container">
+            <div className="calendar-header">
+              <h2>{currentMonth}</h2>
+              <button onClick={handleMonthChange}>Change Month</button>
+            </div>
+            <div className="calendar">{renderCalendar()}</div>
+            {renderEventsDialog()}
+          </div>
         </div>
-        <div className="calendar">{renderCalendar()}</div>
-        {renderEventsDialog()}
-      </div>
+      )}
     </div>
   );
 };

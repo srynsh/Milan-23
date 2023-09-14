@@ -7,6 +7,8 @@ const handleclick = () => {
   window.location.href = import.meta.env.VITE_BACKEND_URL+'/auth/google';
 }
 
+
+
 const Calendar = () => {
   const navigate = useNavigate();
   
@@ -15,7 +17,8 @@ const Calendar = () => {
       <div className="profile-icon" onClick={handleclick}>
         <ion-icon name="person" id="profile-ico"></ion-icon>
       </div>
-      <ReactCalendar />
+
+      <ReactCalendar  />
       <Footer />
     </div>
   );
