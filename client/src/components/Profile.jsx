@@ -120,7 +120,7 @@ const Profile = () => {
             //set the valid variable  to true if the user has already selected the events and teams
             setTimeout(() => {
               setLoading(false);
-            }, 2000);
+            }, 1300);
       
 
   }, []); // Empty dependency array to run the effect only once on component mount
