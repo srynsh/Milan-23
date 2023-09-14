@@ -14,8 +14,21 @@ import Paper from "@mui/material/Paper";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
+import axios from 'axios';
 
 export const CultiTable = () => {
+    const [gameNames, setgameNames] = useState([])
+  const [blockNames, setblockNames] = useState([])
+
+  useEffect(() => {
+    const fetchScore = async () => {
+      const { data } = await axios.get(import.meta.env.VITE_CULTY)
+      setscores(data.scores)
+      setgameNames(data.eventNames)
+      setblockNames(data.blocks);
+    }
+    fetchScore();
+  }, [])
   const [scores, setscores] = useState({
     '1': [
       3, 9, 30, 21, 9,
@@ -121,40 +134,40 @@ export const CultiTable = () => {
     },
   });
 
-  const gameNames = [
-    "SOLO DANCE",
-"DUO-TRIO DANCE",
-"GROUP DANCE",
-"PANDORAS BOX OF DRAMA",
-"STILL FRAME PHOTOGRAPHY",
-"THE LOW EFFORT COMPETITION",
-"BMC CODENAMES",
-"DUMB CHARADES",
-"GENERAL QUIZ",
-"NOT SO SORRY",
-"BATTLE OF BANDS",
-"SOLO SINGING",
-"MINI POETRY JAM",
-"JUNK ART SHOW",
-"NAVARASA NATANA",
-"RAP BATTLE",
-"TREASURE HUNT",
-"FASHION SHOW"
-  ].map((el) => el.toUpperCase());
-  const blockNames = [
-    "ARYABHATTA",
-    "BHASKARA",
-    "MAITREYI",
-    "GARGI",
-    "CHARAKA",
-    "SUSURUTA",
-    "KAUTILYA",
-    "VYASA",
-    "BRAHMAGUPTA",
-    "VARAHAMIHIRA",
-    "RAMANUJA",
-    "KAPILA",
-  ];
+//   const gameNames = [
+//     "SOLO DANCE",
+// "DUO-TRIO DANCE",
+// "GROUP DANCE",
+// "PANDORAS BOX OF DRAMA",
+// "STILL FRAME PHOTOGRAPHY",
+// "THE LOW EFFORT COMPETITION",
+// "BMC CODENAMES",
+// "DUMB CHARADES",
+// "GENERAL QUIZ",
+// "NOT SO SORRY",
+// "BATTLE OF BANDS",
+// "SOLO SINGING",
+// "MINI POETRY JAM",
+// "JUNK ART SHOW",
+// "NAVARASA NATANA",
+// "RAP BATTLE",
+// "TREASURE HUNT",
+// "FASHION SHOW"
+//   ].map((el) => el.toUpperCase());
+//   const blockNames = [
+//     "ARYABHATTA",
+//     "BHASKARA",
+//     "MAITREYI",
+//     "GARGI",
+//     "CHARAKA",
+//     "SUSURUTA",
+//     "KAUTILYA",
+//     "VYASA",
+//     "BRAHMAGUPTA",
+//     "VARAHAMIHIRA",
+//     "RAMANUJA",
+//     "KAPILA",
+//   ];
   const tableHeaders = ["Block", "Points"].map((el) => el.toUpperCase());
   let itemRows = [];
   for (var event = 0; event < 18; event++) {
