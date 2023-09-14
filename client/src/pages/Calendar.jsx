@@ -15,7 +15,6 @@ const Calendar = () => {
         <ion-icon name="person" id="profile-ico"></ion-icon>
       </div> */}
       <ReactCalendar />
-      <Footer />
     </div>
   );
 };

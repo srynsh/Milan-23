@@ -47,7 +47,6 @@ const Profile = () => {
       });
 
 
-
     fetch("./teams.json")
       .then((response) => {
         if (!response.ok) {
@@ -123,7 +122,7 @@ const Profile = () => {
             }, 1300);
       
 
-  }, []); // Empty dependency array to run the effect only once on component mount
+  }, []); 
 
   useEffect(() => {
     //console.log(User); // Log the updated User state here
