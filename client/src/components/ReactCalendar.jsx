@@ -101,9 +101,6 @@ useEffect(() => {
     });
 
           //set the valid variable  to true if the user has already selected the events and teams
-          setTimeout(() => {
-            setLoading(false);
-          }, 1300);
     
 
 }, []); // Empty dependency array to run the effect only once on component mount
@@ -217,15 +214,6 @@ useEffect(() => {
   };
 
   return (
-    <div className="div">
-      {loading ? (<Loading style={{
-        width:'99vw',
-        height:'max-content',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        padding:'15vh 0'
-      }}/>) : (
         <div className="calendar-dov" style={{
           width:'99vw',
           height:'max-content',
@@ -243,8 +231,7 @@ useEffect(() => {
             {renderEventsDialog()}
           </div>
         </div>
-      )}
-    </div>
+   
   );
 };
 
