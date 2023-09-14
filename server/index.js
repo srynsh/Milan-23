@@ -342,7 +342,7 @@ app.get('/profile', verifyUser, async (req, res) => {
         preferedEvents: events_array
     }
     console.log(user_object, "user fetched");
-    res.json({ success: true, user: user_object });
+    res.json({ success: true,auth: true, user: user_object });
 })
 
 app.get('/hello', async (req, res) => {
