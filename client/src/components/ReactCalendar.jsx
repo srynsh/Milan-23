@@ -37,7 +37,7 @@ const ReactCalendar = () => {
       })
       .then((data) => {
         setTransformedEventData(data);
-        console.log('Transformed Event Data:', transformedEventData);
+        
       })
       .catch((error) => {
         console.error('Error fetching or parsing JSON:', error);
@@ -68,15 +68,31 @@ const ReactCalendar = () => {
         setLoading(false);
       });
   }, []);
+ useEffect(() => {
+  console.log('Transformed Event Data:', transformedEventData);
+ },[transformedEventData])
 
-  // Add a useEffect to perform actions when user data has loaded
+ useEffect(() => {
+  console.log('Filtered Event Data:', filteredEvents);
+ },[filteredEvents]) 
+
+
   useEffect(() => {
     if (userDataLoaded) {
       // Perform actions that rely on the updated User state here
-      console.log('User Data:', User);
       filterEvents();
+      console.log('User Data:', User);
     }
   }, [userDataLoaded, User]);
+
+  useEffect(() => {
+    setLoading(true);
+    let temp = transformedEventData;
+    setTransformedEventData(filteredEvents);
+    setFilteredEvents(temp);
+    setLoading(false);
+  },[filtertoogle])
+
 
   //filtering the Events Based on user selections
  
@@ -91,9 +107,15 @@ const ReactCalendar = () => {
     setCurrentMonth(currentMonth === "SEPTEMBER" ? "OCTOBER" : "SEPTEMBER");
   };
 
+  const handlefilter = () => {
+    console.log('filter toogle:', filtertoogle);
+    setFiltertoogle(!filtertoogle);
+  }
+
   //filter events
-  const filterEvents = () => {
+const filterEvents = () => {
     // Filter events based on user's preferred events and supported teams
+  setLoading(true);
    console.log('User Data inside :', User)
    
     const userPreferredEvents = User.events;
@@ -104,9 +126,11 @@ const ReactCalendar = () => {
     for (const date in transformedEventData) {
       const events = transformedEventData[date];
       const filteredEvents = events.filter((event) => {
+        
+         const team =event.body.toLowerCase()
+        if(userPreferredEvents.includes(event.title) && team.includes(User.supportedTeams[0].toLowerCase() ) )console.log('event title:', event.id)
         return (
-          userPreferredEvents.includes(event.category) ||
-          userSupportedTeams.includes(event.team)
+          userPreferredEvents.includes(event.title) && team.includes(User.supportedTeams[0].toLowerCase())
         );
       });
 
@@ -114,9 +138,9 @@ const ReactCalendar = () => {
         filteredData[date] = filteredEvents;
       }
     }
-
-    setFilteredEvents(filteredData);
     
+    setFilteredEvents(filteredData);
+    setLoading(false);
   };
   // Render calendar
   const renderCalendar = () => {
@@ -220,7 +244,7 @@ const ReactCalendar = () => {
       <div className="calendar-header">
         <h2>{currentMonth}</h2>
         <button onClick={handleMonthChange}>{"<next/prev>"}</button>
-        <button onClick={filterEvents}>Filter Events</button>
+        <button onClick={handlefilter}>Filter Events</button>
       </div>
       <div className="calendar">{renderCalendar()}</div>
       {renderEventsDialog()}
