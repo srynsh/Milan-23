@@ -341,32 +341,32 @@ app.get('/sports_girls', async (req, res) => {
 
 async function fetchDataAndWriteToFile(url, fileName) {
     try {
-      const response = await axios.get(url);
-      const data = response.data;
-      const filePath = path.join(__dirname, 'data', fileName);
-      fs.writeFileSync(filePath, JSON.stringify(data));
-      console.log(`Data from ${url} has been written to ${filePath}`);
+        const response = await axios.get(url);
+        const data = response.data;
+        const filePath = path.join(__dirname, 'data', fileName);
+        fs.writeFileSync(filePath, JSON.stringify(data));
+        console.log(`Data from ${url} has been written to ${filePath}`);
     } catch (error) {
-      console.error(`Error fetching data from ${url}:`, error);
+        console.error(`Error fetching data from ${url}:`, error);
     }
-  }
+}
 
 //update the data folder with new data for every 5 hours
-const updateData = schedule.scheduleJob('* /1 * * * *', async function(){
+const updateData = schedule.scheduleJob('* /1 * * * *', async function () {
     // Fetch and write leaderboard data
-  await fetchDataAndWriteToFile(process.env.LEADERBOARD, 'leaderboard.json');
+    await fetchDataAndWriteToFile(process.env.LEADERBOARD, 'leaderboard.json');
 
-  // Fetch and write techy data
-  await fetchDataAndWriteToFile(process.env.TECHY, 'techy.json');
+    // Fetch and write techy data
+    await fetchDataAndWriteToFile(process.env.TECHY, 'techy.json');
 
-  // Fetch and write culty data
-  await fetchDataAndWriteToFile(process.env.CULTY, 'culty.json');
+    // Fetch and write culty data
+    await fetchDataAndWriteToFile(process.env.CULTY, 'culty.json');
 
-  // Fetch and write sports boys data
-  await fetchDataAndWriteToFile(process.env.SPORTS_BOYS, 'sports_boys.json');
+    // Fetch and write sports boys data
+    await fetchDataAndWriteToFile(process.env.SPORTS_BOYS, 'sports_boys.json');
 
-  // Fetch and write sports girls data
-  await fetchDataAndWriteToFile(process.env.SPORTS_GIRLS, 'sports_girls.json');
+    // Fetch and write sports girls data
+    await fetchDataAndWriteToFile(process.env.SPORTS_GIRLS, 'sports_girls.json');
 
 })
 
@@ -431,7 +431,7 @@ app.get('/hello', async (req, res) => {
 
 //update supporting teams
 app.post('/profile/update', verifyUser, async (req, res) => {
-    const { supportedTeams, preferedEvents } = req.body; // Assuming supportedTeams and preferedEvents are arrays of team names or event IDs.
+    const { supportedTeams, preferedEvents, events } = req.body; // Assuming supportedTeams and preferedEvents are arrays of team names or event IDs.
 
     const userEmail = res.locals.email;
 
@@ -473,28 +473,30 @@ app.post('/profile/update', verifyUser, async (req, res) => {
 
 
         // Insert preferred events for the user into the prefered_event table.
-        for (const event of preferedEvents) {
-            try {
-                const event_id_query = 'SELECT event_id FROM events WHERE event_name = $1';
-                const event_id_result = await pool.query(event_id_query, [event]);
+        if (events) {
+            for (const event of events) {
+                try {
+                    const event_id_query = 'SELECT event_id FROM events WHERE event_name = $1';
+                    const event_id_result = await pool.query(event_id_query, [event]);
 
-                if (event_id_result.rows.length === 0) {
-                    console.error(`Event not found in the database: ${event}`);
-                    continue; // Skip to the next iteration
+                    if (event_id_result.rows.length === 0) {
+                        console.error(`Event not found in the database: ${event}`);
+                        continue; // Skip to the next iteration
+                    }
+
+                    const event_id = event_id_result.rows[0].event_id;
+                    console.log(`Event: ${event}, Event ID: ${event_id}`);
+
+                    const insertPreferredEventQuery = 'INSERT INTO prefered_event (email, user_id, prefered_event_id, prefered_event_name) VALUES ($1, $2, $3, $4) ON CONFLICT (email, user_id, prefered_event_id) DO NOTHING';
+
+                    // Now, insert the data with the retrieved event_id
+                    await pool.query(insertPreferredEventQuery, [userEmail, userId, event_id, event]);
+                } catch (error) {
+                    console.error('Error:', error);
                 }
-
-                const event_id = event_id_result.rows[0].event_id;
-                console.log(`Event: ${event}, Event ID: ${event_id}`);
-
-                const insertPreferredEventQuery = 'INSERT INTO prefered_event (email, user_id, prefered_event_id, prefered_event_name) VALUES ($1, $2, $3, $4) ON CONFLICT (email, user_id, prefered_event_id) DO NOTHING';
-
-                // Now, insert the data with the retrieved event_id
-                await pool.query(insertPreferredEventQuery, [userEmail, userId, event_id, event]);
-            } catch (error) {
-                console.error('Error:', error);
             }
-        }
 
+        }
 
         res.send({ success: true, message: 'Profile updated successfully' });
 
