@@ -42,7 +42,6 @@ function App() {
             <Route path="/livescore" element={<LiveScoresPage />} />
             <Route path="/sponsors" element={<Sponsors />} />
             <Route path="*" element={<Error />} />
-            <Route path="/Profile" element={<ProfilePage />} />
             <Route path="/login"  element={<LoginPage/>} />
           </Routes>
         </Router>
