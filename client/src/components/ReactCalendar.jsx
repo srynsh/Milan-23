@@ -18,12 +18,34 @@ const ReactCalendar = () => {
   const [filteredEvents, setFilteredEvents] = useState({});
   const [currentMonth, setCurrentMonth] = useState("SEPTEMBER");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [filtertoogle, setFiltertoogle] = useState(false);
+
+  // Fetch user profile
+  const [userDataLoaded, setUserDataLoaded] = useState(false);
 
   // Fetch user profile
   useEffect(() => {
     setLoading(true);
+
+    // Fetch events data
+    fetch('./eventsSchedule.json')
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setTransformedEventData(data);
+        console.log('Transformed Event Data:', transformedEventData);
+      })
+      .catch((error) => {
+        console.error('Error fetching or parsing JSON:', error);
+      });
+
+    // Fetch user profile data using Axios
     axios
-      .get(import.meta.env.VITE_BACKEND_URL + "profile", {
+      .get(import.meta.env.VITE_BACKEND_URL + 'profile', {
         withCredentials: true,
       })
       .then((response) => {
@@ -35,62 +57,29 @@ const ReactCalendar = () => {
           supportedTeams: userData.supportedTeams,
           events: userData.preferedEvents,
         });
+        console.log('response data:', response.data.user);
+        setUserDataLoaded(true); // Signal that user data has loaded
       })
       .catch((error) => {
-        console.error("Error fetching user details: ", error);
+        console.error('Error fetching user details: ', error);
+        setUserDataLoaded(true); // Signal that user data has loaded even in case of an error
+      })
+      .finally(() => {
+        setLoading(false);
       });
-
-    // Set 'valid' variable to true if user has already selected events and teams
-    setTimeout(() => {
-      setLoading(false);
-    }, 1300);
   }, []);
 
-  // Fetch event data
+  // Add a useEffect to perform actions when user data has loaded
   useEffect(() => {
-    fetch("./eventsSchedule.json")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setTransformedEventData(data);
-        console.log(transformedEventData);
-      })
-      .catch((error) => {
-        console.error("Error fetching or parsing JSON:", error);
-      });
-  }, []);
+    if (userDataLoaded) {
+      // Perform actions that rely on the updated User state here
+      console.log('User Data:', User);
+      filterEvents();
+    }
+  }, [userDataLoaded, User]);
 
   //filtering the Events Based on user selections
-  useEffect(() => {
-    const selectedTeams = User.supportedTeams;
-    const selectedEvents = User.events;
-    const updatedFilteredEvents = {};
-
-    Object.keys(transformedEventData).forEach((date) => {
-      const eventsOnDate = transformedEventData[date];
-      const filteredDateEvents = eventsOnDate.filter((event) => {
-        const teamsInBody = event.body.split(',').map((team) => team.trim());
-        const isTeamSelected = selectedTeams.some((selectedTeam) =>
-          teamsInBody.includes(selectedTeam)
-        );
-        const isEventSelected = selectedEvents.includes(event.title);
-
-        return isTeamSelected && isEventSelected;
-      });
-
-      if (filteredDateEvents.length > 0) {
-        updatedFilteredEvents[date] = filteredDateEvents;
-      }
-    });
-
-    // Update the state with the filtered events
-    setFilteredEvents(updatedFilteredEvents);
-    console.log(updatedFilteredEvents);
-  }, [User.supportedTeams, User.events, transformedEventData]);
+ 
 
   // Handle date click
   const handleDateClick = (date) => {
@@ -102,6 +91,33 @@ const ReactCalendar = () => {
     setCurrentMonth(currentMonth === "SEPTEMBER" ? "OCTOBER" : "SEPTEMBER");
   };
 
+  //filter events
+  const filterEvents = () => {
+    // Filter events based on user's preferred events and supported teams
+   console.log('User Data inside :', User)
+   
+    const userPreferredEvents = User.events;
+    const userSupportedTeams = User.supportedTeams;
+    console.log('userPreferredEvents:', userPreferredEvents);
+    const filteredData = {};
+
+    for (const date in transformedEventData) {
+      const events = transformedEventData[date];
+      const filteredEvents = events.filter((event) => {
+        return (
+          userPreferredEvents.includes(event.category) ||
+          userSupportedTeams.includes(event.team)
+        );
+      });
+
+      if (filteredEvents.length > 0) {
+        filteredData[date] = filteredEvents;
+      }
+    }
+
+    setFilteredEvents(filteredData);
+    
+  };
   // Render calendar
   const renderCalendar = () => {
     const month = currentMonth === "SEPTEMBER" ? 8 : 9;
@@ -198,15 +214,18 @@ const ReactCalendar = () => {
 
   // Render calendar container
   return (
-    <div className="calendar-dov">
-      <div className="calendar-container">
-        <div className="calendar-header">
-          <h2>{currentMonth}</h2>
-          <button onClick={handleMonthChange}>{"<next/prev>"}</button>
-        </div>
-        <div className="calendar">{renderCalendar()}</div>
-        {renderEventsDialog()}
+    <div>
+      {loading ? <Loading /> : <div className="calendar-dov">
+    <div className="calendar-container">
+      <div className="calendar-header">
+        <h2>{currentMonth}</h2>
+        <button onClick={handleMonthChange}>{"<next/prev>"}</button>
+        <button onClick={filterEvents}>Filter Events</button>
       </div>
+      <div className="calendar">{renderCalendar()}</div>
+      {renderEventsDialog()}
+    </div>
+  </div>}
     </div>
   );
 };
