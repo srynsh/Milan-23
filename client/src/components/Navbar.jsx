@@ -85,7 +85,7 @@ function Navbar({ showNav, setShowNav }) {
         </NavLink>
         <NavLink
           onClick={() => setShowNav(!showNav)}
-          to="/Profile"
+          to="/profile"
           className={({ isActive, isPending }) =>
             isPending
               ? "navbar-pending"
