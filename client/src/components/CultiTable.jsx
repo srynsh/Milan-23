@@ -15,17 +15,46 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
 import axios from 'axios';
+import Loading from './Loading';
+import fs from 'fs';
 
 export const CultiTable = () => {
-    const [gameNames, setgameNames] = useState([])
+  
+  const [gameNames, setgameNames] = useState([])
   const [blockNames, setblockNames] = useState([])
+  const [loading, setloading] = useState(true)
 
+  //fetch the data for every 2 hours and store it json file
+  const autofetch = () => {
+
+    //check whether time is a multiple of 2 hours
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    if (hours % 2 != 0 || minutes!=0) return true;
+
+    const { data } = axios.get(import.meta.env.VITE_CULTY)
+    setscores(data.scores)
+    setgameNames(data.eventNames)
+    fs.writeFileSync('./src/data/culty.json', JSON.stringify(data))
+    return false;
+  }
+  
+  
+  
   useEffect(() => {
     const fetchScore = async () => {
-      const { data } = await axios.get(import.meta.env.VITE_CULTY)
-      setscores(data.scores)
-      setgameNames(data.eventNames)
-      setblockNames(data.blocks);
+      setloading(true)
+      console.log('hi');
+      if(autofetch()){
+        console.log('inside')
+        const { data } = await axios.get('./src/data/culty.json')
+        console.log(data)
+        setscores(data.scores)
+        setgameNames(data.eventNames)
+        setblockNames(data.blocks);
+      }
+      setloading(false)
     }
     fetchScore();
   }, [])
@@ -259,11 +288,14 @@ export const CultiTable = () => {
         padding: '0px',
       }}
     >
-
+    {
+      loading ? <Loading /> :
+      
       <ThemeProvider theme={Theme}>
         <CssBaseline />
         {itemRows}
       </ThemeProvider>
+    }
     </Box>
   );
 }

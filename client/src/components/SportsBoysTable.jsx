@@ -15,17 +15,21 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
 import axios from 'axios';
+import Loading from './Loading';
 
 export const SportsBoysTable = () => {
   const [gameNames, setgameNames] = useState([])
   const [blockNames, setblockNames] = useState([])
+  const [loading, setloading] = useState(true)
 
   useEffect(() => {
     const fetchScore = async () => {
+      setloading(true)
       const { data } = await axios.get(import.meta.env.VITE_SPORTS_BOYS)
       setscores(data.scores)
       setgameNames(data.eventNames)
       setblockNames(data.blocks);
+      setloading(false)
     }
     fetchScore();
   }, [])
@@ -222,11 +226,13 @@ export const SportsBoysTable = () => {
         padding: '0px',
       }}
     >
-
+     {
+      loading ? <Loading /> : 
       <ThemeProvider theme={Theme}>
         <CssBaseline />
         {itemRows}
       </ThemeProvider>
+     }
     </Box>
   );
 }
