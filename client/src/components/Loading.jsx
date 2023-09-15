@@ -12,7 +12,7 @@ const Loading = () => {
   return (
     <div className="loading-container">
       <div className="loading-spinner">
-        <ScaleLoader color={'#007BFF'} loading={true} css={override} size={150} />
+        <ScaleLoader color={'#700035'} loading={true} css={override} size={150} />
       </div>
     </div>
   );

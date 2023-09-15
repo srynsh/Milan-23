@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,9 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-
-import Axios from "axios";
-
+import Loading from "./Loading";
 
 ChartJS.register(
   CategoryScale,
@@ -38,7 +37,7 @@ export const options = {
         },
       },
     },
-    
+
     title: {
       display: false,
       text: "Overall Leading Board",
@@ -96,72 +95,50 @@ export const options = {
     },
   },
 };
+const colorOptions = ["#700035", "#390035", "#A40035", "#CE0035"];
+let lastUsedColorIndex = -1;
 
+const getRandomColor = () => {
+  // Choose the next available color
+  lastUsedColorIndex = (lastUsedColorIndex + 1) % colorOptions.length;
+  return colorOptions[lastUsedColorIndex];
+};
 export const OverallScores = () => {
-  const [scores, setscores] = useState({
-    1: [
-      144.7811448, 114.2376142, 82.61183261, 158.3694084, 263.7842126,
-      88.45696152, 60.6902023, 121.7770726, 119.3970647, 160.0555335,
-      133.0821103, 52.75684252,
-    ],
-    2: [
-      90.35565524, 76.89842999, 63.76161487, 162.1275232, 94.84139699,
-      104.1332906, 38.76962512, 25.95322012, 49.02274912, 78.82089074,
-      160.2050625, 55.11054149,
-    ],
-    3: [
-      10.69137562, 23.52102637, 15.68068425, 74.12687099, 151.1047755,
-      46.32929437, 181.0406272, 61.29722024, 148.9665004, 95.50962224,
-      175.3385602, 16.39344262,
-    ],
-  });
-
-  const labels = [
-    "ARYABHATTA",
-    "BHASKARA",
-    "MAITREYI",
-    "GARGI",
-    "CHARAKA",
-    "SUSRUTA",
-    "KAUTILYA",
-    "VYASA",
-    "BRAHMAGUPTA",
-    "VARAHAMIHIRA",
-    "RAMANUJA",
-    "KAPILA",
-  ];
-
+  const [scores, setscores] = useState([]);
+  const [gameNames, setgameNames] = useState([]);
+  const [blockNames, setblockNames] = useState([]);
+  const [loading, setloading] = useState(true);
+  useEffect(() => {
+    const fetchScore = async () => {
+      setloading(true);
+      const { data } = await axios.get(
+        import.meta.env.VITE_BACKEND_URL + "leaderboard"
+      );
+      setscores(data.scores);
+      console.log(data.eventNames);
+      setgameNames(data.eventNames);
+      setblockNames(data.blocks);
+      setloading(false);
+    };
+    fetchScore();
+  }, []);
+  const labels = blockNames;
   const data = {
     labels,
-
-    datasets: [
-      {
-        label: "Sports",
-        data: scores[1],
-        backgroundColor: "#e5672c",
+    datasets: gameNames.map((item, index) => {
+      return {
+        label: item,
+        data: scores[index + 1],
+        backgroundColor: getRandomColor(),
         categoryPercentage: 1.1, // notice here
         barPercentage: 0.8,
-      },
-      {
-        label: "Culti",
-        data: scores[2],
-        backgroundColor: "#ce0035",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Techy",
-        data: scores[3],
-        backgroundColor: "#700035",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-    ],
+      };
+    }),
   };
 
   return (
     <div className="home-leaderboard-chart">
-      <Bar options={options} data={data} />
+      {loading ? <Loading /> : <Bar options={options} data={data} />}
     </div>
   );
 };

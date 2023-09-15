@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import Loading from "./Loading";
 
 ChartJS.register(
   CategoryScale,
@@ -85,196 +86,109 @@ export const options = {
   },
 };
 
-export const SportsBoysGraphs = () => {
-  const [scores, setscores] = useState({'1': [
-    100, 40, 10, 10,
-     20, 10, 70, 10
-  ],
-  '2': [
-    70, 100, 10, 20,
-    10,  10, 40, 10
-  ],
-  '3': [
-    70, 40, 10, 100,
-    20, 10, 10,   0
-  ],
-  '4': [
-    100, 20, 10, 10,
-     40, 70, 10, 10
-  ],
-  '5': [
-    100, 10, 10, 20,
-     70, 10, 40, 10
-  ],
-  '6': [
-    100, 20, 10, 40,
-     10, 70, 10, 10
-  ],
-  '7': [
-    10, 10, 70,  40,
-    10, 10, 20, 100
-  ],
-  '8': [
-    10,  40, 20, 10,
-    10, 100, 70, 10
-  ],
-  '9': [
-     10, 10, 20, 70,
-    100, 10, 40, 10
-  ],
-  '10': [
-    100, 70, 20, 10,
-     10, 10, 40, 10
-  ],
-  '11': [
-    50,  5,  5, 20,
-     5, 35, 10,  5
-  ],
-  '12': [
-    20, 10,  40, 10,
-    70, 10, 100, 10
-  ],
-  '13': [
-    80,  20, 20, 140,
-    20, 200, 40,  20
-  ],
-  '14': [
-    210, 21, 21, 84,
-    147, 42, 21, 21
-  ],
-  '15': [
-    300,  30,  30, 30,
-     60, 210, 150, 30
-  ]});
- 
-  const labels = [
-    "CHARAKA",
-    "SUSRUTA",
-    "KAUTILYA",
-    "VYASA",
-    "BRAHMAGUPTA",
-    "VARAHAMIHIRA",
-    "RAMANUJA",
-    "KAPILA",
-  ];
-  const data = {
-    labels,
+const colorOptions = ["#700035", "#390035", "#A40035", "#CE0035"];
+let lastUsedColorIndex = -1;
 
-    datasets: [
-      {
-        label: "Cricket",
-        data: scores[1],
-        backgroundColor: "#DC143C",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Football",
-        data: scores[2],
-        backgroundColor: "#FF7F50",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Hockey",
-        data: scores[3],
-        backgroundColor: "#FA8072",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "VolleyBall",
-        data: scores[4],
-        backgroundColor: "#FF8C00",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Basketball",
-        data: scores[5],
-        backgroundColor: "	#FFD700",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Badminton",
-        data: scores[6],
-        backgroundColor: "#EEE8AA",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Tennis",
-        data: scores[7],
-        backgroundColor: "#9ACD32",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Table Tennis",
-        data: scores[8],
-        backgroundColor: "#6B8E23",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Carrom",
-        data: scores[9],
-        backgroundColor: "	#20B2AA",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Chess",
-        data: scores[10],
-        backgroundColor: "	#40E0D0	",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Squash",
-        data: scores[11],
-        backgroundColor: "#6495ED",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Weightlifting",
-        data: scores[12],
-        backgroundColor: "	#000080",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Esports",
-        data: scores[13],
-        backgroundColor: "	#8A2BE2",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Aquatics",
-        data: scores[14],
-        backgroundColor: "	#8B008B",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Athletics",
-        data: scores[15],
-        backgroundColor: "#C71585",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-    ],
-  };
+const getRandomColor = () => {
+  // Choose the next available color
+  lastUsedColorIndex = (lastUsedColorIndex + 1) % colorOptions.length;
+  return colorOptions[lastUsedColorIndex];
+};
+
+const StackedBarChart = () => {
+  const [chartData, setChartData] = useState({});
+
+  useEffect(() => {
+    const data = {
+      labels: ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5"],
+      datasets: [
+        {
+          label: "Dataset 1",
+          backgroundColor: getRandomColor(),
+          data: [12, 19, 3, 5, 2],
+        },
+        {
+          label: "Dataset 2",
+          backgroundColor: getRandomColor(),
+          data: [2, 3, 20, 5, 10],
+        },
+        {
+          label: "Dataset 3",
+          backgroundColor: getRandomColor(),
+          data: [3, 10, 13, 15, 22],
+        },
+      ],
+    };
+
+    setChartData(data);
+  }, []);
 
   return (
-    <div className="FirstTab">
-      <div className="canvas-container">
-        <Bar options={options} data={data} />
-      </div>
+    <div>
+      <h1>Stacked Bar Chart</h1>
+      <Bar
+        data={chartData}
+        options={{
+          scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              stacked: true,
+            },
+          },
+        }}
+      />
     </div>
   );
 };
 
+export default StackedBarChart;
+
+export const SportsBoysGraphs = () => {
+  const [scores, setscores] = useState([]);
+  const [gameNames, setgameNames] = useState([]);
+  const [blockNames, setblockNames] = useState([]);
+  const [loading, setloading] = useState(true);
+
+  useEffect(() => {
+    const fetchScore = async () => {
+      setloading(true);
+      const { data } = await axios.get(
+        import.meta.env.VITE_BACKEND_URL + "sports_boys"
+      );
+      setscores(data.scores);
+      console.log(data.eventNames);
+      setgameNames(data.eventNames);
+      setblockNames(data.blocks);
+      setloading(false);
+    };
+    fetchScore();
+  }, []);
+
+  const labels = blockNames;
+  const data = {
+    labels,
+    datasets: gameNames.map((item, index) => {
+      return {
+        label: item,
+        data: scores[index + 1],
+        backgroundColor: getRandomColor(),
+        categoryPercentage: 1.1, // notice here
+        barPercentage: 0.8,
+      };
+    }),
+  };
+
+  return (
+    <div className="FirstTab">
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="canvas-container">
+          <Bar options={options} data={data} />
+        </div>
+      )}
+    </div>
+  );
+};
