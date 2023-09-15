@@ -32,13 +32,13 @@ function App() {
 
   return (
     <SocketContext.Provider value={socket}>
-      {admincookie ? <div>
+      {!admincookie ? <div className='main'>
         <SocketManager eventdata={eventdata} seteventdata={seteventdata} />
         {/*  Include in same route with auth checking */}
         {/* OR make a new admin.milan.iith.ac.in  */}
-        <div>
+        <h1 className='heading'>
           Milan Admin Panel (Need Special Auth)
-        </div>
+        </h1>
         <div>
           <NewEvent seteventdata={seteventdata} />
           {eventdata && eventdata.map(event => {
