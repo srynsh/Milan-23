@@ -23,7 +23,7 @@ const Home = () => {
           <div className="main-bg-vector">
             <section className="main-top">
               <div className="main-head">
-                <NavLink onClick={handleLogin} className={'top-8 sm:right-4 md:right-32 lg:right-64 absolute text-white rounded p-2 text-lg bg-[#390035] hover:shadow-xl transition hover:scale-110'}>
+                <NavLink onClick={handleLogin} className={'top-8 sm:right-4 md:right-32 lg:right-64 absolute text-white rounded p-2 text-lg bg-[#390035] hover:shadow-xl transition hover:scale-110 z-10'}>
                   LOGIN
                 </NavLink>
                 <div className="main-head-img">
