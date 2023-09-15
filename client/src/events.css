@@ -74,5 +74,8 @@
         background-color: #390035;
         color: #f6b276;
     }
+    .scoreboard-container{
+        min-height: 20rem;
+    }
     
 }
