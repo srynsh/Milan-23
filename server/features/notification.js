@@ -44,7 +44,7 @@ pool.connect()
 
 
 // ...
-const interval = 15
+const interval = 3
 const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
     console.log(`running a task every ${interval} minutes`);
     let events = await getevents();
@@ -102,7 +102,7 @@ const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
                                     JOIN events e ON pe.prefered_event_id = e.event_id
                                     JOIN supporting_teams st ON u.user_id = st.user_id
                                     WHERE e.event_name ILIKE $1
-                                    AND st.supporting_team_name ILIKE ANY($2::text[]);
+                                    OR st.supporting_team_name ILIKE ANY($2::text[]);
                                     `;
                 const queryParams = [event.name, event.Teams];
                 const completeQuery = pgPromise.as.format(queryText, queryParams);
@@ -116,8 +116,6 @@ const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
             console.log('recipients: ', recipientsArray);
 
 
-            const imagePath = __dirname + '/logocream.png';
-            const imageData = fs.readFileSync(imagePath);
             const imageSrc = `https://drive.google.com/uc?export=view&id=1JZiD6fngGxj2NFwBrJrLjjxkuuW3WUp9`;
 
 
@@ -160,9 +158,9 @@ const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
                                         style="padding: 0 0 20px 0; color: #666666; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;">
                                         <strong>Event Details:</strong>
                                         <br>
-                                        <strong>Name:${event.name}</strong>
+                                        <strong>Name:${event.Name}</strong>
                                         <br>
-                                        <strong>Time:${event.StartTime}  (status : ${event.status})</strong>
+                                        <strong>Time:${event.StartTime}  (status : ${event.Status})</strong>
                                         <br>
                                         <strong>Participating Blocks:${event.Teams.join(' ,')}</strong>
                                         <br>
