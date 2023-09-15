@@ -312,6 +312,7 @@ app.get('/techy', async (req, res) => {
     const data = await fs.readFile(filePath, 'utf8');
     const jsonData = JSON.parse(data);
     res.send(jsonData);
+    console.log("techy data sent")
 })
 
 //send culty data
@@ -320,6 +321,7 @@ app.get('/culty', async (req, res) => {
     const data = await fs.readFile(filePath, 'utf8');
     const jsonData = JSON.parse(data);
     res.send(jsonData);
+    console.log("culty data sent")
 })
 
 //send sports boys data
@@ -328,6 +330,7 @@ app.get('/sports_boys', async (req, res) => {
     const data = await fs.readFile(filePath, 'utf8');
     const jsonData = JSON.parse(data);
     res.send(jsonData);
+    console.log('sports boys data sent')
 })
 
 //send sports girls data
@@ -336,7 +339,16 @@ app.get('/sports_girls', async (req, res) => {
     const data = await fs.readFile(filePath, 'utf8');
     const jsonData = JSON.parse(data);
     res.send(jsonData);
+    console.log('sports girls data sent')
 })
+
+app.get('/eventsSchedule', async (req, res) => {
+    const filePath = path.join(__dirname, 'data', 'eventsSchedule.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const jsonData = JSON.parse(data);
+    res.send(jsonData);
+    console.log('events schedule data sent')
+});
 
 
 async function fetchDataAndWriteToFile(url, fileName) {
@@ -351,7 +363,8 @@ async function fetchDataAndWriteToFile(url, fileName) {
     }
 }
 
-//update the data folder with new data for every 5 hours
+
+//update the data folder with new data for every 20 minutes
 const updateData = schedule.scheduleJob('* /1 * * * *', async function () {
     // Fetch and write leaderboard data
     await fetchDataAndWriteToFile(process.env.LEADERBOARD, 'leaderboard.json');
@@ -367,6 +380,9 @@ const updateData = schedule.scheduleJob('* /1 * * * *', async function () {
 
     // Fetch and write sports girls data
     await fetchDataAndWriteToFile(process.env.SPORTS_GIRLS, 'sports_girls.json');
+
+    // Fetch and write events schedule data
+    await fetchDataAndWriteToFile(process.env.EVENTS_SCHEDULE, 'eventsSchedule.json');
 
 })
 

@@ -28,17 +28,16 @@ const ReactCalendar = () => {
     setLoading(true);
 
     // Fetch events data
-    fetch('./eventsSchedule.json')
+    
+    axios.get(import.meta.env.VITE_BACKEND_URL + 'eventsSchedule')
       .then((res) => {
-        if (!res.ok) {
+        console.log('res:', res);
+        if (res.status !== 200) {
           throw new Error('Network response was not ok');
         }
-        return res.json();
+        setTransformedEventData(res.data);
       })
-      .then((data) => {
-        setTransformedEventData(data);
-        
-      })
+     
       .catch((error) => {
         console.error('Error fetching or parsing JSON:', error);
       });
@@ -239,7 +238,7 @@ const filterEvents = () => {
   // Render calendar container
   return (
     <div>
-      {loading ? <Loading /> : <div className="calendar-dov">
+      {loading ? (<Loading />) : (<div className="calendar-dov">
     <div className="calendar-container">
       <div className="calendar-header">
         <h2>{currentMonth}</h2>
@@ -249,7 +248,7 @@ const filterEvents = () => {
       <div className="calendar">{renderCalendar()}</div>
       {renderEventsDialog()}
     </div>
-  </div>}
+  </div>)}
     </div>
   );
 };
