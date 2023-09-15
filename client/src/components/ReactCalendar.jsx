@@ -127,9 +127,9 @@ const filterEvents = () => {
       const filteredEvents = events.filter((event) => {
         
          const team =event.body.toLowerCase()
-        if(userPreferredEvents.includes(event.title) && team.includes(User.supportedTeams[0].toLowerCase() ) )console.log('event title:', event.id)
+        if(userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase() ) )console.log('event title:', event.id)
         return (
-          userPreferredEvents.includes(event.title) && team.includes(User.supportedTeams[0].toLowerCase())
+          userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase())
         );
       });
 
