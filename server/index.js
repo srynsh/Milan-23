@@ -190,7 +190,7 @@ io.on('connection', (socket) => {
 });
 
 const corsOptions = {
-    origin: process.env.FRONTEND_URL,
+    origin: [process.env.FRONTEND_URL,process.env.ADMIN_URL],
     credentials: true, // Allow credentials (cookies, HTTP authentication)
 };
 app.use(express.json())
@@ -294,6 +294,9 @@ app.get('/auth/google/admin/callback',
             const jwttoken = jwt.sign(req.user.emails[0].value, 'milan_backend_secret')
             res.cookie('adminauthtoken', jwttoken, { maxAge: 432000, httpOnly: false });
             res.redirect(process.env.ADMIN_URL)
+        }
+        else{
+            res.json({ auth: 'false', message: 'You are not an admin' })
         }
     }
 );
