@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState} from "react";
+import { NavLink } from "react-router-dom";
 import CoverflowGallery from "../components/Swiper";
 import BlockRace from "../components/BlockRace";
 import Footer from "../components/Footer";
@@ -8,6 +9,13 @@ import '../mainpage.css'
 
 const Home = () => {
   const [raceGraph, setRaceGraph] = useState(true);
+  const handleLogin = () => {
+    // You can add your login logic here, e.g., making an API call to verify credentials.
+    // For this example, we'll simulate a successful login after a button click.
+    // use auth call back
+    window.location.href = import.meta.env.VITE_BACKEND_URL+'auth/google';
+    //setLoggedIn(true);
+  };
   return (
     <>
       <div className="main">
@@ -15,6 +23,9 @@ const Home = () => {
           <div className="main-bg-vector">
             <section className="main-top">
               <div className="main-head">
+                <NavLink onClick={handleLogin} className={'top-8 sm:right-4 md:right-32 lg:right-64 absolute text-white rounded p-2 text-lg bg-[#390035] hover:shadow-xl transition hover:scale-110'}>
+                  LOGIN
+                </NavLink>
                 <div className="main-head-img">
                   <img src="./assets/logos/logocream.png" />
                 </div>
