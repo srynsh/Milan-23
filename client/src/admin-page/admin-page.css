@@ -1,0 +1,250 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.google-sign-in-button {
+  cursor: pointer !important;
+  transition: background-color .3s, box-shadow .3s !important;
+      
+  padding: 12px 16px 12px 42px !important;
+  border: none !important;
+  border-radius: 3px !important;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25) !important;
+  
+  color: #757575 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif !important;
+  
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=) !important;
+  background-color: white !important;
+  background-repeat: no-repeat !important;
+  background-position: 12px 11px !important;
+}
+
+.google-sign-in-button:hover  {
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25) !important;
+}
+
+.google-sign-in-button:active {
+  background-color: #eeeeee !important;
+}
+
+.google-sign-in-button:active {
+  outline: none !important;
+      box-shadow: 
+      0 -1px 0 rgba(0, 0, 0, .04),
+      0 2px 4px rgba(0, 0, 0, .25),
+      0 0 0 3px #c8dafc !important;
+}
+
+.google-sign-in-button:disabled {
+  filter: grayscale(100%) !important;
+  background-color: #ebebeb !important;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25) !important;
+  cursor: not-allowed !important;
+}
+
+.main {
+  padding-top: 5vh;
+  min-height: 100vh;
+  width: 100vw;
+  height: max-content;
+  background: linear-gradient(
+    345deg,
+    rgba(111, 0, 53, 1) 4%,
+    rgba(57, 0, 53, 1) 34%,
+    rgba(64, 0, 64, 1) 58%,
+    rgba(111, 0, 53, 1) 96%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heading {
+  color: #FFD1A8;
+  margin-bottom: 5vh;
+  font-size: 2.5rem;
+}
+
+/* SPORTS SELECTION */
+
+.sport-sel {
+  height: 50px;
+  width: 200px;
+  font-size: 1.41rem;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 600;
+  background: #390035;
+  border: none;
+  outline: none;
+}
+
+.sport-sel option {
+  outline: none;
+  border: none;
+}
+
+.sports-sel-div {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2vh;
+}
+
+.sports-sel-div1 {
+  display: flex;
+  gap: 1vw;
+  align-items: center;
+}
+
+.sports-sel-div1 select {
+    height: 50px;
+    width: 200px;
+    font-size: 1.41rem;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+    background: #390035;
+    border: none;
+    outline: none; 
+}
+
+.sports-sel-div button {
+  height: 50px;
+    width: 200px;
+    font-size: 1.31rem;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+    background: #700035;
+    border: none;
+    outline: none;
+    margin-bottom: 5vh; 
+}
+
+/* FOOTBALL */
+
+.fhtb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 5px solid #c8dafc;
+  border-radius: 20px;
+  margin-top: 3vh;
+  padding: 15px;
+}
+
+.fhtb h1 {
+  all:unset;
+  font-size: 1.3rem;
+}
+
+.fhtb-s {
+  display: flex;
+  justify-content: center;
+  gap: 10vw;
+}
+
+.fhtb-sc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fhtb-sc-w {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+  flex-direction: row;
+}
+
+.rm-match {
+  height: 40px;
+  width: 150px;
+  font-size: 1.05rem;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 600;
+  background: #700035;
+  border: none;
+  outline: none;
+  cursor: pointer;  
+}
+
+.fhtb-sc-w input{
+  background-color: #390035;
+  border: none;
+  outline: none;
+  width: 70px;
+  /* height: 50px; */
+  padding: 20px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.fhtb-sc-w button {
+  height: 50px;
+    width: 50px;
+    font-size: 1.31rem;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+    background: #CE0035;
+    border: none;
+    outline: none;
+}
+
+.up {
+  height: 50px;
+    width: 150px;
+    font-size: 1.31rem;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+    background: #CE0035;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-wp {
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+
+@media screen and (max-width: 800px) {
+  .fhtb {
+    transform: scale(0.7);
+  }
+
+  .sports-sel-div {
+    transform: scale(0.8);
+  }
+}

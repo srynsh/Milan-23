@@ -844,6 +844,7 @@ ion-icon {
 @media only screen and (max-width: 1000px) {
   .team-page {
     background-clip: inherit;
+    background: #ffd1a8;
   }
   .tp-oc {
     height: 100vh;
