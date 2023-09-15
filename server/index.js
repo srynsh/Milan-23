@@ -190,7 +190,7 @@ io.on('connection', (socket) => {
 });
 
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: process.env.FRONTEND_URL,
     credentials: true, // Allow credentials (cookies, HTTP authentication)
 };
 app.use(express.json())
@@ -275,7 +275,7 @@ app.get('/auth/google/callback',
             const jwttoken = jwt.sign(req.user.emails[0].value, 'milan_backend_secret')
             //console.log(res)
             res.cookie('authtoken', jwttoken, { maxAge: 432000, httpOnly: true });
-            res.redirect('http://localhost:5173/profile')
+        res.redirect(process.env.FRONTEND_URL+'/profile')
         }
     }
 );
