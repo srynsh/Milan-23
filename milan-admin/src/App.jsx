@@ -32,34 +32,34 @@ function App() {
 
   return (
     <SocketContext.Provider value={socket}>
-      {admincookie ? <div>
+      {!admincookie ? <div className='main'>
         <SocketManager eventdata={eventdata} seteventdata={seteventdata} />
         {/*  Include in same route with auth checking */}
         {/* OR make a new admin.milan.iith.ac.in  */}
-        <div>
-          Milan Admin Panel (Need Special Auth)
-        </div>
+        <h1 className='heading'>
+          Milan Admin Panel
+        </h1>
         <div>
           <NewEvent seteventdata={seteventdata} />
           {eventdata && eventdata.map(event => {
             if (event.sport == "Football") {
               return <Football key={event.id} id={event.id} team1={event.team1} team2={event.team2} score1={event.score1} score2={event.score2} />
             } else if (event.sport == 'Cricket') {
-              return <Cricket key={event.id} id={event.id} team1="Charaka" team2=" Bhabha" score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
+              return <Cricket key={event.id} id={event.id} team1={event.team1} team2={event.team2} score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
             } else if (event.sport == 'Basketball') {
-              return <Basketball key={event.id} id={event.id} team1="Charaka" team2=" Bhabha" score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
+              return <Basketball key={event.id} id={event.id} team1={event.team1} team2={event.team2} score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
             } else if (event.sport == 'Hockey') {
-              return <Hockey key={event.id} id={event.id} team1="Charaka" team2=" Bhabha" score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
+              return <Hockey key={event.id} id={event.id} team1={event.team1} team2={event.team2} score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
             } else if (event.sport == 'Tennis') {
-              return <Tennis key={event.id} id={event.id} team1="Charaka" team2=" Bhabha" score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
+              return <Tennis key={event.id} id={event.id} team1={event.team1} team2={event.team2} score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
             } else if (event.sport == 'Badminton') {
-              return <Badminton key={event.id} id={event.id} team1="Charaka" team2=" Bhabha" score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
+              return <Badminton key={event.id} id={event.id} team1={event.team1} team2={event.team2} score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
             } else if (event.sport == 'Table Tennis') {
-              return <TableTennis key={event.id} id={event.id} team1="Charaka" team2=" Bhabha" score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
+              return <TableTennis key={event.id} id={event.id} team1={event.team1} team2={event.team2} score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
             } else if (event.sport == 'Volleyball') {
-              return <Volleyball key={event.id} id={event.id} team1="Charaka" team2=" Bhabha" score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
+              return <Volleyball key={event.id} id={event.id} team1={event.team1} team2={event.team2} score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
             } else if (event.sport == 'Squash') {
-              return <Squash key={event.id} id={event.id} team1="Charaka" team2=" Bhabha" score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
+              return <Squash key={event.id} id={event.id} team1={event.team1} team2={event.team2} score1={event.score1} score2={event.score2} wicket1={event.wicket1} wicket2={event.wicket2} over1={event.over1} over2={event.over2} />
             }
             return null
           })}

@@ -13,61 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+*{
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 .google-sign-in-button {
   cursor: pointer;
   transition: background-color .3s, box-shadow .3s;
@@ -109,4 +59,187 @@ button:focus-visible {
   background-color: #ebebeb;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
   cursor: not-allowed;
+}
+
+.main {
+  padding-top: 5vh;
+  min-height: 100vh;
+  width: 100vw;
+  height: max-content;
+  background: linear-gradient(
+    345deg,
+    rgba(111, 0, 53, 1) 4%,
+    rgba(57, 0, 53, 1) 34%,
+    rgba(64, 0, 64, 1) 58%,
+    rgba(111, 0, 53, 1) 96%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heading {
+  color: #FFD1A8;
+  margin-bottom: 5vh;
+  font-size: 2.5rem;
+}
+
+/* SPORTS SELECTION */
+
+.sport-sel {
+  height: 50px;
+  width: 200px;
+  font-size: 1.41rem;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 600;
+  background: #390035;
+  border: none;
+  outline: none;
+}
+
+.sport-sel option {
+  outline: none;
+  border: none;
+}
+
+.sports-sel-div {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2vh;
+}
+
+.sports-sel-div1 {
+  display: flex;
+  gap: 1vw;
+  align-items: center;
+}
+
+.sports-sel-div1 select {
+    height: 50px;
+    width: 200px;
+    font-size: 1.41rem;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+    background: #390035;
+    border: none;
+    outline: none; 
+}
+
+.sports-sel-div button {
+  height: 50px;
+    width: 200px;
+    font-size: 1.31rem;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+    background: #700035;
+    border: none;
+    outline: none;
+    margin-bottom: 5vh; 
+}
+
+/* FOOTBALL */
+
+.fhtb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 5px solid #c8dafc;
+  border-radius: 20px;
+  margin-top: 3vh;
+  padding: 15px;
+}
+
+.fhtb-s {
+  display: flex;
+  justify-content: center;
+  gap: 10vw;
+}
+
+.fhtb-sc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fhtb-sc-w {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+  flex-direction: row;
+}
+
+.rm-match {
+  height: 40px;
+  width: 150px;
+  font-size: 1.05rem;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 600;
+  background: #700035;
+  border: none;
+  outline: none;
+  cursor: pointer;  
+}
+
+.fhtb-sc-w input{
+  background-color: #390035;
+  border: none;
+  outline: none;
+  width: 70px;
+  /* height: 50px; */
+  padding: 20px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.fhtb-sc-w button {
+  height: 50px;
+    width: 50px;
+    font-size: 1.31rem;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+    background: #CE0035;
+    border: none;
+    outline: none;
+}
+
+.up {
+  height: 50px;
+    width: 150px;
+    font-size: 1.31rem;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+    background: #CE0035;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-wp {
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+
+@media screen and (max-width: 800px) {
+  .fhtb {
+    transform: scale(0.7);
+  }
+
+  .sports-sel-div {
+    transform: scale(0.8);
+  }
 }
