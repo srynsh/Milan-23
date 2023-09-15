@@ -76,7 +76,7 @@ const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
             let recipientsArray = [];
             
             //if the event is for all teams, get all the users
-            if (event.Teams == 'all') {
+            if (event.Teams.includes('All Blocks')) {
                 recipientsArray = [
                     'bdb23@iith.ac.in',
                     'btech@iith.ac.in',
