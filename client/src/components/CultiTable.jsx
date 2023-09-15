@@ -25,22 +25,7 @@ export const CultiTable = () => {
   const [loading, setloading] = useState(true)
 
   //fetch the data for every 2 hours and store it json file
-  const autofetch = () => {
 
-    //check whether time is a multiple of 2 hours
-    const date = new Date();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    if (hours % 2 != 0 || minutes!=0) return true;
-
-    const { data } = axios.get(import.meta.env.VITE_CULTY)
-    setscores(data.scores)
-    setgameNames(data.eventNames)
-    fs.writeFileSync('./src/data/culty.json', JSON.stringify(data))
-    return false;
-  }
-  
-  
   
   useEffect(() => {
     const fetchScore = async () => {

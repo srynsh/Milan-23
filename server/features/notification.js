@@ -6,28 +6,15 @@ import * as url from 'url';
 import pkg from 'pg';
 import pgPromise from 'pg-promise';
 import fs from 'fs';
+import axios from 'axios';
 
-//intialize an events array to store the events from the sheet
-let events = []
 
 //get environment variables
 dotenv.config();
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 dotenv.config({ path: __dirname + '../.env' });
 
-const keyfile = JSON.parse(process.env.google_sheet_credentials);
 
-
-const auth = new google.auth.GoogleAuth({
-    credentials: keyfile,
-    scopes: "https://www.googleapis.com/auth/spreadsheets"
-});
-
-
-//create client instance for auth 
-const client = await auth.getClient();
-//created instance of google sheets api
-const googlesheets = google.sheets({ version: 'v4', auth: client });
 
 //create an auth client instance for gmail api
 const oAuth2Client = new google.auth.OAuth2(process.env.CLIENT_ID, process.env.CLIENT_SECRET, process.env.REDIRECT_URI);
@@ -35,24 +22,10 @@ oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
 
 //function to get events from the sheet
-const getevents = async (spreadsheetId, range) => {
-
+const getevents = async () => {
     try {
-        const getRows = await googlesheets.spreadsheets.values.get({
-            auth: auth,
-            spreadsheetId: spreadsheetId,
-            range: range
-        })
-        events = getRows.data.values;
-        //convert event array into array of objects
-        events = events.map((event) => {
-            return {
-                name: event[0],
-                teamsParticipating: event[1].toLowerCase().split(',').map(team => team.trim()),
-                start_time: new Date(event[2])
-            }
-        })
-
+        const { data } = await axios.get(process.env.NOTIFICATIONS);
+        return data;
     }
     catch (error) {
         console.error('error', error.message)
@@ -73,33 +46,47 @@ pool.connect()
 // ...
 const interval = 15
 const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
-    console.log('running a task every 15 minutes');
-    const range = 'Sheet1!A2:C';
-    const spreadsheetId = process.env.SPREADSHEET_ID;
+    console.log(`running a task every ${interval} minutes`);
+    let events = await getevents();
 
-    await getevents(spreadsheetId, range);
+    events.forEach((event) => {
+        event.start_time = new Date(event.StartTime);
+        event.Teams = event.Teams.split(',').map((team) => team.trim());
+    })
 
     events.sort((a, b) => a.start_time - b.start_time);
+
+
+    console.log('after sorting:',events);
 
     const now = new Date();
     const minTime = new Date(now.getTime() + interval * 60 * 1000);
     const maxTime = new Date(now.getTime() + (2 * interval) * 60 * 1000 - 1);
 
     events = events.filter((event) => {
-        return event.start_time > minTime && event.start_time <= maxTime;
+        return (event.start_time > minTime && event.start_time <= maxTime);
     });
+    
 
-    console.log(events);
+    console.log('after filtering as per time gap:',events);
 
     const emailPromises = events.map(async (event) => {
         // Create a parameterized query
 
         //if event team is ALL , then send email to all users
-        if (event.teamsParticipating.includes('All')) {
+        if (event.Teams == 'all') {
             recipientsArray = [
-                'BTech',
-                'MTech',
-                'PHD'
+                'bdb23@iith.ac.in',
+                'btech@iith.ac.in',
+                'bdb21@iith.ac.in',
+                'bdb22@iith.ac.in',
+                'lamh23@iith.ac.in',
+                'lapg@iith.ac.in',
+                'laphd@iith.ac.in',
+                'mtech@iith.ac.in',
+                 'mdm23@iith.ac.in',
+                'mdm22@iith.ac.in',
+                'phd@iith.ac.in'
             ]
         }
         const queryText = `
@@ -111,7 +98,7 @@ const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
         WHERE e.event_name ILIKE $1
         AND st.supporting_team_name ILIKE ANY($2::text[]);
         `;
-        const queryParams = [event.name, event.teamsParticipating];
+        const queryParams = [event.name, event.Teams];
         const completeQuery = pgPromise.as.format(queryText, queryParams);
         let recipientsArray = [];
 
@@ -207,10 +194,10 @@ const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
                 const send_time = event.start_time;
                 send_time.setMinutes(event.start_time.getMinutes() - interval);
 
-                return schedule.scheduleJob(send_time, async function () {
-                    const result = await sendMail(mailDetails, oAuth2Client);
-                    console.log('email sent:', result.messageId);
-                });
+                // return schedule.scheduleJob(send_time, async function () {
+                //     const result = await sendMail(mailDetails, oAuth2Client);
+                //     console.log('email sent:', result.messageId);
+                // });
             }
         } catch (error) {
             console.error('Error executing query:', error);
