@@ -11,11 +11,11 @@ import dotenv from 'dotenv';
 import pkg from 'pg';
 import url from 'url';
 import { scheduleJob } from 'node-schedule';
-import fs from 'fs/promises';
 import path from 'path';
 import schedule from 'node-schedule'
 import axios from 'axios';
-
+import fs from 'fs/promises'
+import updateData from './features/update.js';
 //get environment variables
 dotenv.config();
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -34,6 +34,7 @@ pool.connect()
 
 //start the job
 job.schedule();
+updateData.schedule();
 
 const app = express();
 const server = http.createServer(app)
@@ -351,40 +352,8 @@ app.get('/eventsSchedule', async (req, res) => {
 });
 
 
-async function fetchDataAndWriteToFile(url, fileName) {
-    try {
-        const response = await axios.get(url);
-        const data = response.data;
-        const filePath = path.join(__dirname, 'data', fileName);
-        fs.writeFileSync(filePath, JSON.stringify(data));
-        console.log(`Data from ${url} has been written to ${filePath}`);
-    } catch (error) {
-        console.error(`Error fetching data from ${url}:`, error);
-    }
-}
 
 
-//update the data folder with new data for every 20 minutes
-const updateData = schedule.scheduleJob('* /1 * * * *', async function () {
-    // Fetch and write leaderboard data
-    await fetchDataAndWriteToFile(process.env.LEADERBOARD, 'leaderboard.json');
-
-    // Fetch and write techy data
-    await fetchDataAndWriteToFile(process.env.TECHY, 'techy.json');
-
-    // Fetch and write culty data
-    await fetchDataAndWriteToFile(process.env.CULTY, 'culty.json');
-
-    // Fetch and write sports boys data
-    await fetchDataAndWriteToFile(process.env.SPORTS_BOYS, 'sports_boys.json');
-
-    // Fetch and write sports girls data
-    await fetchDataAndWriteToFile(process.env.SPORTS_GIRLS, 'sports_girls.json');
-
-    // Fetch and write events schedule data
-    await fetchDataAndWriteToFile(process.env.EVENTS_SCHEDULE, 'eventsSchedule.json');
-
-})
 
 
 

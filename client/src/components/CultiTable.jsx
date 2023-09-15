@@ -49,7 +49,10 @@ export const CultiTable = () => {
       setscores(data.scores)
       setgameNames(data.eventNames)
       setblockNames(data.blocks);
-      setloading(false)
+      setTimeout(() => {
+        setloading(false)
+
+      }, 500);
     }
     fetchScore();
   }, [])

@@ -111,7 +111,10 @@ export const SportsGirlsGraphs = () => {
       console.log(data.eventNames);
       setgameNames(data.eventNames);
       setblockNames(data.blocks);
-      setloading(false);
+      setTimeout(() => {
+        setloading(false)
+
+      }, 500);
     };
     fetchScore();
   }, []);

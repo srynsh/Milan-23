@@ -29,7 +29,10 @@ export const SportsBoysTable = () => {
       setscores(data.scores)
       setgameNames(data.eventNames)
       setblockNames(data.blocks);
-      setloading(false)
+      setTimeout(() => {
+        setloading(false)
+
+      }, 500);
     }
     fetchScore();
   }, [])

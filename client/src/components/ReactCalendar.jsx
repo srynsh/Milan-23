@@ -85,6 +85,7 @@ const ReactCalendar = () => {
   }, [userDataLoaded, User]);
 
   useEffect(() => {
+
     setLoading(true);
     let temp = transformedEventData;
     setTransformedEventData(filteredEvents);
@@ -108,6 +109,13 @@ const ReactCalendar = () => {
 
   const handlefilter = () => {
     console.log('filter toogle:', filtertoogle);
+    
+    if(User.name == "") {
+      //redirect to login
+      confirm("Please Login to view this page , Click OK to redirect to login page");
+      window.location.href = "/login";
+    };
+    
     setFiltertoogle(!filtertoogle);
   }
 
@@ -116,6 +124,10 @@ const filterEvents = () => {
     // Filter events based on user's preferred events and supported teams
   setLoading(true);
    console.log('User Data inside :', User)
+   if(User.name == ""){
+    setLoading(false);
+    return;
+   }
    
     const userPreferredEvents = User.events;
     const userSupportedTeams = User.supportedTeams;
@@ -129,7 +141,7 @@ const filterEvents = () => {
          const team =event.body.toLowerCase()
         if(userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase() ) )console.log('event title:', event.id)
         return (
-          userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase())
+          userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase()) || team === "all"
         );
       });
 
