@@ -232,3 +232,14 @@
   flex-direction: column;
   gap: 2vh;
 }
+
+
+@media screen and (max-width: 800px) {
+  .fhtb {
+    transform: scale(0.7);
+  }
+
+  .sports-sel-div {
+    transform: scale(0.8);
+  }
+}

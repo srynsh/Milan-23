@@ -127,6 +127,7 @@ function Badminton({ id, team1, team2, score1, score2 }) {
             <div>
               <button
                 className="rm-match"
+                style={{width:"90px"}}
                 onClick={() => {
                   settupdatescore2(updatescore2.filter((_, i) => i !== index)),
                     settupdatescore1(
