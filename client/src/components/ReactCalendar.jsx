@@ -153,11 +153,11 @@ const filterEvents = () => {
     const DAYS_IN_MONTH = new Date(year, month + 1, 0).getDate();
     const daysArray =
       currentMonth === "SEPTEMBER"
-        ? ["Fr", "St", "Su", "Mn", "Tu", "Wd", "Th"]
+        ? ["Su", "Mn", "Tu", "Wd", "Th","Fr", "St"," "," "," "," "," "]
         : ["Sn", "Mn", "Tu", "Wd", "Th", "Fr", "St"];
 
     // Render day headers
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < daysArray.length; i++) {
       calendarDays.push(
         <div key={i} className="calendar-week-day">
           <div className="week-day">{daysArray[i]}</div>

@@ -328,7 +328,10 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div>
+        </form>
+      </div>
+      )}
+                <div>
             <button
               type="submit"
               onSubmit={handleSubmit}
@@ -337,9 +340,6 @@ const Profile = () => {
               Submit
             </button>
           </div>
-        </form>
-      </div>
-      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -16,7 +16,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
 import axios from 'axios';
 import Loading from './Loading';
-import fs from 'fs';
+//import fs from 'fs';
 
 export const CultiTable = () => {
   
@@ -24,9 +24,6 @@ export const CultiTable = () => {
   const [blockNames, setblockNames] = useState([])
   const [loading, setloading] = useState(true)
 
-  //fetch the data for every 2 hours and store it json file
-
-  
   useEffect(() => {
     const fetchScore = async () => {
       setloading(true)
