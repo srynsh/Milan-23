@@ -172,7 +172,7 @@ const Profile = () => {
     }
     //console.log(User);
     axios
-      .post("http://localhost:8000/profile/update", User, {
+      .post(import.meta.env.VITE_BACKEND_URL+"/profile/update", User, {
         withCredentials: true,
       })
       .then((data) => {
