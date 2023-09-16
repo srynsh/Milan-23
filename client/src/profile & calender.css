@@ -25,7 +25,6 @@
 }
 /* profile page  */
 .calender-bg {
-.calender-bg {
   background: linear-gradient(
     345deg,
     rgba(111, 0, 53, 1) 4%,
@@ -77,11 +76,13 @@
   color:black;
   padding-left:5px;
 }
-.search-wrapper.searchWrapper{
-  overflow: auto;
-}
 .searchWrapper{
-  position:static !important;
+  border:0 !important;
+  width:100%;
+  overflow:hidden;
+}
+.chip{
+  background:var(--primary-color) !important;
 }
 
 /* Button styles */
@@ -104,7 +105,7 @@ button[type='submit']{
 
 button[type='submit']:hover {
   background-color: var(--secondary-color);
-  color:#333;
+  color:#fff;
   font-weight: 700;
 }
 
@@ -130,6 +131,14 @@ h1 {
   color: var(--primary-color);
   display: inline-block;
   margin-bottom: 5px;
+}
+@media(max-width:464px){
+  .inputborder{
+    width:95%;
+  }
+  .container{
+    margin:0;
+  }
 }
 @media(max-width:640px){
   .container{
@@ -190,6 +199,7 @@ h1 {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px var(--box-shadow-color);
+  transition: all 3s ease-in-out;
 }
 
 .calendar-header {

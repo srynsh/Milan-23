@@ -203,6 +203,7 @@ const Profile = () => {
   return (
     <div>
       {loading ? (<Loading />) : (
+        <>
         <div className="container">
         <h1 className="">Profile Details</h1>
         <form onSubmit={handleSubmit} name="myForm" className="">
@@ -264,20 +265,8 @@ const Profile = () => {
                       transition: "margin 1s ease-in-out",
                     },
                     searchWrapper:{
-                      minHeight:'32px',
-                      height:'auto',
-                      alignItems: 'center',
-                    },
-                    searchBox: {
-                      border: 0,
-                      height: '27px',
-                    },
-                    chips: {
-                      background: "rgba(111, 0, 53, 1) 4%",
-                    },
-                    option:{
-                      color:'black',
-                    },
+                      height:'27px',
+                    }
                   }}
                 />
               </div>
@@ -293,11 +282,11 @@ const Profile = () => {
                   name="events"
                   id="events"
                   isObject={false}
-                  placeholder={'Search Events'}
                   options={eoptions}
                   onSelect={handleEventsSelect}
                   onRemove={handleEventsRemove}
                   displayValue="name"
+                  placeholder={"Search Events"}
                   showCheckbox
                   className="inputborder custom-multiselect-container"
                   showArrow
@@ -305,24 +294,17 @@ const Profile = () => {
                   groupBy="category"
                   style={{
                     multiselectContainer: {
-                      marginBottom: isEventsMultiselectClicked ? "260px" : "0",
+                      marginBottom: isEventsMultiselectClicked ? "240px" : "0",
                       transition: "margin 1s ease-in-out",
                     },
-                    searchBox: {
-                      border: 0,
-                      height:'30px',
-                    },
-                    chips: {
-                      background: "rgba(111, 0, 53, 1) 4%",
+                    optionContainer: {  
+                      border:'2px solid',
                     },
                     searchWrapper:{
-                    alignItems: 'center',
-                    height:'32px',
-                    width:'100% !important',
-                    },
-                    option:{
-                      color:'black',
-                    },
+                      height:'32px',
+                    },chips:{
+                      display:'none',
+                    },  
                   }}
                 />
               </div>
@@ -330,16 +312,17 @@ const Profile = () => {
           </div>
         </form>
       </div>
+                      <div>
+                      <button
+                        type="submit"
+                        onSubmit={handleSubmit}
+                        className="submit-button"
+                      >
+                        Submit
+                      </button>
+                    </div>
+      </>
       )}
-                <div>
-            <button
-              type="submit"
-              onSubmit={handleSubmit}
-              className="submit-button"
-            >
-              Submit
-            </button>
-          </div>
     </div>
   );
 };
