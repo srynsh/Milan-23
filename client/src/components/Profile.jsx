@@ -22,8 +22,6 @@ const Profile = () => {
 
   const [eventsValid, setEventsValid] = useState(false);
   const [teamsValid, setTeamsValid] = useState(false);
-  const [teamplaceholder, setteamplaceholder] = useState("Search Blocks");
-  const [eventplaceholder, seteventplaceholder] = useState("Search Events");
   const [loading, setLoading] = useState(true);
 
 
@@ -99,15 +97,7 @@ const Profile = () => {
           events: userData.preferedEvents,
         });
 
-      
-        if (userData.supportedTeams.length > 0) {
-          setTeamsValid(true);
-          setteamplaceholder("");
-        }
-        if (userData.preferedEvents.length > 0) {
-          setEventsValid(true);
-          seteventplaceholder("");
-        }
+  
       
       })
 
@@ -256,7 +246,7 @@ const Profile = () => {
                   name="supportingTeams"
                   id="supportingTeams"
                   isObject={false}
-                  placeholder={teamplaceholder}
+                  placeholder={'Search Team'}
                   displayValue="supportingTeams"
                   options={toptions}
                   onSelect={handleBlocksSelect}
@@ -273,15 +263,20 @@ const Profile = () => {
                       marginBottom: isBlocksMultiselectClicked ? "240px" : "0",
                       transition: "margin 1s ease-in-out",
                     },
+                    searchWrapper:{
+                      minHeight:'32px',
+                      height:'auto',
+                      alignItems: 'center',
+                    },
                     searchBox: {
                       border: 0,
-                      height: '30px',
+                      height: '27px',
                     },
                     chips: {
                       background: "rgba(111, 0, 53, 1) 4%",
                     },
-                    searchWrapper: {
-                      alignItems: 'center',
+                    option:{
+                      color:'black',
                     },
                   }}
                 />
@@ -298,7 +293,7 @@ const Profile = () => {
                   name="events"
                   id="events"
                   isObject={false}
-                  placeholder={eventplaceholder}
+                  placeholder={'Search Events'}
                   options={eoptions}
                   onSelect={handleEventsSelect}
                   onRemove={handleEventsRemove}
@@ -315,13 +310,18 @@ const Profile = () => {
                     },
                     searchBox: {
                       border: 0,
-                      height: '30px',
+                      height:'30px',
                     },
                     chips: {
                       background: "rgba(111, 0, 53, 1) 4%",
                     },
-                    searchWrapper: {
-                      alignItems: 'center',
+                    searchWrapper:{
+                    alignItems: 'center',
+                    height:'32px',
+                    width:'100% !important',
+                    },
+                    option:{
+                      color:'black',
                     },
                   }}
                 />
