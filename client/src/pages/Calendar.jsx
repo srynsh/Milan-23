@@ -3,7 +3,7 @@ import ReactCalendar from "../components/ReactCalendar";
 
 const Calendar = () => {
   return (
-    <div className="main-bg calender-bg">
+    <div className="calender-bg">
       <ReactCalendar />
     </div>
   );

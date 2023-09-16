@@ -4,7 +4,7 @@ import "../profile & calender.css";
 const ProfilePage = () => {
   return (
     <>
-      <div className="main-bg">
+      <div className="calender-bg">
       <Profile />
       </div>
     </>
