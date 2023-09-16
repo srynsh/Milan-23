@@ -107,7 +107,6 @@ const Profile = () => {
         if (userData.preferedEvents.length > 0) {
           setEventsValid(true);
           seteventplaceholder("");
-          console.log(eventplaceholder)
         }
       
       })
@@ -123,10 +122,6 @@ const Profile = () => {
       
 
   }, []); 
-
-  useEffect(() => {
-    //console.log(User); // Log the updated User state here
-  }, [User]); // Add User as a dependency to this effect
 
   // Handling selections/Changes in the Form
 
@@ -160,6 +155,7 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("running");
 
     if (!validateName(User.name)) {
       alert("Please enter a valid name.");
@@ -186,6 +182,7 @@ const Profile = () => {
           alert("Error updating profile");
         }
       });
+      console.log("done");
   };
 
   const validateName = (name) => {
