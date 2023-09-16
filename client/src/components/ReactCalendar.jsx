@@ -67,15 +67,6 @@ const ReactCalendar = () => {
         setLoading(false);
       });
   }, []);
- useEffect(() => {
-  console.log('Transformed Event Data:', transformedEventData);
- },[transformedEventData])
-
- useEffect(() => {
-  console.log('Filtered Event Data:', filteredEvents);
- },[filteredEvents]) 
-
-
   useEffect(() => {
     if (userDataLoaded) {
       // Perform actions that rely on the updated User state here
