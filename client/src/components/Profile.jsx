@@ -176,7 +176,7 @@ const Profile = () => {
     }
     //console.log(User);
     axios
-      .post("http://localhost:8000/profile/update", User, {
+      .post(process.env.BACKEND_VITE_URL + "profile/update", User, {
         withCredentials: true,
       })
       .then((data) => {
