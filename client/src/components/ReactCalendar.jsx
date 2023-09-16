@@ -254,8 +254,8 @@ const filterEvents = () => {
     <div className="calendar-container">
       <div className="calendar-header">
         <h2>{currentMonth}</h2>
-        <button onClick={handleMonthChange}>{"<next/prev>"}</button>
-        <button onClick={handlefilter}>Filter Events</button>
+        <button onClick={handleMonthChange}>{"</>"}</button>
+        <button onClick={handlefilter}>Filter</button>
       </div>
       <div className="calendar">{renderCalendar()}</div>
       {renderEventsDialog()}
