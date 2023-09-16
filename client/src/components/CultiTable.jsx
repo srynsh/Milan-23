@@ -25,8 +25,8 @@ export const CultiTable = () => {
   const [loading, setloading] = useState(true)
 
   //fetch the data for every 2 hours and store it json file
-  const autofetch = () => {
 
+<<<<<<< HEAD
     //check whether time is a multiple of 2 hours
     const date = new Date();
     const hours = date.getHours();
@@ -41,6 +41,8 @@ export const CultiTable = () => {
   }
   
   
+=======
+>>>>>>> 79bd775a89804506bdb9c4f209d889173eaed610
   
   useEffect(() => {
     const fetchScore = async () => {
@@ -49,7 +51,10 @@ export const CultiTable = () => {
       setscores(data.scores)
       setgameNames(data.eventNames)
       setblockNames(data.blocks);
-      setloading(false)
+      setTimeout(() => {
+        setloading(false)
+
+      }, 500);
     }
     fetchScore();
   }, [])

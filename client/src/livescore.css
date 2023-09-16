@@ -5,6 +5,7 @@
 @layer components{
     .liveScore-box{
         background-color: #390035;
+        min-height: 100vh;
     }
     @font-face {
         font-family: 'Amboy-Black';

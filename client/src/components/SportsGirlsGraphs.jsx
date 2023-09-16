@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import Loading from "./Loading";
 
 ChartJS.register(
   CategoryScale,
@@ -85,145 +86,62 @@ export const options = {
   },
 };
 
-export const SportsGirlsGraphs = () => {
-  const [scores, setscores] = useState({
-    '1': [ 70, 40, 20, 100 ],
-    '2': [ 100, 0, 40, 70 ],
-    '3': [ 70, 40, 20, 100 ],
-    '4': [ 70, 40, 20, 100 ],
-    '5': [ 100, 0, 40, 70 ],
-    '6': [ 70, 40, 20, 100 ],
-    '7': [ 40, 100, 0, 70 ],
-    '8': [ 70, 20, 40, 100 ],
-    '9': [ 100, 40, 20, 70 ],
-    '10': [ 40, 70, 20, 100 ],
-    '11': [ 10, 50, 20, 35 ],
-    '12': [ 0, 40, 70, 100 ],
-    '13': [ 80, 200, 0, 140 ],
-    '14': [ 84, 210, 147, 42 ],
-    '15': [ 300, 60, 210, 120 ]
-  });
- 
+const colorOptions = ["#700035", "#390035", "#A40035", "#CE0035"];
+let lastUsedColorIndex = -1;
 
-   
-  const labels = ["Aryabhatta", "Bhaskara", "Maitreyi", "Gargi"];
+const getRandomColor = () => {
+  // Choose the next available color
+  lastUsedColorIndex = (lastUsedColorIndex + 1) % colorOptions.length;
+  return colorOptions[lastUsedColorIndex];
+};
+
+export const SportsGirlsGraphs = () => {
+  const [scores, setscores] = useState([]);
+  const [gameNames, setgameNames] = useState([]);
+  const [blockNames, setblockNames] = useState([]);
+  const [loading, setloading] = useState(true);
+
+  useEffect(() => {
+    const fetchScore = async () => {
+      setloading(true);
+      const { data } = await axios.get(
+        import.meta.env.VITE_BACKEND_URL + "sports_girls"
+      );
+      setscores(data.scores);
+      console.log(data.eventNames);
+      setgameNames(data.eventNames);
+      setblockNames(data.blocks);
+      setTimeout(() => {
+        setloading(false)
+
+      }, 500);
+    };
+    fetchScore();
+  }, []);
+
+  const labels = blockNames;
   const data = {
     labels,
-
-    datasets: [
-      {
-        label: "Cricket",
-        data: scores[1],
-        backgroundColor: "#f64432",
+    datasets: gameNames.map((item, index) => {
+      return {
+        label: item,
+        data: scores[index + 1],
+        backgroundColor: getRandomColor(),
         categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Football",
-        data: scores[2],
-        backgroundColor: "#ebdc15",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "DodgeBall",
-        data: scores[3],
-        backgroundColor: "#FA8072",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "VolleyBall",
-        data: scores[4],
-        backgroundColor: "#FF8C00",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Basketball",
-        data: scores[5],
-        backgroundColor: "#FFD700",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Badminton",
-        data: scores[6],
-        backgroundColor: "#EEE8AA",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Tennis",
-        data: scores[7],
-        backgroundColor: "#9ACD32",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Table Tennis",
-        data: scores[8],
-        backgroundColor: "#6B8E23",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Carrom",
-        data: scores[9],
-        backgroundColor: "#20B2AA",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Chess",
-        data: scores[10],
-        backgroundColor: "#40E0D0	",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Squash",
-        data: scores[11],
-        backgroundColor: "#6495ED",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Weightlifting",
-        data: scores[12],
-        backgroundColor: "#000080",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Esports",
-        data: scores[13],
-        backgroundColor: "#8A2BE2",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Aquatics",
-        data: scores[14],
-        backgroundColor: "#8B008B",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-      {
-        label: "Athletics",
-        data: scores[15],
-        backgroundColor: "#C71585",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.6,
-      },
-    ],
+        barPercentage: 0.8,
+      };
+    }),
   };
 
   return (
     <div className="FirstTab">
-      <div className="canvas-container">
-        <Bar options={options} data={data} />
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="canvas-container">
+          <Bar options={options} data={data} />
+        </div>
+      )}
     </div>
   );
 };

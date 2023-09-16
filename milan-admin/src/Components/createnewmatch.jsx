@@ -65,9 +65,9 @@ function NewEvent({ seteventdata }) {
     }
 
     return (
-        <div>
-            <select name="events" value={event} onChange={(e) => { setevent(e.target.value) }}>
-                <option value="Football">FootBall</option>
+        <div className="sports-sel-div">
+            <select name="events" className="sport-sel"value={event} onChange={(e) => { setevent(e.target.value) }}>
+                <option value="Football">Football</option>
                 <option value="Cricket">Cricket</option>
                 <option value="Hockey">Hockey</option>
                 <option value="Basketball">Basketball</option>
@@ -76,18 +76,16 @@ function NewEvent({ seteventdata }) {
                 <option value="Volleyball">Volleyball</option>
                 <option value="Squash">Squash</option>
                 <option value="TableTennis">Table Tennis</option>
-
-
             </select>
-            <br />
-
+            <div className="sports-sel-div1">
             <select name="team1" value={team1} onChange={(e) => { setteam1(e.target.value) }} >
                 {hostels.map(hostel => { return <option value={hostel}>{hostel}</option> })}
             </select>
+            <h3>VS</h3>
             <select name='team2' value={team2} onChange={(e) => { setteam2(e.target.value) }}>
                 {hostels.map(hostel => { return <option value={hostel}>{hostel}</option> })}
             </select>
-
+            </div>
             <button onClick={addnewevent}>Add New Event</button>
         </div>
     )

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import "../profile & calender.css";
 import axios from "axios";
-import Loading from "./loading";
+import Loading from "./Loading";
 //import input_event from  "events.json"
 
 const Profile = () => {

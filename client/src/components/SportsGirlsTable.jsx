@@ -30,7 +30,11 @@ export const SportsGirlsTable = () => {
       setscores(data.scores)
       setgameNames(data.eventNames)
       setblockNames(data.blocks);
-      setloading(false)
+      //some loadinf
+      setTimeout(() => {
+        setloading(false)
+
+      }, 500);
     }
     fetchScore();
   }, [])

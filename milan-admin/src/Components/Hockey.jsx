@@ -32,27 +32,70 @@ function Hockey({ id, team1, team2, score1, score2 }) {
     }
 
     return (
-        <div style={{ position: 'relative', border: '1px solid red' }}>
-            <div>Hockey</div>
-            <button style={{position: 'absolute', right: 0, top: 0}} onClick={removematch}>Remove Match</button>
-
-            <div style={{ display: 'flex' }}>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <div>{team1}</div>
-                    <button onClick={() => { settupdatescore1(updatescore1 + 1) }}>+</button>
-                    <input type="number" value={updatescore1} onChange={(e) => { settupdatescore2(e.target.value) }} />
-                    <button onClick={() => { settupdatescore1(updatescore1 - 1) }}>-</button>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <div>{team2}</div>
-                    <button onClick={() => { settupdatescore2(updatescore2 + 1) }}>+</button>
-                    <input type="number" value={updatescore2} onChange={(e) => { settupdatescore2(e.target.value) }} />
-                    <button onClick={() => { settupdatescore2(updatescore2 - 1) }}>-</button>
-                </div>
-            </div>
-            <button onClick={updatescore}>Submit</button>
+        <div className="fhtb">
+      <h1>HOCKEY</h1>
+      <button className="rm-match" onClick={removematch}>
+        Remove Match
+      </button>
+      <div className="fhtb-s">
+        <div className="fhtb-sc">
+          <h2>{team1}</h2>
+          <div className="fhtb-sc-w">
+            <button
+              onClick={() => {
+                settupdatescore1(updatescore1 - 1);
+              }}
+            >
+              -
+            </button>
+            <input
+              type="number"
+              value={updatescore1}
+              onChange={(e) => {
+                settupdatescore2(e.target.value);
+              }}
+            />
+            <button
+              onClick={() => {
+                settupdatescore1(updatescore1 + 1);
+              }}
+            >
+              +
+            </button>
+          </div>
         </div>
+
+        <div className="fhtb-sc">
+          <h2>{team2}</h2>
+          <div className="fhtb-sc-w">
+          <button
+              onClick={() => {
+                settupdatescore2(updatescore2 - 1);
+              }}
+            >
+              -
+            </button>
+            <input
+              type="number"
+              value={updatescore2}
+              onChange={(e) => {
+                settupdatescore2(e.target.value);
+              }}
+            /><button
+            onClick={() => {
+              settupdatescore2(updatescore2 + 1);
+            }}
+          >
+            +
+          </button>
+            
+          </div>
+        </div>
+      </div>
+      <button className="up" onClick={updatescore}>
+        Submit
+      </button>
+    </div>
     )
 }
 

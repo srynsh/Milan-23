@@ -11,11 +11,11 @@ import dotenv from 'dotenv';
 import pkg from 'pg';
 import url from 'url';
 import { scheduleJob } from 'node-schedule';
-import fs from 'fs/promises';
 import path from 'path';
 import schedule from 'node-schedule'
 import axios from 'axios';
-
+import fs from 'fs/promises'
+import updateData from './features/update.js';
 //get environment variables
 dotenv.config();
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -34,6 +34,7 @@ pool.connect()
 
 //start the job
 job.schedule();
+updateData.schedule();
 
 const app = express();
 const server = http.createServer(app)
@@ -189,7 +190,7 @@ io.on('connection', (socket) => {
 });
 
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: [process.env.FRONTEND_URL,process.env.ADMIN_URL],
     credentials: true, // Allow credentials (cookies, HTTP authentication)
 };
 app.use(express.json())
@@ -274,7 +275,7 @@ app.get('/auth/google/callback',
             const jwttoken = jwt.sign(req.user.emails[0].value, 'milan_backend_secret')
             //console.log(res)
             res.cookie('authtoken', jwttoken, { maxAge: 432000, httpOnly: true });
-            res.redirect('http://localhost:5173/profile')
+        res.redirect(process.env.FRONTEND_URL+'/profile')
         }
     }
 );
@@ -294,6 +295,9 @@ app.get('/auth/google/admin/callback',
             res.cookie('adminauthtoken', jwttoken, { maxAge: 432000, httpOnly: false });
             res.redirect(process.env.ADMIN_URL)
         }
+        else{
+            res.json({ auth: 'false', message: 'You are not an admin' })
+        }
     }
 );
 
@@ -312,6 +316,7 @@ app.get('/techy', async (req, res) => {
     const data = await fs.readFile(filePath, 'utf8');
     const jsonData = JSON.parse(data);
     res.send(jsonData);
+    console.log("techy data sent")
 })
 
 //send culty data
@@ -320,6 +325,7 @@ app.get('/culty', async (req, res) => {
     const data = await fs.readFile(filePath, 'utf8');
     const jsonData = JSON.parse(data);
     res.send(jsonData);
+    console.log("culty data sent")
 })
 
 //send sports boys data
@@ -328,6 +334,7 @@ app.get('/sports_boys', async (req, res) => {
     const data = await fs.readFile(filePath, 'utf8');
     const jsonData = JSON.parse(data);
     res.send(jsonData);
+    console.log('sports boys data sent')
 })
 
 //send sports girls data
@@ -336,39 +343,20 @@ app.get('/sports_girls', async (req, res) => {
     const data = await fs.readFile(filePath, 'utf8');
     const jsonData = JSON.parse(data);
     res.send(jsonData);
+    console.log('sports girls data sent')
 })
 
+app.get('/eventsSchedule', async (req, res) => {
+    const filePath = path.join(__dirname, 'data', 'eventsSchedule.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const jsonData = JSON.parse(data);
+    res.send(jsonData);
+    console.log('events schedule data sent')
+});
 
-async function fetchDataAndWriteToFile(url, fileName) {
-    try {
-      const response = await axios.get(url);
-      const data = response.data;
-      const filePath = path.join(__dirname, 'data', fileName);
-      fs.writeFileSync(filePath, JSON.stringify(data));
-      console.log(`Data from ${url} has been written to ${filePath}`);
-    } catch (error) {
-      console.error(`Error fetching data from ${url}:`, error);
-    }
-  }
 
-//update the data folder with new data for every 5 hours
-const updateData = schedule.scheduleJob('* /1 * * * *', async function(){
-    // Fetch and write leaderboard data
-  await fetchDataAndWriteToFile(process.env.LEADERBOARD, 'leaderboard.json');
 
-  // Fetch and write techy data
-  await fetchDataAndWriteToFile(process.env.TECHY, 'techy.json');
 
-  // Fetch and write culty data
-  await fetchDataAndWriteToFile(process.env.CULTY, 'culty.json');
-
-  // Fetch and write sports boys data
-  await fetchDataAndWriteToFile(process.env.SPORTS_BOYS, 'sports_boys.json');
-
-  // Fetch and write sports girls data
-  await fetchDataAndWriteToFile(process.env.SPORTS_GIRLS, 'sports_girls.json');
-
-})
 
 
 
@@ -431,7 +419,7 @@ app.get('/hello', async (req, res) => {
 
 //update supporting teams
 app.post('/profile/update', verifyUser, async (req, res) => {
-    const { supportedTeams, preferedEvents } = req.body; // Assuming supportedTeams and preferedEvents are arrays of team names or event IDs.
+    const { supportedTeams, preferedEvents, events } = req.body; // Assuming supportedTeams and preferedEvents are arrays of team names or event IDs.
 
     const userEmail = res.locals.email;
 
@@ -473,28 +461,30 @@ app.post('/profile/update', verifyUser, async (req, res) => {
 
 
         // Insert preferred events for the user into the prefered_event table.
-        for (const event of preferedEvents) {
-            try {
-                const event_id_query = 'SELECT event_id FROM events WHERE event_name = $1';
-                const event_id_result = await pool.query(event_id_query, [event]);
+        if (events) {
+            for (const event of events) {
+                try {
+                    const event_id_query = 'SELECT event_id FROM events WHERE event_name = $1';
+                    const event_id_result = await pool.query(event_id_query, [event]);
 
-                if (event_id_result.rows.length === 0) {
-                    console.error(`Event not found in the database: ${event}`);
-                    continue; // Skip to the next iteration
+                    if (event_id_result.rows.length === 0) {
+                        console.error(`Event not found in the database: ${event}`);
+                        continue; // Skip to the next iteration
+                    }
+
+                    const event_id = event_id_result.rows[0].event_id;
+                    console.log(`Event: ${event}, Event ID: ${event_id}`);
+
+                    const insertPreferredEventQuery = 'INSERT INTO prefered_event (email, user_id, prefered_event_id, prefered_event_name) VALUES ($1, $2, $3, $4) ON CONFLICT (email, user_id, prefered_event_id) DO NOTHING';
+
+                    // Now, insert the data with the retrieved event_id
+                    await pool.query(insertPreferredEventQuery, [userEmail, userId, event_id, event]);
+                } catch (error) {
+                    console.error('Error:', error);
                 }
-
-                const event_id = event_id_result.rows[0].event_id;
-                console.log(`Event: ${event}, Event ID: ${event_id}`);
-
-                const insertPreferredEventQuery = 'INSERT INTO prefered_event (email, user_id, prefered_event_id, prefered_event_name) VALUES ($1, $2, $3, $4) ON CONFLICT (email, user_id, prefered_event_id) DO NOTHING';
-
-                // Now, insert the data with the retrieved event_id
-                await pool.query(insertPreferredEventQuery, [userEmail, userId, event_id, event]);
-            } catch (error) {
-                console.error('Error:', error);
             }
-        }
 
+        }
 
         res.send({ success: true, message: 'Profile updated successfully' });
 

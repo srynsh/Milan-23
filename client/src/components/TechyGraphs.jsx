@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import Loading from "./Loading";
 
 ChartJS.register(
   CategoryScale,
@@ -85,169 +86,60 @@ export const options = {
   },
 };
 
+const colorOptions = ["#700035", "#390035", "#A40035", "#CE0035"];
+let lastUsedColorIndex = -1;
+
+const getRandomColor = () => {
+  // Choose the next available color
+  lastUsedColorIndex = (lastUsedColorIndex + 1) % colorOptions.length;
+  return colorOptions[lastUsedColorIndex];
+};
+
 export const TechyGraphs = () => {
-  const [scores, setscores] = useState({
-    '1': [
-       0,   0,  0, 10, 10,
-      10, 100, 20, 10, 40,
-      70,   0
-    ],
-    '2': [
-       0, 10,  0,  10, 20,
-       0, 40, 10, 100,  0,
-      70, 10
-    ],
-    '3': [
-      10, 10,  0, 10, 100,
-      10, 10, 70, 40,  20,
-      10, 10
-    ],
-    '4': [
-       0,   0,  0,  0, 10,
-       0, 100, 20, 70,  0,
-      40,   0
-    ],
-    '5': [
-      0,  6, 24,  6, 60,
-      0, 12,  6, 42,  6,
-      6,  6
-    ],
-    '6': [
-       0, 0, 0, 42, 24,
-      60, 6, 6,  6, 12,
-       6, 0
-    ],
-    '7': [
-      10,  10, 10, 10, 10,
-      10, 100, 20, 10, 40,
-      70,   0
-    ],
-    '8': [
-       10, 10,  0, 10, 40,
-       10, 10, 10, 20, 70,
-      100,  0
-    ],
-    '9': [
-       0, 10, 0, 100, 70,
-      10, 20, 0,  10, 10,
-      40, 10
-    ],
-    '10': [
-       0,   0, 0,  0, 70,
-       0, 100, 0, 10,  0,
-      40,   0
-    ],
-    '11': [
-       0, 10, 10,  10, 10,
-      20, 10, 10, 100, 70,
-      40, 10
-    ]
-  });
- 
-  const labels = [
-    "ARYABHATTA",
-    "BHASKARA",
-    "MAITREYI",
-    "GARGI",
-    "CHARAKA",
-    "SUSRUTA",
-    "KAUTILYA",
-    "VYASA",
-    "BRAHMAGUPTA",
-    "VARAHAMIHIRA",
-    "RAMANUJA",
-    "KAPILA",
-  ];
+  const [scores, setscores] = useState([]);
+  const [gameNames, setgameNames] = useState([]);
+  const [blockNames, setblockNames] = useState([]);
+  const [loading, setloading] = useState(true);
+  useEffect(() => {
+    const fetchScore = async () => {
+      setloading(true);
+      const { data } = await axios.get(
+        import.meta.env.VITE_BACKEND_URL + "techy"
+      );
+      setscores(data.scores);
+      console.log(data.eventNames);
+      setgameNames(data.eventNames);
+      setblockNames(data.blocks);
+      setTimeout(() => {
+        setloading(false)
+
+      }, 500);
+    };
+    fetchScore();
+  }, []);
+  const labels = blockNames;
   const data = {
     labels,
-
-    datasets: [
-      {
-        label: "Game Jam",
-        data: scores[1],
-        backgroundColor: "#eb1527",
+    datasets: gameNames.map((item, index) => {
+      return {
+        label: item,
+        data: scores[index + 1],
+        backgroundColor: getRandomColor(),
         categoryPercentage: 1.1, // notice here
         barPercentage: 0.8,
-      },
-      {
-        label: "Robo-soccer",
-        data: scores[2],
-        backgroundColor: "#EEE8AA",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Capture the flag",
-        data: scores[3],
-        backgroundColor: "#9ACD32",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Hackathon",
-        data: scores[4],
-        backgroundColor: "#dceb15",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Astronomy Quiz",
-        data: scores[5],
-        backgroundColor: "#6495ED",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Ideathon",
-        data: scores[6],
-        backgroundColor: "rgb(103, 162, 23)",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Codegolf",
-        data: scores[7],
-        backgroundColor: "#000080",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "Water Rocketry",
-        data: scores[8],
-        backgroundColor: "#8A2BE2",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "CAD",
-        data: scores[9],
-        backgroundColor: "#8B008B",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-      {
-        label: "RC Car Racing",
-        data: scores[10],
-        backgroundColor: "#C71585",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-
-      {
-        label: "Solve the case",
-        data: scores[11],
-        backgroundColor: "#FFC0CB",
-        categoryPercentage: 1.1, // notice here
-        barPercentage: 0.8,
-      },
-    ],
+      };
+    }),
   };
 
   return (
     <div className="FirstTab">
-      <div className="canvas-container">
-        <Bar options={options} data={data} />
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="canvas-container">
+          <Bar options={options} data={data} />
+        </div>
+      )}
     </div>
   );
 };
