@@ -274,7 +274,7 @@ app.get('/auth/google/callback',
         } else {
             const jwttoken = jwt.sign(req.user.emails[0].value, 'milan_backend_secret')
             //console.log(res)
-            res.cookie('authtoken', jwttoken, { maxAge: 432000, httpOnly: true });
+            res.cookie('authtoken', jwttoken, { maxAge: 432000, httpOnly: false });
         res.redirect(process.env.FRONTEND_URL+'/profile')
         }
     }

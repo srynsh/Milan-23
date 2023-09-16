@@ -17,13 +17,17 @@ import { useCookies } from 'react-cookie';
 
 function AdminPage() {
   const [eventdata, seteventdata] = useState([])
-  const [cookies, setCookie] = useCookies()
+  const [cookies, setCookie, removeCookie] = useCookies()
 
   const admincookie = cookies.adminauthtoken
 
   const signin = () => {
     window.location.href = 'http://localhost:8000/auth/google/admin';
   }
+
+  const signout = () => {
+  
+  removeCookie('adminauthtoken', {path: '/'})}
 
   // Cricket, Football, Hockey, Volleyball, Basketball, Badminton, Tennis, Table Tennis, Squash, Dodgeball 
 
@@ -36,6 +40,20 @@ function AdminPage() {
         <h1 className='heading'>
           Milan Admin Panel
         </h1>
+        <div style={{
+          position:"absolute",
+          top:'15vh',
+          right:"4vw",
+          padding:"20px",
+          background:"#fff",
+          boxShadow:"1px 2px 0 0 rgb(0,0,0,0.25)",
+          cursor:"pointer",
+          color:"#000",
+          borderRadius:"20px",
+          fontWeight:"800",
+          // marginBottom:"10vh"
+        }}
+        onClick={signout}>LOGOUT</div>
         <div>
           <NewEvent seteventdata={seteventdata} />
           {eventdata && eventdata.map(event => {
