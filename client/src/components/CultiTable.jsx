@@ -24,7 +24,11 @@ export const CultiTable = () => {
   const [blockNames, setblockNames] = useState([])
   const [loading, setloading] = useState(true)
 
+<<<<<<< HEAD
   //fetch the data for every 2 hours and store it json file
+=======
+  //fetch the data for every 2 hours and store it json file 
+>>>>>>> 55bef477dfc76116bf428caa116b8336ae38cf9e
   useEffect(() => {
     const fetchScore = async () => {
       setloading(true)
