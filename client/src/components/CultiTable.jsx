@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -16,7 +16,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
 import axios from 'axios';
 import Loading from './Loading';
-import fs from 'fs';
+//import fs from 'fs';
 
 export const CultiTable = () => {
   
@@ -36,7 +36,7 @@ export const CultiTable = () => {
     const { data } = axios.get(import.meta.env.VITE_CULTY)
     setscores(data.scores)
     setgameNames(data.eventNames)
-    fs.writeFileSync('./src/data/culty.json', JSON.stringify(data))
+    //fs.writeFileSync('./src/data/culty.json', JSON.stringify(data))
     return false;
   }
   
