@@ -42,9 +42,9 @@ function App() {
             <Route path="/leaderboard" element={<Events />} />
             <Route path="/livescore" element={<LiveScoresPage />} />
             <Route path="/sponsors" element={<Sponsors />} />
-            <Route path="*" element={<Error />} />
             <Route path="/login"  element={<LoginPage/>} />
             <Route path="/milan-admin"  element={<AdminPage/>} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </Router>
       </SocketContext.Provider>

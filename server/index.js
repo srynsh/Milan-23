@@ -43,49 +43,7 @@ const io = new Server(server, {
     }
 });
 
-let eventdata = [
-    {
-        id: 'adfasd',
-        sport: 'Football',
-        name: 'Football Finals',
-        score1: 2,
-        score2: 3,
-        team1: 'Charaka',
-        team2: 'Bhabha',
-        data: 'myran'
-    },
-    {
-        sport: 'Football',
-        event: 'Football',
-        id: 'mvrzVIb7f2',
-        team1: 'Varahamira',
-        team2: 'Charaka',
-        score1: 0,
-        score2: 0
-    },
-    {
-        sport: 'Basketball',
-        event: 'Basketball',
-        id: 'InKz8TOSSx',
-        team1: 'Varahamira',
-        team2: 'Charaka',
-        score1: 0,
-        score2: 0
-    },
-    {
-        sport: 'Cricket',
-        event: 'Cricket',
-        id: '6X69TiRFvy',
-        team1: 'Varahamira',
-        team2: 'Charaka',
-        score1: 0,
-        score2: 0,
-        wicket1: 0,
-        wicket2: 0,
-        over1: 0,
-        over2: 0
-    },
-]
+let eventdata = []
 
 //Socket code goes here
 io.on('connection', (socket) => {
@@ -98,12 +56,21 @@ io.on('connection', (socket) => {
 
     socket.on("recieve_data", (data) => {
         let newdata = {}
-        if (data.sport == "Football" || data.sport == "Basketball" || data.sport == "Hockey" || data.sport == "Tennis") {
+        if (data.sport == "Football" || data.sport == "Basketball" || data.sport == "Hockey") {
             console.log("nbew data is football")
             newdata = {
                 ...data,
                 score1: 0,
                 score2: 0
+            }
+        }
+        else if(data.sport == "Tennis"){
+            newdata = {
+                ...data,
+                score1: 0,
+                score2: 0,
+                setscore1: '0',
+                setscore2: '0'
             }
         }
         else if (data.sport == "Cricket") {
@@ -118,7 +85,6 @@ io.on('connection', (socket) => {
             }
         }
         else if (data.sport == "Badminton" || data.sport == "Volleyball" || data.sport == "Table Tennis" || data.sport == "Squash") {
-            console.log("nbew data is football")
             newdata = {
                 ...data,
                 score1: [0],
@@ -154,6 +120,12 @@ io.on('connection', (socket) => {
             }
             if (data.wicket2) {
                 eventdata[index].wicket2 = data.wicket2;
+            }
+            if(data.setscore1){
+                eventdata[index].setscore1 = data.setscore1;
+            }
+            if(data.setscore2){
+                eventdata[index].setscore2 = data.setscore2;
             }
 
             socket.broadcast.emit("admin_update", data)
