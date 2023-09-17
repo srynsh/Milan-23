@@ -22,8 +22,6 @@ const Profile = () => {
 
   const [eventsValid, setEventsValid] = useState(false);
   const [teamsValid, setTeamsValid] = useState(false);
-  const [teamplaceholder, setteamplaceholder] = useState("Search Blocks");
-  const [eventplaceholder, seteventplaceholder] = useState("Search Events");
   const [loading, setLoading] = useState(true);
 
 
@@ -99,15 +97,7 @@ const Profile = () => {
           events: userData.preferedEvents,
         });
 
-      
-        if (userData.supportedTeams.length > 0) {
-          setTeamsValid(true);
-          setteamplaceholder("");
-        }
-        if (userData.preferedEvents.length > 0) {
-          setEventsValid(true);
-          seteventplaceholder("");
-        }
+  
       
       })
 
@@ -213,6 +203,7 @@ const Profile = () => {
   return (
     <div>
       {loading ? (<Loading />) : (
+        <>
         <div className="container">
         <h1 className="">Profile Details</h1>
         <form onSubmit={handleSubmit} name="myForm" className="">
@@ -256,7 +247,7 @@ const Profile = () => {
                   name="supportingTeams"
                   id="supportingTeams"
                   isObject={false}
-                  placeholder={teamplaceholder}
+                  placeholder={'Search Team'}
                   displayValue="supportingTeams"
                   options={toptions}
                   onSelect={handleBlocksSelect}
@@ -273,16 +264,9 @@ const Profile = () => {
                       marginBottom: isBlocksMultiselectClicked ? "240px" : "0",
                       transition: "margin 1s ease-in-out",
                     },
-                    searchBox: {
-                      border: 0,
-                      height: '30px',
-                    },
-                    chips: {
-                      background: "rgba(111, 0, 53, 1) 4%",
-                    },
-                    searchWrapper: {
-                      alignItems: 'center',
-                    },
+                    searchWrapper:{
+                      height:'27px',
+                    }
                   }}
                 />
               </div>
@@ -298,11 +282,11 @@ const Profile = () => {
                   name="events"
                   id="events"
                   isObject={false}
-                  placeholder={eventplaceholder}
                   options={eoptions}
                   onSelect={handleEventsSelect}
                   onRemove={handleEventsRemove}
                   displayValue="name"
+                  placeholder={"Search Events"}
                   showCheckbox
                   className="inputborder custom-multiselect-container"
                   showArrow
@@ -310,19 +294,17 @@ const Profile = () => {
                   groupBy="category"
                   style={{
                     multiselectContainer: {
-                      marginBottom: isEventsMultiselectClicked ? "260px" : "0",
+                      marginBottom: isEventsMultiselectClicked ? "240px" : "0",
                       transition: "margin 1s ease-in-out",
                     },
-                    searchBox: {
-                      border: 0,
-                      height: '30px',
+                    optionContainer: {  
+                      border:'2px solid',
                     },
-                    chips: {
-                      background: "rgba(111, 0, 53, 1) 4%",
-                    },
-                    searchWrapper: {
-                      alignItems: 'center',
-                    },
+                    searchWrapper:{
+                      height:'32px',
+                    },chips:{
+                      display:'none',
+                    },  
                   }}
                 />
               </div>
@@ -330,16 +312,17 @@ const Profile = () => {
           </div>
         </form>
       </div>
+                      <div>
+                      <button
+                        type="submit"
+                        onSubmit={handleSubmit}
+                        className="submit-button"
+                      >
+                        Submit
+                      </button>
+                    </div>
+      </>
       )}
-                <div>
-            <button
-              type="submit"
-              onSubmit={handleSubmit}
-              className="submit-button"
-            >
-              Submit
-            </button>
-          </div>
     </div>
   );
 };

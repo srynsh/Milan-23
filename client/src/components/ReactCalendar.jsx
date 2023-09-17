@@ -3,6 +3,7 @@ import Loading from "./Loading";
 import axios from "axios";
 import "../profile & calender.css";
 
+
 const ReactCalendar = () => {
   // Constants
   // State variables
@@ -241,18 +242,22 @@ const filterEvents = () => {
   // Render calendar container
   return (
     <div>
-      {loading ? (<Loading />) : (<div className="calendar-dov">
-    <div className="calendar-container">
-      <div className="calendar-header">
-        <h2>{currentMonth}</h2>
-        <button onClick={handleMonthChange}>{"</>"}</button>
-        <button onClick={handlefilter}>Filter</button>
+    {loading ? (
+      <Loading />
+    ) : (
+      <div className="calendar-dov">
+        <div className="calendar-container">
+          <div className="calendar-header">
+            <h2>{currentMonth}</h2>
+            <button onClick={handleMonthChange}>{"</>"}</button>
+            <button onClick={handlefilter}>Filter</button>
+          </div>
+          <div className="calendar">{renderCalendar()}</div>
+          {renderEventsDialog()}
+        </div>
       </div>
-      <div className="calendar">{renderCalendar()}</div>
-      {renderEventsDialog()}
-    </div>
-  </div>)}
-    </div>
+    )}
+  </div>
   );
 };
 
