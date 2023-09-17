@@ -733,7 +733,7 @@ ion-icon {
 
 .navbar-pending {
   text-decoration: none;
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   color: #390035;
   font-family: "Amboy";
   font-weight: 700;
@@ -958,14 +958,14 @@ ion-icon {
     width: 100vw;
     padding: 10vh 0;
     position: absolute;
-    gap: 8vh;
+    gap: 5vh;
     justify-content: center;
   }
   .navbar-options-hide {
     width: 100vw;
     padding: 10vh 0;
     position: absolute;
-    gap: 8vh;
+    gap: 5vh;
     justify-content: center;
   }
   .navbar-pending {
