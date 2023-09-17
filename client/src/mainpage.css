@@ -366,7 +366,7 @@ a {
 footer {
   display: flex;
   flex-direction: column;
-  height: 60vh;
+  height: 70vh;
   width: 100%;
   align-items: center;
   padding-top: 4vw;
@@ -928,10 +928,11 @@ ion-icon {
 
   .tp-domain-core-i-c-name {
     text-align: center;
+    font-size: 1.7rem;
   }
 
   .tp-domain-core-i {
-    gap: 2vh;
+    gap: 3vh;
   }
 
   .tp-domain-head-name {
@@ -949,6 +950,21 @@ ion-icon {
 
   .team-page > div:nth-child(4) .tp-domain-name {
     font-size: 1rem;
+  }
+
+  .tp-domain-core-i-c-f {
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    background: #390035;
+    transition: 0.3s;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  
+  .tp-domain-core-i-c-f:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 12px 3px rgba(0, 0, 0, 0.25);
+    transition: 0.3s;
   }
 }
 
