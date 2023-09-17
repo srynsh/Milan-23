@@ -22,47 +22,57 @@ const Profile = () => {
 
   const [eventsValid, setEventsValid] = useState(false);
   const [teamsValid, setTeamsValid] = useState(false);
-  const [teamplaceholder, setteamplaceholder] = useState("Search Blocks");
-  const [eventplaceholder, seteventplaceholder] = useState("Search Events");
   const [loading, setLoading] = useState(true);
 
 
   //console.log(input_event)
   useEffect(() => {
-    fetch("./events.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const inputList = data.inputList;
-        esetoptions(inputList);
+   const fetchData = async() => {
+    await fetch("/events.json",{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }})
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const inputList = data.inputList;
+      esetoptions(inputList);
 
-        // You can use 'inputList' here or perform any other operations with it
-      })
-      .catch((error) => {
-        console.error("Error fetching or parsing JSON:", error);
-      });
+      // You can use 'inputList' here or perform any other operations with it
+    })
+    .catch((error) => {
+      console.error("Error fetching or parsing JSON:", error);
+    });
 
 
-    fetch("./teams.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const inputList = data.inputList;
-        tsetoptions(inputList);
+  await fetch("/teams.json",{
+    headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+     }})
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const inputList = data.inputList;
+      tsetoptions(inputList);
 
-        // You can use 'inputList' here or perform any other operations with it
-      })
-      .catch((error) => {
-        console.error("Error fetching or parsing JSON:", error);
-      });
+      // You can use 'inputList' here or perform any other operations with it
+    })
+    .catch((error) => {
+      console.error("Error fetching or parsing JSON:", error);
+    });
+   }
+
+   fetchData()
   }, [])
   //User Details Import from Backend
 
@@ -99,16 +109,7 @@ const Profile = () => {
           events: userData.preferedEvents,
         });
 
-      
-        if (userData.supportedTeams.length > 0) {
-          setTeamsValid(true);
-          setteamplaceholder("");
-        }
-        if (userData.preferedEvents.length > 0) {
-          setEventsValid(true);
-          seteventplaceholder("");
-          console.log(eventplaceholder)
-        }
+  
       
       })
 
@@ -123,10 +124,6 @@ const Profile = () => {
       
 
   }, []); 
-
-  useEffect(() => {
-    //console.log(User); // Log the updated User state here
-  }, [User]); // Add User as a dependency to this effect
 
   // Handling selections/Changes in the Form
 
@@ -160,32 +157,34 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("running");
 
     if (!validateName(User.name)) {
       alert("Please enter a valid name.");
       return;
     }
-    console.log(User)
-    if (User.events.length == 0) {
+    else if (User.events.length == 0) {
       alert("Please select atleast one Event!");
       return;
     }
-    if (User.supportedTeams.length == 0) {
+    else if  (User.supportedTeams.length == 0) {
       alert("Please select atleast one Team!");
       return;
     }
-    //console.log(User);
+   else{
     axios
-      .post(import.meta.env.VITE_BACKEND_URL + "profile/update", User, {
-        withCredentials: true,
-      })
-      .then((data) => {
-        if (data.status === 200) {
-          alert("Profile Updated Successfully");
-        } else {
-          alert("Error updating profile");
-        }
-      });
+    .post(import.meta.env.VITE_BACKEND_URL + "profile/update", User, {
+      withCredentials: true,
+    })
+    .then((data) => {
+      if (data.status === 200) {
+        alert("Profile Updated Successfully");
+      } else {
+        alert("Error updating profile");
+      }
+    });
+    console.log("done");
+   }
   };
 
   const validateName = (name) => {
@@ -216,6 +215,7 @@ const Profile = () => {
   return (
     <div>
       {loading ? (<Loading />) : (
+        <>
         <div className="container">
         <h1 className="">Profile Details</h1>
         <form onSubmit={handleSubmit} name="myForm" className="">
@@ -259,7 +259,7 @@ const Profile = () => {
                   name="supportingTeams"
                   id="supportingTeams"
                   isObject={false}
-                  placeholder={teamplaceholder}
+                  placeholder={'Search Team'}
                   displayValue="supportingTeams"
                   options={toptions}
                   onSelect={handleBlocksSelect}
@@ -276,16 +276,9 @@ const Profile = () => {
                       marginBottom: isBlocksMultiselectClicked ? "240px" : "0",
                       transition: "margin 1s ease-in-out",
                     },
-                    searchBox: {
-                      border: 0,
-                      height: '30px',
-                    },
-                    chips: {
-                      background: "rgba(111, 0, 53, 1) 4%",
-                    },
-                    searchWrapper: {
-                      alignItems: 'center',
-                    },
+                    searchWrapper:{
+                      height:'27px',
+                    }
                   }}
                 />
               </div>
@@ -301,11 +294,11 @@ const Profile = () => {
                   name="events"
                   id="events"
                   isObject={false}
-                  placeholder={eventplaceholder}
                   options={eoptions}
                   onSelect={handleEventsSelect}
                   onRemove={handleEventsRemove}
                   displayValue="name"
+                  placeholder={"Search Events"}
                   showCheckbox
                   className="inputborder custom-multiselect-container"
                   showArrow
@@ -313,35 +306,34 @@ const Profile = () => {
                   groupBy="category"
                   style={{
                     multiselectContainer: {
-                      marginBottom: isEventsMultiselectClicked ? "260px" : "0",
+                      marginBottom: isEventsMultiselectClicked ? "240px" : "0",
                       transition: "margin 1s ease-in-out",
                     },
-                    searchBox: {
-                      border: 0,
-                      height: '30px',
+                    optionContainer: {  
+                      border:'2px solid',
                     },
-                    chips: {
-                      background: "rgba(111, 0, 53, 1) 4%",
-                    },
-                    searchWrapper: {
-                      alignItems: 'center',
-                    },
+                    searchWrapper:{
+                      height:'32px',
+                    },chips:{
+                      display:'none',
+                    },  
                   }}
                 />
               </div>
             </div>
           </div>
-          <div>
-            <button
-              type="submit"
-              onSubmit={handleSubmit}
-              className="submit-button"
-            >
-              Submit
-            </button>
-          </div>
         </form>
       </div>
+                      <div>
+                      <button
+                        type="submit"
+                        onSubmit={handleSubmit}
+                        className="submit-button"
+                      >
+                        Submit
+                      </button>
+                    </div>
+      </>
       )}
     </div>
   );

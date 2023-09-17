@@ -25,7 +25,7 @@ function App() {
   const admincookie = cookies.adminauthtoken
 
   const signin = () => {
-    window.location.href = 'http://localhost:8000/auth/google/admin';
+    window.location.href = import.meta.env.VITE_BACKEND_URL+'/auth/google/admin';
   }
 
   // Cricket, Football, Hockey, Volleyball, Basketball, Badminton, Tennis, Table Tennis, Squash, Dodgeball 

@@ -24,7 +24,7 @@
   --font-family: ArianaPro,Amboy, OctoberDevanagari;
 }
 /* profile page  */
-.main-bg {
+.calender-bg {
   background: linear-gradient(
     345deg,
     rgba(111, 0, 53, 1) 4%,
@@ -32,6 +32,12 @@
     rgba(64, 0, 64, 1) 58%,
     rgba(111, 0, 53, 1) 96%
   );
+  min-height:100vh;
+  height:auto;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  padding:80px 0;
 }
 .container {
   width: 100%;
@@ -65,7 +71,18 @@
   background-color: transparent;
   font-size: 16px;
   outline: none;
+  display:flex;
   transition: border-color 0.3s ease-in-out;
+  color:black;
+  padding-left:5px;
+}
+.searchWrapper{
+  border:0 !important;
+  width:100%;
+  overflow:hidden;
+}
+.chip{
+  background:var(--primary-color) !important;
 }
 
 /* Button styles */
@@ -82,12 +99,13 @@ button[type='submit']{
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-  margin-left: 5%;
+  margin-left: 10%;
+  margin-top: 2%;
 }
 
 button[type='submit']:hover {
   background-color: var(--secondary-color);
-  color:#333;
+  color:#fff;
   font-weight: 700;
 }
 
@@ -114,11 +132,17 @@ h1 {
   display: inline-block;
   margin-bottom: 5px;
 }
+@media(max-width:464px){
+  .inputborder{
+    width:95%;
+  }
+  .container{
+    margin:0;
+  }
+}
 @media(max-width:640px){
   .container{
     max-width:95%;
-  }.main-bg{
-    padding-top:16vh !important;
   }
 }
 @media (min-width: 640px) {
@@ -165,24 +189,17 @@ h1 {
 .content {
   flex: 1;
 }
-.svg {
-  width: 100vw;
-  height: 80%;
-  color: red;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-blend-mode: color-burn;
-}
 
 /* CSS for ReactCalendar component */
 .calendar-container {
   font-family: var(--font-family);
-  max-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
   background: #fdd1aa;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px var(--box-shadow-color);
+  transition: all 3s ease-in-out;
 }
 
 .calendar-header {
@@ -262,7 +279,12 @@ h1 {
   box-shadow: 0 4px 12px var(--box-shadow-color);
   margin-top: 10px;
 }
-
+::-webkit-scrollbar{
+  color:white;
+}
+::-webkit-scrollbar-button{
+  color:grey;
+}
 .close-button {
   background-color: var(--primary-color);
   color: #fff;
@@ -289,16 +311,16 @@ h1 {
   font-weight: bold;
 }
 
-.events-list h3,
-.competitions-list h3 {
+.events-list h3{
   color: var(--primary-color);
   margin-bottom: 10px;
 }
 
-.events-list ul,
-.competitions-list ul {
+.events-list ul{
   list-style: none;
   padding: 0;
+  overflow-y: scroll;
+  max-height:400px;
 }
 
 .events-list li,

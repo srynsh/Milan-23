@@ -3,6 +3,7 @@ import Loading from "./Loading";
 import axios from "axios";
 import "../profile & calender.css";
 
+
 const ReactCalendar = () => {
   // Constants
   // State variables
@@ -67,9 +68,6 @@ const ReactCalendar = () => {
         setLoading(false);
       });
   }, []);
-
-
-
   useEffect(() => {
     if (userDataLoaded) {
       // Perform actions that rely on the updated User state here
@@ -163,11 +161,11 @@ const filterEvents = () => {
     const DAYS_IN_MONTH = new Date(year, month + 1, 0).getDate();
     const daysArray =
       currentMonth === "SEPTEMBER"
-        ? ["Fr", "St", "Su", "Mn", "Tu", "Wd", "Th"]
+        ? ["Su", "Mn", "Tu", "Wd", "Th","Fr", "St"," "," "," "," "," "]
         : ["Sn", "Mn", "Tu", "Wd", "Th", "Fr", "St"];
 
     // Render day headers
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < daysArray.length; i++) {
       calendarDays.push(
         <div key={i} className="calendar-week-day">
           <div className="week-day">{daysArray[i]}</div>
@@ -252,18 +250,22 @@ const filterEvents = () => {
   // Render calendar container
   return (
     <div>
-      {loading ? (<Loading />) : (<div className="calendar-dov">
-    <div className="calendar-container">
-      <div className="calendar-header">
-        <h2>{currentMonth}</h2>
-        <button onClick={handleMonthChange}>{"<next/prev>"}</button>
-        <button onClick={handlefilter}>Filter Events</button>
+    {loading ? (
+      <Loading />
+    ) : (
+      <div className="calendar-dov">
+        <div className="calendar-container">
+          <div className="calendar-header">
+            <h2>{currentMonth}</h2>
+            <button onClick={handleMonthChange}>{"</>"}</button>
+            <button onClick={handlefilter}>Filter</button>
+          </div>
+          <div className="calendar">{renderCalendar()}</div>
+          {renderEventsDialog()}
+        </div>
       </div>
-      <div className="calendar">{renderCalendar()}</div>
-      {renderEventsDialog()}
-    </div>
-  </div>)}
-    </div>
+    )}
+  </div>
   );
 };
 

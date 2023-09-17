@@ -5,10 +5,15 @@ import BlockRace from "../components/BlockRace";
 import Footer from "../components/Footer";
 import { OverallScores } from "../components/OvrLeaderboard";
 import '../mainpage.css'
-
+import { useCookies } from 'react-cookie';
 
 const Home = () => {
   const [raceGraph, setRaceGraph] = useState(true);
+  const [cookies, setCookie, removeCookie] = useCookies()
+
+  const authcookie = cookies.authtoken;
+
+
   const handleLogin = () => {
     // You can add your login logic here, e.g., making an API call to verify credentials.
     // For this example, we'll simulate a successful login after a button click.
@@ -16,6 +21,10 @@ const Home = () => {
     window.location.href = import.meta.env.VITE_BACKEND_URL+'auth/google';
     //setLoggedIn(true);
   };
+
+  const handleLogout = () => {
+    removeCookie('authtoken', {path:'/'});  
+  }
   return (
     <>
       <div className="main">
@@ -23,9 +32,13 @@ const Home = () => {
           <div className="main-bg-vector">
             <section className="main-top">
               <div className="main-head">
+                {authcookie ?               
+                <NavLink onClick={handleLogout} className={'top-8 sm:right-4 md:right-32 lg:right-64 absolute text-white rounded p-2 text-lg bg-[#390035] hover:shadow-xl transition hover:scale-110 z-10'}>
+                  LOGOUT
+                </NavLink>: 
                 <NavLink onClick={handleLogin} className={'top-8 sm:right-4 md:right-32 lg:right-64 absolute text-white rounded p-2 text-lg bg-[#390035] hover:shadow-xl transition hover:scale-110 z-10'}>
                   LOGIN
-                </NavLink>
+                </NavLink>}
                 <div className="main-head-img">
                   <img src="./assets/logos/logocream.png" />
                 </div>

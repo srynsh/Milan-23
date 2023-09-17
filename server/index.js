@@ -1,19 +1,20 @@
-import job from './features/notification.js'
-import express from 'express';
-import passport from 'passport';
-import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import { v4 as uuidv4 } from 'uuid';
+// import job from './features/notification.js'
 import cookieParser from 'cookie-parser';
 import cors from "cors";
-import jwt from "jsonwebtoken";
-import { Server } from 'socket.io'; import http from "http";
 import dotenv from 'dotenv';
-import pkg from 'pg';
-import url from 'url';
+import express from 'express';
+import fs from 'fs/promises';
+import http from "http";
+import jwt from "jsonwebtoken";
+import passport from 'passport';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import path from 'path';
+import pkg from 'pg';
+import { Server } from 'socket.io';
+import url from 'url';
 import axios from 'axios';
-import fs from 'fs/promises'
 import updateData from './features/update.js';
+
 //get environment variables
 dotenv.config();
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -31,8 +32,8 @@ const pool = new Pool({
 pool.connect()
 
 //start the job
-//job.schedule();
-//updateData.schedule();
+//// job.schedule();
+// updateData.schedule();
 
 const app = express();
 const server = http.createServer(app)
@@ -274,7 +275,7 @@ app.get('/auth/google/callback',
         } else {
             const jwttoken = jwt.sign(req.user.emails[0].value, 'milan_backend_secret')
             //console.log(res)
-            res.cookie('authtoken', jwttoken, { maxAge: 432000, httpOnly: true });
+            res.cookie('authtoken', jwttoken, { maxAge: 432000, httpOnly: false });
         res.redirect(process.env.FRONTEND_URL+'/profile')
         }
     }
