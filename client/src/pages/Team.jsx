@@ -1,5 +1,3 @@
-import { useRef, useState, useEffect } from "react";
-import { useTransform, useScroll, motion } from "framer-motion";
 import TeamCoreList from "../components/TeamCoreList";
 import Footer from "../components/Footer";
 import '../mainpage.css'
