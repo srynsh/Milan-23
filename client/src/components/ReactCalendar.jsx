@@ -132,16 +132,18 @@ const filterEvents = () => {
       return;
     }
 
+
     for (const date in transformedEventData) {
       const events = transformedEventData[date];
 
      
       const filteredEvents = events.filter((event) => {
-        
-         const team =event.body.toLowerCase()
+       
+        const regex = /All Blocks/;
+       const team =event.body.toLowerCase()
         if(userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase() ) )console.log('event title:', event.id)
         return (
-          userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase()) || team === "all"
+          userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase()) || regex.test(event.body)
         );
       });
 
