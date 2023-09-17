@@ -39,7 +39,7 @@ function App() {
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/team" element={<Team />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/events" element={<Events />} />
+            <Route path="/leaderboard" element={<Events />} />
             <Route path="/livescore" element={<LiveScoresPage />} />
             <Route path="/sponsors" element={<Sponsors />} />
             <Route path="*" element={<Error />} />

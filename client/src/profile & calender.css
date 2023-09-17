@@ -159,9 +159,6 @@ h1 {
   .container {
     max-width: 768px;
   }
-  .main-bg{
-    padding-bottom:28.2vh !important;
-  }
 }
 @media (min-width: 1024px) {
   .container {

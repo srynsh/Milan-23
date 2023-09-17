@@ -24,7 +24,6 @@ const Profile = () => {
   const [teamsValid, setTeamsValid] = useState(false);
   const [loading, setLoading] = useState(true);
 
-
   //console.log(input_event)
   useEffect(() => {
     const fetchData = async () => {
@@ -102,7 +101,6 @@ const Profile = () => {
         const userData = response.data.user;
         // Update the User state with user details
 
-
         setUser({
           avatar: userData.avatar_url,
           name: userData.display_name,
@@ -136,7 +134,6 @@ const Profile = () => {
     });
   };
 
-
   const handleEventsRemove = (selectedList, removedItem) => {
     setUser((prevUser) => ({ ...prevUser, events: selectedList }));
   };
@@ -164,15 +161,14 @@ const Profile = () => {
     if (!validateName(User.name)) {
       alert("Please enter a valid name.");
       return;
-    }
-    else if (User.events.length == 0) {
+    } else if (User.events.length == 0) {
       alert("Please select atleast one Event!");
       return;
-    }
-    else if (User.supportedTeams.length == 0) {
+    } else if (User.supportedTeams.length == 0) {
       alert("Please select atleast one Team!");
       return;
     }
+    //console.log(User);
     else {
       axios
         .post(import.meta.env.VITE_BACKEND_URL + "profile/update", User, {
@@ -192,9 +188,8 @@ const Profile = () => {
   const validateName = (name) => {
     return /^[A-Za-z\s]+$/.test(name);
   };
-  const [isEventsMultiselectClicked, setIsEventsMultiselectClicked] = useState(
-    false
-  );
+  const [isEventsMultiselectClicked, setIsEventsMultiselectClicked] =
+    useState(false);
 
   const handleEventsMultiselectFocus = () => {
     setIsEventsMultiselectClicked(true);
@@ -202,9 +197,8 @@ const Profile = () => {
   const handleEventsMultiselectBlur = () => {
     setIsEventsMultiselectClicked(false);
   };
-  const [isBlocksMultiselectClicked, setIsBlocksMultiselectClicked] = useState(
-    false
-  );
+  const [isBlocksMultiselectClicked, setIsBlocksMultiselectClicked] =
+    useState(false);
   const handleBlocksMultiselectFocus = () => {
     setIsBlocksMultiselectClicked(true);
   };
@@ -213,10 +207,11 @@ const Profile = () => {
     setIsBlocksMultiselectClicked(false);
   };
 
-
   return (
     <div>
-      {loading ? (<Loading />) : (
+      {loading ? (
+        <Loading />
+      ) : (
         <>
           <div className="container">
             <h1 className="">Profile Details</h1>
@@ -250,13 +245,15 @@ const Profile = () => {
                 </div>
               </div>
               <div className=" layer-2">
-                <div className="form-group"
+                <div
+                  className="form-group"
                   onFocus={handleBlocksMultiselectFocus}
-                  onBlur={handleBlocksMultiselectBlur}>
+                  onBlur={handleBlocksMultiselectBlur}
+                >
                   <label htmlFor="supportingTeams" className="form-label">
                     Block: &nbsp;
                   </label>
-                  <div style={{ transition: 'all 1s ease-in' }}>
+                  <div style={{ transition: "all 1s ease-in" }}>
                     <Multiselect
                       name="supportingTeams"
                       id="supportingTeams"
@@ -275,21 +272,27 @@ const Profile = () => {
                       selectedValues={User.supportedTeams}
                       style={{
                         multiselectContainer: {
-                          marginBottom: isBlocksMultiselectClicked ? "240px" : "0",
+                          marginBottom: isBlocksMultiselectClicked
+                            ? "240px"
+                            : "0",
                           transition: "margin 1s ease-in-out",
                         },
                         searchWrapper: {
-                          height: '27px',
-                        }
+                          height: "27px",
+                        },
                       }}
                     />
                   </div>
                 </div>
-                <div className="form-group" onFocus={handleEventsMultiselectFocus} onBlur={handleEventsMultiselectBlur}>
+                <div
+                  className="form-group"
+                  onFocus={handleEventsMultiselectFocus}
+                  onBlur={handleEventsMultiselectBlur}
+                >
                   <label htmlFor="Events" className="form-label">
                     Events: &nbsp;
                   </label>
-                  <div className="multiselect-container"> {/* Wrap Multiselect in a container */}
+                  <div className="">
                     <Multiselect
                       name="events"
                       id="events"
@@ -306,17 +309,19 @@ const Profile = () => {
                       groupBy="category"
                       style={{
                         multiselectContainer: {
-                          marginBottom: isEventsMultiselectClicked ? "240px" : "0",
+                          marginBottom: isEventsMultiselectClicked
+                            ? "240px"
+                            : "0",
                           transition: "margin 1s ease-in-out",
                         },
                         optionContainer: {
-                          border: '2px solid',
+                          border: "2px solid",
                         },
                         searchWrapper: {
-                          height: '32px',
+                          height: "32px",
                         },
                         chips: {
-                          display: "none"
+                          display: "none",
                         },
                       }}
                     />
@@ -336,6 +341,6 @@ const Profile = () => {
       )}
     </div>
   );
-};
-
+              }
+                    
 export default Profile;

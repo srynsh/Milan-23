@@ -366,12 +366,12 @@ a {
 footer {
   display: flex;
   flex-direction: column;
-  height: 60vh;
+  height: 70vh;
   width: 100%;
   align-items: center;
-  margin-top: 4vw;
+  padding-top: 4vw;
   background: #fff;
-  margin-bottom: 7vh;
+  padding-bottom: 7vh;
 }
 
 .footer-img img {
@@ -733,7 +733,7 @@ ion-icon {
 
 .navbar-pending {
   text-decoration: none;
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   color: #390035;
   font-family: "Amboy";
   font-weight: 700;
@@ -928,10 +928,11 @@ ion-icon {
 
   .tp-domain-core-i-c-name {
     text-align: center;
+    font-size: 1.7rem;
   }
 
   .tp-domain-core-i {
-    gap: 2vh;
+    gap: 3vh;
   }
 
   .tp-domain-head-name {
@@ -950,6 +951,21 @@ ion-icon {
   .team-page > div:nth-child(4) .tp-domain-name {
     font-size: 1rem;
   }
+
+  .tp-domain-core-i-c-f {
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    background: #390035;
+    transition: 0.3s;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  
+  .tp-domain-core-i-c-f:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 12px 3px rgba(0, 0, 0, 0.25);
+    transition: 0.3s;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -958,14 +974,14 @@ ion-icon {
     width: 100vw;
     padding: 10vh 0;
     position: absolute;
-    gap: 8vh;
+    gap: 5vh;
     justify-content: center;
   }
   .navbar-options-hide {
     width: 100vw;
     padding: 10vh 0;
     position: absolute;
-    gap: 8vh;
+    gap: 5vh;
     justify-content: center;
   }
   .navbar-pending {
@@ -1006,14 +1022,15 @@ ion-icon {
     width: max-content;
     text-align: center;
     background: #700035;
-    padding: 4vh 1vw;
+    padding: 5vh 1vw;
+    border-radius: 3.5rem;
   }
   .main-head-text h1 {
     font-size: 5.5rem;
   }
 
   .main-head-text h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: center;
     margin-top: 3vh;
   }
@@ -1062,7 +1079,8 @@ ion-icon {
   }
 
   .main-ovr {
-    height: 75vh;
+    height: max-content;
+    margin-bottom: 3vh;
   }
 
   .main-ovr-head p {
@@ -1131,8 +1149,8 @@ ion-icon {
     flex-direction: column;
     width: 100%;
     align-items: center;
-    margin-top: 4vh;
-    margin-bottom: 5vh;
+    padding-top: 4vh;
+    padding-bottom: 5vh;
     height: max-content;
   }
 

@@ -3402,6 +3402,11 @@ react-cookie@^6.1.1:
     hoist-non-react-statics "^3.3.2"
     universal-cookie "^6.0.0"
 
+react-dialog-confirm@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/react-dialog-confirm/-/react-dialog-confirm-1.0.3.tgz"
+  integrity sha512-1k23irLe5KeUxLg69yzqSiGMzIjMM5Uh4/f53g/smuLdVVbxAox+1yxKTLdmKEwXfrUrkNqVqjGuMf6x9Rv5tg==
+
 "react-dom@^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^17.0.0 || ^18.0.0", react-dom@^18.0.0, react-dom@^18.2.0, react-dom@>=16.6.0, react-dom@>=16.8, react-dom@>=16.8.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
