@@ -7,7 +7,6 @@ import "../profile & calender.css";
 const ReactCalendar = () => {
   // Constants
   // State variables
-
   const [User, setUser] = useState({
     avatar: "",
     name: "",
@@ -103,16 +102,11 @@ const ReactCalendar = () => {
   const handlefilter = () => {
     console.log('filter toogle:', filtertoogle);
     
-    if (User.name === "") {
-      // User is not logged in, so redirect to the login page
-      var shouldRedirect = confirm("Please log in to view this page. Click OK to go to the login page.");
-      if (shouldRedirect) {
-        window.location.href = "/login";
-      }
-      else{
-        return;
-      }
-    }
+    if(User.name == "") {
+      //redirect to login
+      confirm("Please Login to view this page , Click OK to redirect to login page");
+      window.location.href = "/login";
+    };
     
     setFiltertoogle(!filtertoogle);
   }
@@ -132,24 +126,14 @@ const filterEvents = () => {
     console.log('userPreferredEvents:', userPreferredEvents);
     const filteredData = {};
 
-    if(typeof userPreferredEvents == 'undefined' || typeof userSupportedTeams[0] == 'undefined'){
-      setFilteredEvents(filteredData);
-      setLoading(false);
-      return;
-    }
-
-
     for (const date in transformedEventData) {
       const events = transformedEventData[date];
-
-     
       const filteredEvents = events.filter((event) => {
-       
-        const regex = /All Blocks/;
-       const team =event.body.toLowerCase()
+        
+         const team =event.body.toLowerCase()
         if(userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase() ) )console.log('event title:', event.id)
         return (
-          userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase()) || regex.test(event.body)
+          userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase()) || team === "all"
         );
       });
 
