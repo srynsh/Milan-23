@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-import '../mainpage.css'
+import { Link } from "react-router-dom";
+import "../mainpage.css";
 
 const Footer = () => {
   return (
     <footer>
       <div className="footer-img">
-        <img src="./assets/logos/red logo.png" />
+        <img src="./assets/logos/red logo.png" alt="Milan Logo" />
       </div>
       <div className="footer-links">
         <div className="footer-links-location">
@@ -27,13 +27,16 @@ const Footer = () => {
           <h3>FOLLOW US</h3>
           <div className="footer-links-follow-icons">
             <a href="https://www.instagram.com/milan.iithyd/">
-              <ion-icon name="logo-instagram"></ion-icon>
+              <ion-icon name="logo-instagram" aria-hidden="true"></ion-icon>
+              <span class="sr-only">Visit Milan on Instagram</span>
             </a>
             <a href="https://youtube.com/@milanthegc?si=YGpf-L4UPb0oVJam">
-              <ion-icon name="logo-youtube"></ion-icon>
+              <ion-icon name="logo-youtube" aria-hidden="true"></ion-icon>
+              <span class="sr-only">Visit Milan on YouTube</span>
             </a>
             <a href="https://www.linkedin.com/company/milanthegc/">
-              <ion-icon name="logo-linkedin"></ion-icon>
+              <ion-icon name="logo-linkedin" aria-hidden="true"></ion-icon>
+              <span class="sr-only">Visit Milan on LinkedIn</span>
             </a>
           </div>
         </div>
