@@ -40,11 +40,11 @@ const Home = () => {
                   LOGIN
                 </NavLink>}
                 <div className="main-head-img">
-                  <img src="./assets/logos/logocream.png" />
+                  <img src="./assets/logos/logocream.png" alt="Official Milan Logo 2023"/>
                 </div>
                 <div className="main-head-text">
                   <h1>MILAN</h1>
-                  <h3>THE GENERAL CHAMPIONSHIP OF IITH</h3>
+                  <h2>THE GENERAL CHAMPIONSHIP OF IITH</h2>
                 </div>
               </div>
             </section>
@@ -79,7 +79,7 @@ const Home = () => {
             </section>
             <section className="main-mascot">
               <div className="mascot-image">
-                <img src="./assets/logos/pablo.png" alt="mascot" />
+                <img src="./assets/logos/pablo.png" alt="Pablo Mascot" />
               </div>
               <div className="mascot-desc">
                 Introducing our mesmerizing mascot <br />
