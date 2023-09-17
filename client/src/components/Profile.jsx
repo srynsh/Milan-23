@@ -176,7 +176,7 @@ const Profile = () => {
     }
     //console.log(User);
     axios
-      .post(process.env.BACKEND_VITE_URL + "profile/update", User, {
+      .post(import.meta.env.VITE_BACKEND_URL + "profile/update", User, {
         withCredentials: true,
       })
       .then((data) => {

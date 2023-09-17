@@ -1,2 +1,2 @@
-export const SERVER_URL = process.env.BACKEND_VITE_URL; 
-export const SOCKET_URL = process.env.BACKEND_VITE_URL; 
+export const SERVER_URL = import.meta.env.VITE_BACKEND_URL 
+export const SOCKET_URL = import.meta.env.VITE_SOCKET_URL

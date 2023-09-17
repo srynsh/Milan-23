@@ -67,13 +67,7 @@ const ReactCalendar = () => {
         setLoading(false);
       });
   }, []);
- useEffect(() => {
-  console.log('Transformed Event Data:', transformedEventData);
- },[transformedEventData])
 
- useEffect(() => {
-  console.log('Filtered Event Data:', filteredEvents);
- },[filteredEvents]) 
 
 
   useEffect(() => {
@@ -134,8 +128,16 @@ const filterEvents = () => {
     console.log('userPreferredEvents:', userPreferredEvents);
     const filteredData = {};
 
+    if(typeof userPreferredEvents == 'undefined' || typeof userSupportedTeams[0] == 'undefined'){
+      setFilteredEvents(filteredData);
+      setLoading(false);
+      return;
+    }
+
     for (const date in transformedEventData) {
       const events = transformedEventData[date];
+
+     
       const filteredEvents = events.filter((event) => {
         
          const team =event.body.toLowerCase()

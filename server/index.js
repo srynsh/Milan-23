@@ -10,9 +10,7 @@ import { Server } from 'socket.io'; import http from "http";
 import dotenv from 'dotenv';
 import pkg from 'pg';
 import url from 'url';
-import { scheduleJob } from 'node-schedule';
 import path from 'path';
-import schedule from 'node-schedule'
 import axios from 'axios';
 import fs from 'fs/promises'
 import updateData from './features/update.js';
@@ -33,8 +31,8 @@ const pool = new Pool({
 pool.connect()
 
 //start the job
-job.schedule();
-updateData.schedule();
+//job.schedule();
+//updateData.schedule();
 
 const app = express();
 const server = http.createServer(app)
@@ -42,7 +40,8 @@ const io = new Server(server, {
     cors: {
         origin: '*',
         methods: ["GET", "POST"]
-    }
+    },
+    path:'/socket.io'
 });
 
 let eventdata = [
@@ -92,7 +91,8 @@ let eventdata = [
 //Socket code goes here
 io.on('connection', (socket) => {
     console.log(`User connected: ${socket.id}`);
-
+    socket.emit("hello client")
+    
     socket.on("setup", (data) => {
         socket.emit("setupdata", eventdata)
         console.log(data);
@@ -190,7 +190,7 @@ io.on('connection', (socket) => {
 });
 
 const corsOptions = {
-    origin: [process.env.FRONTEND_URL,process.env.ADMIN_URL],
+    origin: '*',
     credentials: true, // Allow credentials (cookies, HTTP authentication)
 };
 app.use(express.json())
@@ -202,7 +202,7 @@ passport.use('user-google',
         {
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: '/auth/google/callback',
+            callbackURL: `${process.env.BACKEND_URL}/auth/google/callback`,
             scope: ['profile', 'email'],
         },
         (accessToken, refreshToken, profile, done) => {
@@ -217,7 +217,7 @@ passport.use('admin-google',
         {
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: '/auth/google/admin/callback',
+            callbackURL: process.env.BACKEND_URL+'/auth/google/admin/callback',
             scope: ['profile', 'email'],
         },
         (accessToken, refreshToken, profile, done) => {
@@ -251,7 +251,7 @@ app.get(
 
 app.get('/auth/google/callback',
     passport.authenticate('user-google', {
-        failureRedirect: '/login',
+        failureRedirect: process.env.FRONTEND_URL+'/login',
         session: false
     }),
     async function (req, res) {

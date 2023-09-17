@@ -44,7 +44,7 @@ pool.connect()
 
 
 // ...
-const interval = 3
+const interval = 15
 const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
     console.log(`running a task every ${interval} minutes`);
     let events = await getevents();
