@@ -369,9 +369,9 @@ footer {
   height: 60vh;
   width: 100%;
   align-items: center;
-  margin-top: 4vw;
+  padding-top: 4vw;
   background: #fff;
-  margin-bottom: 7vh;
+  padding-bottom: 7vh;
 }
 
 .footer-img img {
@@ -1006,7 +1006,8 @@ ion-icon {
     width: max-content;
     text-align: center;
     background: #700035;
-    padding: 4vh 1vw;
+    padding: 5vh 1vw;
+    border-radius: 3.5rem;
   }
   .main-head-text h1 {
     font-size: 5.5rem;
@@ -1062,7 +1063,8 @@ ion-icon {
   }
 
   .main-ovr {
-    height: 75vh;
+    height: max-content;
+    margin-bottom: 3vh;
   }
 
   .main-ovr-head p {
@@ -1131,8 +1133,8 @@ ion-icon {
     flex-direction: column;
     width: 100%;
     align-items: center;
-    margin-top: 4vh;
-    margin-bottom: 5vh;
+    padding-top: 4vh;
+    padding-bottom: 5vh;
     height: max-content;
   }
 
