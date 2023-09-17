@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../livescore.css';
 import { Football } from "../components/Football";
 import { Hockey } from "../components/Hockey";
@@ -12,30 +12,7 @@ import { Volleyball } from "../components/Volleyball";
 import { LiveScoreState } from '../context/LiveScoreProvider';
 
 export const LiveScoresPage = () => {
-  const [eventsdata, setEventsdata] = useState(null);
   const livescore = LiveScoreState()
-  // useEffect(() => {
-  //   function upDateScores() {
-  //     fetch("./demo2.json")
-  //       .then(response => {
-  //         if (!response.ok) {
-  //           throw new Error(`Network response was not ok. Status: ${response.status}`);
-  //         }
-  //         return response.json();
-  //       })
-  //       .then(data => {
-  //         setEventsdata(data);
-
-  //       })
-  //       .catch(error =>{
-  //         console.error(error);
-  //       });
-  //   }
-
-  //   upDateScores();
-  //   const intervalId = setInterval(upDateScores, 5000);
-  //   return () => clearInterval(intervalId);
-  // }, []);
   
   function DisplayScores(indData){
       if(indData.sport === "Football"){
@@ -85,7 +62,6 @@ export const LiveScoresPage = () => {
       }
       
   }
-
 
   return (
     

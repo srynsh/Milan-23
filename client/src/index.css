@@ -28,16 +28,19 @@ html {
 @font-face {
   font-family: "Amboy";
   src: url("../fonts/Parkinson\ -\ Amboy-Black.otf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "OctoberDevanagari";
   src: url("../fonts/OctoberDevanagari.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "ArianaPro";
   src: url("../fonts/Ariana Pro Regular.otf");
+  font-display: swap;
 }
 * {
   margin: 0;
