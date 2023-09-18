@@ -8,10 +8,10 @@
         min-height: 100vh;
     }
     .OverallScoresContainer{
-        height: 28rem;
+        height: 20rem;
     }
     .canvas-container{
-        height: 20rem;
+        height: 28rem;
         width: 60%;
         margin: auto;
         padding-top: 1rem;
