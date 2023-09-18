@@ -313,7 +313,7 @@ a {
 .main-ovr {
   margin-top: 10vh;
   width: 100vw;
-  height: 110vh;
+  height: 115vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -347,7 +347,7 @@ a {
 }
 
 .main-ovr-stat {
-  height: 55vh;
+  height: 65vh;
   background-color: #ffd1a8;
   margin-top: 3vw;
   width: 80vw;
@@ -1257,8 +1257,8 @@ ion-icon {
 }
 
 .home-leaderboard-chart {
-  width: 95%;
-  height: 95%;
+  width: 98%;
+  height: 100%;
   padding: 14px;
 }
 
@@ -1268,7 +1268,7 @@ ion-icon {
 }
 
 .blockrace iframe {
-  height: 55vh;
+  height: 64vh;
   width: inherit;
   padding: 1vh;
   border-radius: 20px;

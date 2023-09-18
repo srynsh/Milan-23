@@ -99,7 +99,7 @@ const Home = () => {
             </section>
             <section className="main-ovr">
               <div className="main-ovr-head">
-                <p>Overall LeaderBoard</p>
+                <p>Overall Leaderboard</p>
               </div>
               <div className="main-ovr-subhead">
                 <div
@@ -108,7 +108,7 @@ const Home = () => {
                     setRaceGraph(true);
                   }}
                 >
-                  <p>LeaderBoard</p>
+                  <p>Leaderboard</p>
                 </div>
                 <div
                   className="main-ovr-subhead1"
