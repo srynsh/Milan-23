@@ -3,7 +3,6 @@ import Loading from "./Loading";
 import axios from "axios";
 import "../profile & calender.css";
 
-
 const ReactCalendar = () => {
   // Constants
   // State variables
@@ -29,23 +28,24 @@ const ReactCalendar = () => {
     setLoading(true);
 
     // Fetch events data
-    
-    axios.get(import.meta.env.VITE_BACKEND_URL + 'eventsSchedule')
+
+    axios
+      .get(import.meta.env.VITE_BACKEND_URL + "eventsSchedule")
       .then((res) => {
-       // console.log('res:', res);
+        console.log("res:", res);
         if (res.status !== 200) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         setTransformedEventData(res.data);
       })
-     
+
       .catch((error) => {
-        console.error('Error fetching or parsing JSON:', error);
+        console.error("Error fetching or parsing JSON:", error);
       });
 
     // Fetch user profile data using Axios
     axios
-      .get(import.meta.env.VITE_BACKEND_URL + 'profile', {
+      .get(import.meta.env.VITE_BACKEND_URL + "profile", {
         withCredentials: true,
       })
       .then((response) => {
@@ -57,11 +57,11 @@ const ReactCalendar = () => {
           supportedTeams: userData.supportedTeams,
           events: userData.preferedEvents,
         });
-        //('response data:', response.data.user);
+        console.log("response data:", response.data.user);
         setUserDataLoaded(true); // Signal that user data has loaded
       })
       .catch((error) => {
-        console.error('Error fetching user details: ', error);
+        console.error("Error fetching user details: ", error);
         setUserDataLoaded(true); // Signal that user data has loaded even in case of an error
       })
       .finally(() => {
@@ -72,22 +72,19 @@ const ReactCalendar = () => {
     if (userDataLoaded) {
       // Perform actions that rely on the updated User state here
       filterEvents();
-      //console.log('User Data:', User);
+      console.log("User Data:", User);
     }
   }, [userDataLoaded, User]);
 
   useEffect(() => {
-
     setLoading(true);
     let temp = transformedEventData;
     setTransformedEventData(filteredEvents);
     setFilteredEvents(temp);
     setLoading(false);
-  },[filtertoogle])
-
+  }, [filtertoogle]);
 
   //filtering the Events Based on user selections
- 
 
   // Handle date click
   const handleDateClick = (date) => {
@@ -100,39 +97,53 @@ const ReactCalendar = () => {
   };
 
   const handlefilter = () => {
-   // console.log('filter toogle:', filtertoogle);
-    
-    if(User.name == "") {
+    console.log("filter toogle:", filtertoogle);
+
+    if (User.name == "") {
       //redirect to login
-      confirm("Please Login to view this page , Click OK to redirect to login page");
-      window.location.href = "/login";
-    };
-    
+      var confirm_bool = confirm(
+        "Please Login to view this page. Click OK to redirect to the login page."
+      );
+
+      if (confirm_bool) {
+        window.location.href = "/login";
+      } else {
+        //do nothing
+        return
+      }
+    }
+
     setFiltertoogle(!filtertoogle);
-  }
+  };
 
   //filter events
-const filterEvents = () => {
+  const filterEvents = () => {
     // Filter events based on user's preferred events and supported teams
-  setLoading(true);
-  //console.log('User Data inside :', User)
-   if(User.name == ""){
-    setLoading(false);
-    return;
-   }
-   
+    setLoading(true);
+    console.log("User Data inside :", User);
+    if (User.name == "") {
+      setLoading(false);
+      return;
+    }
+
     const userPreferredEvents = User.events;
     const userSupportedTeams = User.supportedTeams;
-   // console.log('userPreferredEvents:', userPreferredEvents);
+    console.log("userPreferredEvents:", userPreferredEvents);
     const filteredData = {};
 
     for (const date in transformedEventData) {
       const events = transformedEventData[date];
       const filteredEvents = events.filter((event) => {
-        
-         const team =event.body.toLowerCase()
+        const team = event.body.toLowerCase();
+        if (
+          userPreferredEvents.includes(event.title) ||
+          team.includes(User.supportedTeams[0].toLowerCase())
+        )
+          console.log("event title:", event.id);
         return (
-          userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase()) || event.body.includes('All Blocks')
+          userPreferredEvents.includes(event.title) ||
+          team.includes(User.supportedTeams[0].toLowerCase()) ||
+          team === "all"
         );
       });
 
@@ -140,7 +151,7 @@ const filterEvents = () => {
         filteredData[date] = filteredEvents;
       }
     }
-    
+
     setFilteredEvents(filteredData);
     setLoading(false);
   };
@@ -152,7 +163,7 @@ const filterEvents = () => {
     const DAYS_IN_MONTH = new Date(year, month + 1, 0).getDate();
     const daysArray =
       currentMonth === "SEPTEMBER"
-        ? ["Su", "Mn", "Tu", "Wd", "Th","Fr", "St"," "," "," "," "," "]
+        ? ["Su", "Mn", "Tu", "Wd", "Th", "Fr", "St", " ", " ", " ", " ", " "]
         : ["Sn", "Mn", "Tu", "Wd", "Th", "Fr", "St"];
 
     // Render day headers
@@ -193,6 +204,9 @@ const filterEvents = () => {
 
     return (
       <div>
+        <button onClick={() => setSelectedDate(null)} className="close-button">
+          Close
+        </button>
         {categories.map((category) => (
           <EventsDialog
             key={category}
@@ -211,12 +225,6 @@ const filterEvents = () => {
       <div className="events-dialog">
         <div className="dialog-header">
           <span>{selectedDate}</span>
-          <button
-            onClick={() => setSelectedDate(null)}
-            className="close-button"
-          >
-            Close
-          </button>
         </div>
         <div className="events-list">
           <h3>{`${category} Events:`}</h3>
@@ -241,22 +249,22 @@ const filterEvents = () => {
   // Render calendar container
   return (
     <div>
-    {loading ? (
-      <Loading />
-    ) : (
-      <div className="calendar-dov">
-        <div className="calendar-container">
-          <div className="calendar-header">
-            <h2>{currentMonth}</h2>
-            <button onClick={handleMonthChange}>{"</>"}</button>
-            <button onClick={handlefilter}>Filter</button>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="calendar-dov">
+          <div className="calendar-container">
+            <div className="calendar-header">
+              <h2>{currentMonth}</h2>
+              <button onClick={handleMonthChange}>{"</>"}</button>
+              <button onClick={handlefilter}>Filter</button>
+            </div>
+            <div className="calendar">{renderCalendar()}</div>
+            {renderEventsDialog()}
           </div>
-          <div className="calendar">{renderCalendar()}</div>
-          {renderEventsDialog()}
         </div>
-      </div>
-    )}
-  </div>
+      )}
+    </div>
   );
 };
 

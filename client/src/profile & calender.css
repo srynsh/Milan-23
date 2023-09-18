@@ -3,16 +3,19 @@
 @font-face {
   font-family: "Amboy";
   src: url("../fonts/Parkinson\ -\ Amboy-Black.otf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "OctoberDevanagari";
   src: url("../fonts/OctoberDevanagari.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "ArianaPro";
   src: url("../fonts/Ariana Pro Regular.otf");
+  font-display: swap;
 }
 /* Common styles */
 :root {
@@ -257,6 +260,7 @@ h1 {
   font-weight: 700;
   padding: 8px 4px;
   font-size: 16px;
+  color:black;
 }
 
 .calendar-day:hover {
@@ -268,7 +272,9 @@ h1 {
   background-color: var(--primary-color);
   color: #fff;
 }
-
+.optionListContainer{
+  top:50px;
+}
 .events-dialog {
   background-color: #fff;
   padding: 20px;
@@ -290,6 +296,9 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+}
+.flex{
+  
 }
 
 .close-button:hover {

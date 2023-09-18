@@ -23,58 +23,55 @@ const Profile = () => {
   const [eventsValid, setEventsValid] = useState(false);
   const [teamsValid, setTeamsValid] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // Update window width when the component mounts and when resized
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   //console.log(input_event)
   useEffect(() => {
-    const fetchData = async () => {
-      await fetch("/events.json", {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+    fetch("./events.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
+        return response.json();
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          const inputList = data.inputList;
-          esetoptions(inputList);
+      .then((data) => {
+        const inputList = data.inputList;
+        esetoptions(inputList);
 
-          // You can use 'inputList' here or perform any other operations with it
-        })
-        .catch((error) => {
-          console.error("Error fetching or parsing JSON:", error);
-        });
+        // You can use 'inputList' here or perform any other operations with it
+      })
+      .catch((error) => {
+        console.error("Error fetching or parsing JSON:", error);
+      });
 
-
-      await fetch("/teams.json", {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+    fetch("./teams.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
+        return response.json();
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          const inputList = data.inputList;
-          tsetoptions(inputList);
+      .then((data) => {
+        const inputList = data.inputList;
+        tsetoptions(inputList);
 
-          // You can use 'inputList' here or perform any other operations with it
-        })
-        .catch((error) => {
-          console.error("Error fetching or parsing JSON:", error);
-        });
-    }
-
-    fetchData()
-  }, [])
+        // You can use 'inputList' here or perform any other operations with it
+      })
+      .catch((error) => {
+        console.error("Error fetching or parsing JSON:", error);
+      });
+  }, []);
   //User Details Import from Backend
 
   const [User, setUser] = useState({
@@ -108,9 +105,6 @@ const Profile = () => {
           supportedTeams: userData.supportedTeams,
           events: userData.preferedEvents,
         });
-
-
-
       })
 
       .catch((error) => {
@@ -121,8 +115,6 @@ const Profile = () => {
     setTimeout(() => {
       setLoading(false);
     }, 1300);
-
-
   }, []);
 
   // Handling selections/Changes in the Form
@@ -182,6 +174,7 @@ const Profile = () => {
           }
         });
       console.log("done");
+      console.log(User);
     }
   };
 
@@ -258,7 +251,7 @@ const Profile = () => {
                       name="supportingTeams"
                       id="supportingTeams"
                       isObject={false}
-                      placeholder={'Search Team'}
+                      placeholder={"Search Team"}
                       displayValue="supportingTeams"
                       options={toptions}
                       onSelect={handleBlocksSelect}
@@ -301,7 +294,7 @@ const Profile = () => {
                       onSelect={handleEventsSelect}
                       onRemove={handleEventsRemove}
                       displayValue="name"
-                      placeholder={"Search Events"}
+                      placeholder={User.events.length + " Events Selected"}
                       showCheckbox
                       className="inputborder custom-multiselect-container"
                       showArrow
@@ -321,26 +314,27 @@ const Profile = () => {
                           height: "32px",
                         },
                         chips: {
-                          display: "none",
+                          display: windowWidth <= 500 ? "none" : "flex-box",
                         },
                       }}
                     />
                   </div>
                 </div>
-                <button type="submit" onSubmit={handleSubmit} className="submit-button">
-                  Submit
-                </button>
-
               </div>
+              <button
+                type="submit"
+                onSubmit={handleSubmit}
+                className="submit-button"
+              >
+                Submit
+              </button>
             </form>
           </div>
-          <div>
-
-          </div>
+          <div></div>
         </>
       )}
     </div>
   );
-              }
-                    
+};
+
 export default Profile;
