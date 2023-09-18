@@ -298,7 +298,8 @@ h1 {
   transition: background-color 0.2s ease-in-out;
 }
 .flex{
-  
+  display: flex;
+  justify-content:right;
 }
 
 .close-button:hover {

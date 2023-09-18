@@ -24,21 +24,24 @@ html {
 @font-face {
   font-family: "Amboy";
   src: url("../fonts/Parkinson\ -\ Amboy-Black.otf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "OctoberDevanagari";
   src: url("../fonts/OctoberDevanagari.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "ArianaPro";
   src: url("../fonts/Ariana Pro Regular.otf");
+  font-display: swap;
 }
 * {
   margin: 0;
   padding: 0;
-  font-family: "ArianaPro";
+  font-family: "ArianaPro", sans-serif;
 }
 
 a {
@@ -141,7 +144,7 @@ a {
   user-select: none;
 }
 
-.main-head-text h3 {
+.main-head-text h2 {
   font-size: 1.9rem;
   color: #ffd1a8;
   font-weight: 400;
@@ -310,7 +313,7 @@ a {
 .main-ovr {
   margin-top: 10vh;
   width: 100vw;
-  height: 110vh;
+  height: 115vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1029,7 +1032,7 @@ ion-icon {
     font-size: 5.5rem;
   }
 
-  .main-head-text h3 {
+  .main-head-text h2 {
     font-size: 1.3rem;
     text-align: center;
     margin-top: 3vh;
@@ -1254,8 +1257,8 @@ ion-icon {
 }
 
 .home-leaderboard-chart {
-  width: 95%;
-  height: 95%;
+  width: 98%;
+  height: 100%;
   padding: 14px;
 }
 
@@ -1265,7 +1268,7 @@ ion-icon {
 }
 
 .blockrace iframe {
-  height: 55vh;
+  height: 64vh;
   width: inherit;
   padding: 1vh;
   border-radius: 20px;

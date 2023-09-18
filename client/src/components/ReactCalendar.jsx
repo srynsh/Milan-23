@@ -126,7 +126,9 @@ const ReactCalendar = () => {
       return;
     }
 
-    const userPreferredEvents = User.events;
+    const userPreferredEvents = User.events.map((obj)=>{
+      return obj.toLowerCase();
+    });
     const userSupportedTeams = User.supportedTeams;
     console.log("userPreferredEvents:", userPreferredEvents);
     const filteredData = {};
@@ -135,15 +137,10 @@ const ReactCalendar = () => {
       const events = transformedEventData[date];
       const filteredEvents = events.filter((event) => {
         const team = event.body.toLowerCase();
-        if (
-          userPreferredEvents.includes(event.title) ||
-          team.includes(User.supportedTeams[0].toLowerCase())
-        )
-          console.log("event title:", event.id);
+
         return (
-          userPreferredEvents.includes(event.title) ||
-          team.includes(User.supportedTeams[0].toLowerCase()) ||
-          team === "All Blocks"
+          userPreferredEvents.includes(event.title.toLowerCase()) &&
+          team.includes(User.supportedTeams[0].toLowerCase()) 
         );
       });
 
@@ -151,7 +148,8 @@ const ReactCalendar = () => {
         filteredData[date] = filteredEvents;
       }
     }
-
+    console.log(transformedEventData)
+    console.log(filteredData)
     setFilteredEvents(filteredData);
     setLoading(false);
   };
