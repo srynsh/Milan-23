@@ -298,9 +298,13 @@ h1 {
   transition: background-color 0.2s ease-in-out;
 }
 .flex{
-  display: flex;
+  display: block;
   justify-content:right;
 }
+.white-text {
+  color: white;
+}
+
 
 .close-button:hover {
   background-color: #4a2d6d; /* Darken the color on hover */

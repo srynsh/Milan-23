@@ -137,9 +137,11 @@ const ReactCalendar = () => {
       const events = transformedEventData[date];
       const filteredEvents = events.filter((event) => {
         const team = event.body.toLowerCase();
+        
+        console.log(team.includes(User.supportedTeams[0].toLowerCase()))
 
         return (
-          userPreferredEvents.includes(event.title.toLowerCase()) ||
+          userPreferredEvents.includes(event.title.toLowerCase()) &&
           team.includes(User.supportedTeams[0].toLowerCase()) 
         );
       });
