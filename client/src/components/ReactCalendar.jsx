@@ -32,7 +32,7 @@ const ReactCalendar = () => {
     
     axios.get(import.meta.env.VITE_BACKEND_URL + 'eventsSchedule')
       .then((res) => {
-        console.log('res:', res);
+       // console.log('res:', res);
         if (res.status !== 200) {
           throw new Error('Network response was not ok');
         }
@@ -57,7 +57,7 @@ const ReactCalendar = () => {
           supportedTeams: userData.supportedTeams,
           events: userData.preferedEvents,
         });
-        console.log('response data:', response.data.user);
+        //('response data:', response.data.user);
         setUserDataLoaded(true); // Signal that user data has loaded
       })
       .catch((error) => {
@@ -72,7 +72,7 @@ const ReactCalendar = () => {
     if (userDataLoaded) {
       // Perform actions that rely on the updated User state here
       filterEvents();
-      console.log('User Data:', User);
+      //console.log('User Data:', User);
     }
   }, [userDataLoaded, User]);
 
@@ -100,7 +100,7 @@ const ReactCalendar = () => {
   };
 
   const handlefilter = () => {
-    console.log('filter toogle:', filtertoogle);
+   // console.log('filter toogle:', filtertoogle);
     
     if(User.name == "") {
       //redirect to login
@@ -115,7 +115,7 @@ const ReactCalendar = () => {
 const filterEvents = () => {
     // Filter events based on user's preferred events and supported teams
   setLoading(true);
-   console.log('User Data inside :', User)
+  //console.log('User Data inside :', User)
    if(User.name == ""){
     setLoading(false);
     return;
@@ -123,7 +123,7 @@ const filterEvents = () => {
    
     const userPreferredEvents = User.events;
     const userSupportedTeams = User.supportedTeams;
-    console.log('userPreferredEvents:', userPreferredEvents);
+   // console.log('userPreferredEvents:', userPreferredEvents);
     const filteredData = {};
 
     for (const date in transformedEventData) {
@@ -131,9 +131,8 @@ const filterEvents = () => {
       const filteredEvents = events.filter((event) => {
         
          const team =event.body.toLowerCase()
-        if(userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase() ) )console.log('event title:', event.id)
         return (
-          userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase()) || team === "all"
+          userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase()) || event.body.includes('All Blocks')
         );
       });
 

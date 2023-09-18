@@ -33,7 +33,7 @@ pool.connect()
 
 //start the job
 //// job.schedule();
- updateData.schedule();
+updateData.schedule();
 
 const app = express();
 const server = http.createServer(app)
