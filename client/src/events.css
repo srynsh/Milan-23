@@ -19,7 +19,7 @@
     }
     @media (max-width: 640px) {
         .canvas-container{
-            height: 30rem;
+            height: 36rem;
             width: 80%;
             margin: auto;
             padding-top: 0.5rem;
