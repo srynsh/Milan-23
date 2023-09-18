@@ -197,13 +197,26 @@
   background-color: #390035;
   border: none;
   outline: none;
-  width: 70px;
+  width: 90px;
   /* height: 50px; */
-  padding: 20px;
+  padding: 10px;
   font-size: 1.8rem;
   font-weight: 600;
   text-align: center;
   border-radius: 20px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 .fhtb-sc-w button {

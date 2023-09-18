@@ -20,7 +20,7 @@ function Navbar({ showNav, setShowNav }) {
         </NavLink>
         <NavLink
           onClick={() => setShowNav(!showNav)}
-          to="/events"
+          to="/leaderboard"
           className={({ isActive, isPending }) =>
             isPending
               ? "navbar-pending"
@@ -29,7 +29,7 @@ function Navbar({ showNav, setShowNav }) {
               : "navbar-pending"
           }
         >
-          EVENTS
+          LEADERBOARD
         </NavLink>
         <NavLink
           onClick={() => setShowNav(!showNav)}

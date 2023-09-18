@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import CoverflowGallery from "../components/Swiper";
 import BlockRace from "../components/BlockRace";
@@ -18,12 +18,12 @@ const Home = () => {
     // You can add your login logic here, e.g., making an API call to verify credentials.
     // For this example, we'll simulate a successful login after a button click.
     // use auth call back
-    window.location.href = import.meta.env.VITE_BACKEND_URL+'auth/google';
+    window.location.href = import.meta.env.VITE_BACKEND_URL + 'auth/google';
     //setLoggedIn(true);
   };
 
   const handleLogout = () => {
-    removeCookie('authtoken', {path:'/'});  
+    removeCookie('authtoken', { path: '/' });
   }
   return (
     <>
@@ -32,19 +32,19 @@ const Home = () => {
           <div className="main-bg-vector">
             <section className="main-top">
               <div className="main-head">
-                {authcookie ?               
-                <NavLink onClick={handleLogout} className={'top-8 sm:right-4 md:right-32 lg:right-64 absolute text-white rounded p-2 text-lg bg-[#390035] hover:shadow-xl transition hover:scale-110 z-10'}>
-                  LOGOUT
-                </NavLink>: 
-                <NavLink onClick={handleLogin} className={'top-8 sm:right-4 md:right-32 lg:right-64 absolute text-white rounded p-2 text-lg bg-[#390035] hover:shadow-xl transition hover:scale-110 z-10'}>
-                  LOGIN
-                </NavLink>}
+                {authcookie ?
+                  <NavLink onClick={handleLogout} className={'top-8 sm:right-4 md:right-32 lg:right-64 absolute text-white rounded p-2 text-lg bg-[#390035] hover:shadow-xl transition hover:scale-110 z-10'}>
+                    LOGOUT
+                  </NavLink> :
+                  <NavLink onClick={handleLogin} className={'top-8 sm:right-4 md:right-32 lg:right-64 absolute text-white rounded p-2 text-lg bg-[#390035] hover:shadow-xl transition hover:scale-110 z-10'}>
+                    LOGIN
+                  </NavLink>}
                 <div className="main-head-img">
-                  <img src="./assets/logos/logocream.png" />
+                  <img src="./assets/logos/logocream.png" alt="Official Milan Logo 2023" />
                 </div>
                 <div className="main-head-text">
                   <h1>MILAN</h1>
-                  <h3>THE GENERAL CHAMPIONSHIP OF IITH</h3>
+                  <h2>THE GENERAL CHAMPIONSHIP OF IITH</h2>
                 </div>
               </div>
             </section>
@@ -56,12 +56,13 @@ const Home = () => {
                 </div>
                 <div className="main-mid-text-desc">
                   <p>
-                    "Milan" is the annual techno-cultural-sports General
-                    Championship of IIT Hyderabad. It consists of 19 Sports, 18
-                    Cultural and 11 technical events conducted between all the
-                    hostel blocks. In this second edition of Milan,presented by
-                    SBI YONO, the sports, cultural, and technical events will
-                    start from 9th September and will conclude on 18th September
+                    "Milan," the general championship of IIT, consisting of sports, cultural,
+                    and sci-tech events, is going to take place from 22nd September to 1st October.
+                    It consists of 24 cultural, 13 sports, 12 sci-tech and 4 collaborative club events,
+                    making a total of 53 events. There will be 5 trophies, out of which one is the
+                    grand Overall Championship crowned to the all-round performers.
+                    A high voltage competition between 18 hostels will be witnessed this time.
+                    This is the 4th edition of Milan, presented by PureEV.
                   </p>
                 </div>
               </div>
@@ -79,7 +80,7 @@ const Home = () => {
             </section>
             <section className="main-mascot">
               <div className="mascot-image">
-                <img src="./assets/logos/pablo.png" alt="mascot" />
+                <img src="./assets/logos/pablo.png" alt="Pablo Mascot" />
               </div>
               <div className="mascot-desc">
                 Introducing our mesmerizing mascot <br />
