@@ -139,7 +139,7 @@ const ReactCalendar = () => {
         const team = event.body.toLowerCase();
 
         return (
-          userPreferredEvents.includes(event.title.toLowerCase()) &&
+          userPreferredEvents.includes(event.title.toLowerCase()) ||
           team.includes(User.supportedTeams[0].toLowerCase()) 
         );
       });

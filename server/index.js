@@ -421,7 +421,6 @@ app.get('/hello', async (req, res) => {
 //update supporting teams
 app.post('/profile/update', verifyUser, async (req, res) => {
     const { supportedTeams, preferedEvents, events } = req.body; // Assuming supportedTeams and preferedEvents are arrays of team names or event IDs.
-
     const userEmail = res.locals.email;
 
     try {
@@ -436,6 +435,20 @@ app.post('/profile/update', verifyUser, async (req, res) => {
         }
 
         const userId = getUserIdResult.rows[0].user_id;
+
+        // Fetch the user's current supported teams and preferred events from the database.
+        const getCurrentSupportedTeamsQuery = 'SELECT supporting_team_name FROM supporting_teams WHERE user_id = $1 AND email = $2';
+        const getCurrentPreferredEventsQuery = 'SELECT prefered_event_name FROM prefered_event WHERE user_id = $1 AND email = $2';
+
+        const currentSupportedTeamsResult = await pool.query(getCurrentSupportedTeamsQuery, [userId, userEmail]);
+        const currentPreferredEventsResult = await pool.query(getCurrentPreferredEventsQuery, [userId, userEmail]);
+
+        const currentSupportedTeams = currentSupportedTeamsResult.rows.map(row => row.supporting_team_name);
+        const currentPreferredEvents = currentPreferredEventsResult.rows.map(row => row.prefered_event_name);
+
+        // Identify teams and events to delete.
+        const teamsToDelete = currentSupportedTeams.filter(team => !supportedTeams.includes(team));
+        const eventsToDelete = currentPreferredEvents.filter(event => !events.includes(event));
 
         // Insert supported teams for the user into the supporting_teams table.
         for (const team of supportedTeams) {
@@ -460,7 +473,6 @@ app.post('/profile/update', verifyUser, async (req, res) => {
             }
         }
 
-
         // Insert preferred events for the user into the prefered_event table.
         if (events) {
             for (const event of events) {
@@ -484,8 +496,14 @@ app.post('/profile/update', verifyUser, async (req, res) => {
                     console.error('Error:', error);
                 }
             }
-
         }
+
+        // Delete unsupported teams and events.
+        const deleteUnsupportedTeamsQuery = 'DELETE FROM supporting_teams WHERE user_id = $1 AND email = $2 AND supporting_team_name = ANY($3)';
+        const deleteUnsupportedEventsQuery = 'DELETE FROM prefered_event WHERE user_id = $1 AND email = $2 AND prefered_event_name = ANY($3)';
+
+        await pool.query(deleteUnsupportedTeamsQuery, [userId, userEmail, teamsToDelete]);
+        await pool.query(deleteUnsupportedEventsQuery, [userId, userEmail, eventsToDelete]);
 
         res.send({ success: true, message: 'Profile updated successfully' });
 
@@ -493,7 +511,6 @@ app.post('/profile/update', verifyUser, async (req, res) => {
         console.error(error);
         res.status(500).json({ success: false, message: 'Profile update failed' });
     }
-
 });
 
 // app.use('/api/events', require('./events'))
