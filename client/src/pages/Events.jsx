@@ -16,7 +16,7 @@ export const Events = () => {
     <>
     <div className="events-page p-8">
       <div className="text-[#390035] events-container">
-        <div className="events-heading text-center text-[#390035] bg-[#f6b276] py-0 px-4 inline mx-auto my-8 rounded-lg">
+        <div className="events-heading text-center text-[#390035] bg-[#f6b276] p-2 mx-auto flex justify-center items-center w-2/5 sm:w-2/5 lg:w-1/6 rounded-lg">
           Events
         </div>
         <div className="flex justify-center">

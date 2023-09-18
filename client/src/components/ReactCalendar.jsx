@@ -143,7 +143,7 @@ const ReactCalendar = () => {
         return (
           userPreferredEvents.includes(event.title) ||
           team.includes(User.supportedTeams[0].toLowerCase()) ||
-          team === "all"
+          team === "All Blocks"
         );
       });
 

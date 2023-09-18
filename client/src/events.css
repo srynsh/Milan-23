@@ -11,7 +11,7 @@
         height: 28rem;
     }
     .canvas-container{
-        height: 28rem;
+        height: 36rem;
         width: 60%;
         margin: auto;
         padding-top: 1rem;
@@ -19,11 +19,11 @@
     }
     @media (max-width: 640px) {
         .canvas-container{
-            height: 38rem;
-            width: 80%;
+            height: 42rem;
+            width: 100%;
             margin: auto;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+            padding-top: 0.3rem;
+            padding-bottom: 0.3rem;
         }
         .OverallScoresContainer{
             height: 30rem;
@@ -43,6 +43,13 @@
         font-family: 'Amboy-Black';
         font-size: 2rem;
         margin: 2.5rem auto;
+    }
+    @media (max-width:400px) {
+        .events-heading{
+            font-family: 'Amboy-Black';
+            font-size: 1rem;
+            margin: 2.5rem auto;
+        }
     }
     .event-boxes{
         font-family: 'Amboy-Black';
