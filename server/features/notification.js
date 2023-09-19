@@ -67,7 +67,7 @@ const job = schedule.scheduleJob({ rule: rule, tz: 'Asia/Kolkata' }, async funct
     now.setSeconds(0);
     now.setMilliseconds(0);
     const minTime = new Date(now.getTime() + interval * 60 * 1000);
-    const maxTime = new Date(now.getTime() + (2 * interval) * 60 * 1000);
+    const maxTime = new Date(now.getTime() + (2 * interval-1) * 60 * 1000);
 
         events = events.filter((event) => {
             const startTime = new Date(event.StartTime);
@@ -86,7 +86,7 @@ const job = schedule.scheduleJob({ rule: rule, tz: 'Asia/Kolkata' }, async funct
             let recipientsArray = [];
             
             //if the event is for all teams, get all the users
-            if (event.Teams[0].includes('All Blocks')) {
+            if (event.includes('All Blocks')) {
                 recipientsArray = [
                     'bdb23@iith.ac.in',
                     'btech@iith.ac.in',
