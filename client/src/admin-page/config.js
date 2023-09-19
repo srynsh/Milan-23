@@ -1,2 +1,2 @@
-export const SERVER_URL = 'https://srynsh.com/backend'; 
-export const SOCKET_URL = 'https://srynsh.com'; 
+export const SERVER_URL = 'https://milan.org.in/backend'; 
+export const SOCKET_URL = 'https://milan.org.in'; 
