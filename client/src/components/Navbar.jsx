@@ -16,6 +16,7 @@ function Navbar({ showNav, setShowNav }) {
     letterSpacing: "0.03rem",
     fontSize: "1.2rem",
     boxShadow: "2px 4px 10px #888",
+    color: "white",
   };
 
   const [cookies, setCookie, removeCookie] = useCookies();
