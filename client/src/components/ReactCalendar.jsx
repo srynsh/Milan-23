@@ -143,7 +143,7 @@ console.log("User Data inside :", User);
 
         return (
           userPreferredEvents.includes(event.title.toLowerCase()) &&
-          team.includes(User.supportedTeams[0].toLowerCase())
+          ( team.includes(User.supportedTeams[0].toLowerCase()) || team.includes('all blocks'))
         );
       });
 
