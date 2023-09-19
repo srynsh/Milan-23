@@ -52,10 +52,9 @@ function AdminPage() {
           background:"#ffd1a8",
           boxShadow:"1px 2px 0 0 rgb(0,0,0,0.25)",
           cursor:"pointer",
-          color:"#000",
           borderRadius:"20px",
           fontWeight:"800",
-                color:"#700035"
+          color:"#700035"
           // marginBottom:"10vh"
         }}
         onClick={signout}>LOGOUT</div>

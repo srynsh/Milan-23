@@ -1,5 +1,21 @@
 export default [
   {
+    dom: "Web",
+    heads: [
+      "./assets/team/Vishwa Raghava Reddy.jpg",
+      "./assets/team/Poluri Rishi Manoj.jpg",
+      "./assets/team/Suryaansh Jain.jpeg",
+    ],
+    cores: [
+      "./assets/team/Adhith T.jpg",
+      "./assets/team/Chelamakuri Nihar Kartikeya.jpeg",
+      "./assets/team/Ajay Krishnan K.jpeg",
+      "./assets/team/LENKA YASWITH KRISHNA VAMSI.jpeg",
+      "./assets/team/Kilaru Sai Manasa Veena.jpg",
+      "./assets/team/Abhinay Sadineni.png",
+    ],
+  },
+  {
     dom: "Creatives",
     heads: ["./assets/team/Adheena S.jpg"],
     cores: [
@@ -34,22 +50,6 @@ export default [
     cores: [
       "./assets/team/Palem Rakesh Varshith.jpeg",
       "./assets/team/Manikanta Varun Varma Nadimpalli.jpeg",
-    ],
-  },
-  {
-    dom: "Web",
-    heads: [
-      "./assets/team/Vishwa Raghava Reddy.jpg",
-      "./assets/team/Poluri Rishi Manoj.jpg",
-      "./assets/team/Suryaansh Jain.jpeg",
-    ],
-    cores: [
-      "./assets/team/Adhith T.jpg",
-      "./assets/team/Chelamakuri Nihar Kartikeya.jpeg",
-      "./assets/team/Ajay Krishnan K.jpeg",
-      "./assets/team/LENKA YASWITH KRISHNA VAMSI.jpeg",
-      "./assets/team/Kilaru Sai Manasa Veena.jpg",
-      "./assets/team/Abhinay Sadineni.png",
     ],
   },
   {

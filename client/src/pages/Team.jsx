@@ -46,7 +46,10 @@ const TeamList = () =>
               .replace(".jpg", "")
               .replace(".JPG", "")
               .replace(".jpeg", "")
-              .toUpperCase()}
+              .toUpperCase()
+              .split(" ")
+              .slice(0,2)
+              .join(" ")}
           </div>
         </div>
       );
@@ -64,7 +67,10 @@ const TeamList = () =>
               .replace(".png", "")
               .replace(".PNG", "")
               .replace(".JPG", "")
-              .toUpperCase()}
+              .toUpperCase()
+              .split(" ")
+              .slice(0,2)
+              .join(" ")}
           </div>
         </div>
       );
