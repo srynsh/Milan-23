@@ -53,7 +53,7 @@ export const Events = () => {
             Techy
           </li>
         </div>
-        <div className="scoreboard-container w-5/6 bg-[#f6b276] text-center mx-auto my-4 rounded-2xl">
+        <div className="scoreboard-container w-full md:w-5/6 bg-[#f6b276] text-center mx-auto my-4 rounded-2xl">
           {WhichEvent === "sportsboys" ? <SportsBoysGraphs /> : null}
           {WhichEvent === "sportsgirls" ? <SportsGirlsGraphs /> : null}
           {WhichEvent === "culti" ? <CultiGraphs /> : null}
