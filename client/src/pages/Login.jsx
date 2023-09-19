@@ -8,31 +8,27 @@ function LoginPage() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = () => {
-    // You can add your login logic here, e.g., making an API call to verify credentials.
-    // For this example, we'll simulate a successful login after a button click.
-
-    // use auth call back
     window.location.href = import.meta.env.VITE_BACKEND_URL+'auth/google';
-
-    //setLoggedIn(true);
   };
 
   return (
-    <div className="login-container">
-      <h1>Login Page</h1>
-      {loggedIn ? (
-        <div>
-          <p>You are logged in!</p>
-          {/* Add your authenticated content here */}
-        </div>
-      ) : (
-        <div>
-          <p>Please click the button to log in.</p>
-          <button className="login-button" onClick={handleLogin}>
-            Login
-          </button>
-        </div>
-      )}
+    <div className='google-sign' style={{
+      width:'100vw',
+      height:'100vh',
+      background:`linear-gradient(
+        345deg,
+        rgba(111, 0, 53, 1) 4%,
+        rgba(57, 0, 53, 1) 34%,
+        rgba(64, 0, 64, 1) 58%,
+        rgba(111, 0, 53, 1) 96%
+      )`,
+      display:"flex",
+      justifyContent:"center",
+      alignItems:"center",
+    }}>
+      <button type="button" class="google-sign-in-button" onClick={handleLogin}>
+        Sign in with Google
+      </button>
     </div>
   );
 }
