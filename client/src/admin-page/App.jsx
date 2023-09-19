@@ -35,7 +35,7 @@ function AdminPage() {
   return (
     <SocketContext.Provider value={socket}>
       {!admincookie ? (
-        <div className="main">
+        <div className="main-admin">
           <SocketManager eventdata={eventdata} seteventdata={seteventdata} />
           {/*  Include in same route with auth checking */}
           {/* OR make a new admin.milan.iith.ac.in  */}
