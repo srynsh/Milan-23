@@ -14,6 +14,7 @@ import { Server } from 'socket.io';
 import url from 'url';
 import axios from 'axios';
 import updateData from './features/update.js';
+import job from './features/notification.js'
 
 //get environment variables
 dotenv.config();
@@ -32,7 +33,7 @@ const pool = new Pool({
 pool.connect()
 
 //start the job
-//// job.schedule();
+job.schedule();
 updateData.schedule();
 
 const app = express();

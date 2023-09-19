@@ -109,7 +109,7 @@ const ReactCalendar = () => {
         window.location.href = "/login";
       } else {
         //do nothing
-        return
+        return;
       }
     }
 
@@ -118,9 +118,9 @@ const ReactCalendar = () => {
 
   //filter events
   const filterEvents = () => {
-    // Filter events based on user's preferred events and supported teams
+// Filter events based on user's preferred events and supported teams
     setLoading(true);
-    console.log("User Data inside :", User);
+console.log("User Data inside :", User);
     if (User.name == "") {
       setLoading(false);
       return;
@@ -136,25 +136,27 @@ const ReactCalendar = () => {
     for (const date in transformedEventData) {
       const events = transformedEventData[date];
       const filteredEvents = events.filter((event) => {
+        const eventTitle = event.title; // Convert event title to lowercase
         const team = event.body.toLowerCase();
-        
+
         console.log(team.includes(User.supportedTeams[0].toLowerCase()))
 
         return (
           userPreferredEvents.includes(event.title.toLowerCase()) &&
-          team.includes(User.supportedTeams[0].toLowerCase()) 
+          team.includes(User.supportedTeams[0].toLowerCase())
         );
       });
 
       if (filteredEvents.length > 0) {
         filteredData[date] = filteredEvents;
-      }
+              }
     }
-    console.log(transformedEventData)
+console.log(transformedEventData)
     console.log(filteredData)
     setFilteredEvents(filteredData);
     setLoading(false);
   };
+
   // Render calendar
   const renderCalendar = () => {
     const month = currentMonth === "SEPTEMBER" ? 8 : 9;
@@ -182,12 +184,12 @@ const ReactCalendar = () => {
         .padStart(2, "0")}/${year}`;
       calendarDays.push(
         <div
-          key={i + 36}
-          className={`calendar-day ${
-            selectedDate === formattedDate ? "selected" : ""
-          }`}
-          onClick={() => handleDateClick(formattedDate)}
-        >
+        key={i + 36}
+        className={`calendar-day ${
+          selectedDate === formattedDate ? "selected" : ""
+        }`}
+        onClick={() => handleDateClick(formattedDate)}
+      >
           <div className="day">{i}</div>
         </div>
       );
@@ -204,9 +206,14 @@ const ReactCalendar = () => {
 
     return (
       <div>
-        <button onClick={() => setSelectedDate(null)} className="close-button">
-          Close
-        </button>
+        <div className="button-right">
+          <button
+            onClick={() => setSelectedDate(null)}
+            className="close-button"
+          >
+            Close
+          </button>
+        </div>
         {categories.map((category) => (
           <EventsDialog
             key={category}

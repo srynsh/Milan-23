@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 async function sendMail(mailDetails, oAuth2Client){
         try{
             const accessToken = await oAuth2Client.getAccessToken();
+            console.log('access token:',accessToken)
             const mailTransporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {

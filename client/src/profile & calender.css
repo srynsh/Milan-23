@@ -296,10 +296,12 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  margin:5px 20px;
 }
-.flex{
-  display: block;
-  justify-content:right;
+.button-right{
+  display: flex;
+  min-width: 100%;
+  justify-content: right;
 }
 .white-text {
   background-color: white;
