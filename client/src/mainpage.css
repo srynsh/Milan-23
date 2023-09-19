@@ -55,7 +55,7 @@ a {
 }
 
 .main-bg-vector {
-  background: url("./assets/bg-vectors/wavefull.png");
+  background: url("/assets/bg-vectors/wavefull.png");
   background-size: cover;
   background-position: 31% 12%;
   /* animation: bganim 3s infinite linear; */
@@ -469,7 +469,7 @@ ion-icon {
 .team-page {
   display: flex;
   flex-direction: column;
-  background: #ffd1a8 url("./assets/bg-vectors/team-bg.svg");
+  background: #ffd1a8 url("/assets/bg-vectors/team-bg.svg");
   overflow-x: hidden;
   background-repeat: repeat;
   background-size: contain;
