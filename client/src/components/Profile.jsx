@@ -7,22 +7,24 @@ import Loading from "./Loading";
 
 const Profile = () => {
   // options Data set import from the backend
-  const [eoptions, esetoptions] = useState([
-    "option1",
-    "option2",
-    "option3",
-    "option4",
-    "option5",
-    "option6",
-    "option7",
-    "option8",
-    "option9",
-  ]);
-  const [toptions, tsetoptions] = useState(["option1", "option2"]);
+  const [eoptions, esetoptions] = useState([]);
+  const [toptions, tsetoptions] = useState([]);
 
   const [eventsValid, setEventsValid] = useState(false);
   const [teamsValid, setTeamsValid] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // Update window width when the component mounts and when resized
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   //console.log(input_event)
   useEffect(() => {
@@ -162,6 +164,7 @@ const Profile = () => {
           }
         });
       console.log("done");
+      console.log(User);
     }
   };
 
@@ -281,7 +284,7 @@ const Profile = () => {
                       onSelect={handleEventsSelect}
                       onRemove={handleEventsRemove}
                       displayValue="name"
-                      placeholder={"Search Events"}
+                      placeholder={User.events.length + " Events Selected"}
                       showCheckbox
                       className="inputborder custom-multiselect-container"
                       showArrow
@@ -301,7 +304,7 @@ const Profile = () => {
                           height: "32px",
                         },
                         chips: {
-                          display: "none",
+                          display: windowWidth <= 500 ? "none" : "flex-box",
                         },
                       }}
                     />
