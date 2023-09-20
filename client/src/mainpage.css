@@ -55,7 +55,7 @@ a {
 }
 
 .main-bg-vector {
-  background: url("./assets/bg-vectors/wavefull.png");
+  background: url("/assets/bg-vectors/wavefull.png");
   background-size: cover;
   background-position: 31% 12%;
   /* animation: bganim 3s infinite linear; */
@@ -313,7 +313,7 @@ a {
 .main-ovr {
   margin-top: 10vh;
   width: 100vw;
-  height: 110vh;
+  height: 115vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -347,7 +347,7 @@ a {
 }
 
 .main-ovr-stat {
-  height: 55vh;
+  height: 65vh;
   background-color: #ffd1a8;
   margin-top: 3vw;
   width: 80vw;
@@ -469,7 +469,7 @@ ion-icon {
 .team-page {
   display: flex;
   flex-direction: column;
-  background: #ffd1a8 url("./assets/bg-vectors/team-bg.svg");
+  background: #ffd1a8 url("/assets/bg-vectors/team-bg.svg");
   overflow-x: hidden;
   background-repeat: repeat;
   background-size: contain;
@@ -709,7 +709,7 @@ ion-icon {
   justify-content: space-between;
   align-items: center;
   /* gap: 2vh; */
-  width: 40vw;
+  width: 33vw;
   height: 100%;
   background: #ffd1a8;
   position: fixed;
@@ -724,7 +724,7 @@ ion-icon {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 40vw;
+  width: 33vw;
   height: 100%;
   background: #ffd1a8;
   position: fixed;
@@ -781,7 +781,7 @@ ion-icon {
   align-items: center;
   justify-content: center;
   position: fixed;
-  right: 5vw;
+  right: 3.5vw;
   top: 2vh;
   border-radius: 50%;
   width: 83px;
@@ -1043,7 +1043,7 @@ ion-icon {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
+    height: max-content;
     width: 100vw;
     padding: 0;
   }
@@ -1071,6 +1071,8 @@ ion-icon {
   .main-mid-carousel {
     width: 100vw;
     height: 100%;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1257,8 +1259,8 @@ ion-icon {
 }
 
 .home-leaderboard-chart {
-  width: 95%;
-  height: 95%;
+  width: 98%;
+  height: 100%;
   padding: 14px;
 }
 
@@ -1268,7 +1270,7 @@ ion-icon {
 }
 
 .blockrace iframe {
-  height: 55vh;
+  height: 64vh;
   width: inherit;
   padding: 1vh;
   border-radius: 20px;

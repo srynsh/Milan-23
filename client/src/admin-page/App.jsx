@@ -34,24 +34,27 @@ function AdminPage() {
 
   return (
     <SocketContext.Provider value={socket}>
-      {admincookie ? (
-        <div className="main">
+      {!admincookie ? (
+        <div className="main-admin">
           <SocketManager eventdata={eventdata} seteventdata={seteventdata} />
           {/*  Include in same route with auth checking */}
           {/* OR make a new admin.milan.iith.ac.in  */}
-          <h1 className="heading">Milan Admin Panel</h1>
+          <h1 className="heading"  
+          style={{
+            marginTop:"10vh"
+          }}>Milan Admin Panel</h1>
           <div
             style={{
               position: "absolute",
-              top: "15vh",
-              right: "4vw",
-              padding: "20px",
-              background: "#fff",
+              top: "3vh",
+              right: "25vw",
+              padding: "15px 20px",
+              background: "#FFD1A8",
               boxShadow: "1px 2px 0 0 rgb(0,0,0,0.25)",
               cursor: "pointer",
-              color: "#000",
               borderRadius: "20px",
               fontWeight: "800",
+              color: "#700035",
               // marginBottom:"10vh"
             }}
             onClick={signout}

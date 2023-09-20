@@ -61,7 +61,7 @@
   cursor: not-allowed !important;
 }
 
-.main {
+.main-admin {
   padding-top: 5vh;
   min-height: 100vh;
   width: 100vw;
@@ -197,7 +197,7 @@
   background-color: #390035;
   border: none;
   outline: none;
-  width: 90px;
+  width: 110px;
   /* height: 50px; */
   padding: 10px;
   font-size: 1.8rem;
@@ -254,10 +254,10 @@ input[type=number] {
 
 @media screen and (max-width: 800px) {
   .fhtb {
-    transform: scale(0.7);
+    transform: scale(0.6);
   }
 
   .sports-sel-div {
-    transform: scale(0.8);
+    transform: scale(0.85);
   }
 }

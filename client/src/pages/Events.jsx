@@ -16,7 +16,7 @@ export const Events = () => {
     <>
     <div className="events-page p-8">
       <div className="text-[#390035] events-container">
-        <div className="events-heading text-center text-[#390035] bg-[#f6b276] p-2 flex justify-center items-center w-2/5 sm:w-2/5 lg:w-1/6 rounded-lg">
+        <div className="events-heading text-center text-[#390035] bg-[#f6b276] p-2 mx-auto flex justify-center items-center w-2/5 sm:w-2/5 lg:w-1/6 rounded-lg">
           Events
         </div>
         <div className="flex justify-center">
@@ -53,13 +53,13 @@ export const Events = () => {
             Techy
           </li>
         </div>
-        <div className="scoreboard-container w-5/6 bg-[#f6b276] text-center mx-auto my-4 rounded-2xl">
+        <div className="scoreboard-container w-full md:w-5/6 bg-[#f6b276] text-center mx-auto my-4 rounded-2xl">
           {WhichEvent === "sportsboys" ? <SportsBoysGraphs /> : null}
           {WhichEvent === "sportsgirls" ? <SportsGirlsGraphs /> : null}
           {WhichEvent === "culti" ? <CultiGraphs /> : null}
           {WhichEvent === "techy" ? <TechyGraphs /> : null}
         </div>
-        <div className="w-5/6 mx-auto my-4 text-center rounded-2xl">
+        <div className="w-full md:w-5/6 mx-auto my-4 text-center rounded-2xl">
           {WhichEvent === "sportsboys" ? <SportsBoysTable /> : null}
           {WhichEvent === "sportsgirls" ? <SportsGirlsTable /> : null}
           {WhichEvent === "culti" ? <CultiTable /> : null}

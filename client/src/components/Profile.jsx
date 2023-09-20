@@ -7,18 +7,8 @@ import Loading from "./Loading";
 
 const Profile = () => {
   // options Data set import from the backend
-  const [eoptions, esetoptions] = useState([
-    "option1",
-    "option2",
-    "option3",
-    "option4",
-    "option5",
-    "option6",
-    "option7",
-    "option8",
-    "option9",
-  ]);
-  const [toptions, tsetoptions] = useState(["option1", "option2"]);
+  const [eoptions, esetoptions] = useState([]);
+  const [toptions, tsetoptions] = useState([]);
 
   const [eventsValid, setEventsValid] = useState(false);
   const [teamsValid, setTeamsValid] = useState(false);
