@@ -260,6 +260,7 @@ h1 {
   font-weight: 700;
   padding: 8px 4px;
   font-size: 16px;
+  color:black;
 }
 
 .calendar-day:hover {
@@ -271,7 +272,9 @@ h1 {
   background-color: var(--primary-color);
   color: #fff;
 }
-
+.optionListContainer{
+  top:50px;
+}
 .events-dialog {
   background-color: #fff;
   padding: 20px;
@@ -293,7 +296,17 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  margin:5px 20px;
 }
+.button-right{
+  display: flex;
+  min-width: 100%;
+  justify-content: right;
+}
+.white-text {
+  background-color: white;
+}
+
 
 .close-button:hover {
   background-color: #4a2d6d; /* Darken the color on hover */
@@ -376,4 +389,3 @@ h1 {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
