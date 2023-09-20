@@ -31,7 +31,7 @@ function Football({ id, team1, team2, score1, score2 }) {
     <div className="fhtb">
       <h1>Football</h1>
       <button className="rm-match" onClick={removematch}>
-        Remove Match
+        End Match
       </button>
       <div className="fhtb-s">
         <div className="fhtb-sc">

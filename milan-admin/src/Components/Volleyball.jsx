@@ -34,7 +34,7 @@ function Volleyball({ id, team1, team2, score1, score2 }) {
       <h1>VOLLEYBALL</h1>
 
       <button className="rm-match" onClick={removematch}>
-        Remove Match
+        End Match
       </button>
 
       <div className="fhtb-s" style={{gap: "1vh"}}>

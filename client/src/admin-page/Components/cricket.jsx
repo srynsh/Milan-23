@@ -68,7 +68,7 @@ function Cricket({
     <div className="fhtb">
       <h1>Cricket</h1>
       <button className="rm-match" onClick={removematch}>
-        Remove Match
+        End Match
       </button>
       <div className="fhtb-s">
         <div className="fhtb-sc">
