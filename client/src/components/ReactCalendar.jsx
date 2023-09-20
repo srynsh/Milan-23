@@ -133,7 +133,7 @@ const filterEvents = () => {
          const team =event.body.toLowerCase()
         if(userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase() ) )console.log('event title:', event.id)
         return (
-          userPreferredEvents.includes(event.title) || team.includes(User.supportedTeams[0].toLowerCase()) || team === "all"
+          userPreferredEvents.includes(event.title) && (team.includes(userSupportedTeams[0].toLowerCase()) || team.includes("all blocks"))
         );
       });
 
