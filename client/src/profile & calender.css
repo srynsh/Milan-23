@@ -267,6 +267,9 @@ h1 {
   background-color: var(--primary-color);
   color: #fff;
 }
+.white-background {
+  background-color: white;
+}
 
 .calendar-day.selected {
   background-color: var(--primary-color);

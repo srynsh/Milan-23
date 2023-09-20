@@ -86,11 +86,6 @@ const ReactCalendar = () => {
 
   //filtering the Events Based on user selections
 
-  // Handle date click
-  const handleDateClick = (date) => {
-    setSelectedDate(date);
-  };
-
   // Handle month change
   const handleMonthChange = () => {
     setCurrentMonth(currentMonth === "SEPTEMBER" ? "OCTOBER" : "SEPTEMBER");
@@ -101,10 +96,14 @@ const ReactCalendar = () => {
 
     if (User.name == "") {
       //redirect to login
-      confirm(
+      var UserConfirmed = confirm(
         "Please Login to view this page , Click OK to redirect to login page"
       );
+      if(UserConfirmed){
       window.location.href = "/login";
+      }else{
+        //nothing
+      }
     }
 
     setFiltertoogle(!filtertoogle);
@@ -128,7 +127,6 @@ const ReactCalendar = () => {
     for (const date in transformedEventData) {
       const events = transformedEventData[date];
       const filteredEvents = events.filter((event) => {
-        const eventTitle = event.title; // Convert event title to lowercase
         const team = event.body.toLowerCase();
         if (
           userPreferredEvents.includes(event.title) ||
@@ -151,7 +149,17 @@ const ReactCalendar = () => {
     setFilteredEvents(filteredData);
     setLoading(false);
   };
+  const [isDateWithEvents, setIsDateWithEvents] = useState(false);
+  // Handle date click
+const handleDateClick = (date) => {
+  setSelectedDate(date);
 
+  // Update isDateWithEvents when a date is clicked
+  setIsDateWithEvents(!!filteredEvents[date]);
+};
+useEffect(() => {
+  setIsDateWithEvents(!!filteredEvents[selectedDate]);
+}, [selectedDate, filteredEvents]);
   // Render calendar
   const renderCalendar = () => {
     const month = currentMonth === "SEPTEMBER" ? 8 : 9;
@@ -177,19 +185,23 @@ const ReactCalendar = () => {
       const formattedDate = `${(month + 1).toString().padStart(2, "0")}/${i
         .toString()
         .padStart(2, "0")}/${year}`;
+      
+      const dateClasses = [
+        "calendar-day",
+        selectedDate === formattedDate ? "selected" : "",
+        isDateWithEvents ? "white-background" : "", // Apply the white background class
+      ].join(" ");
+
       calendarDays.push(
         <div
           key={i + 36}
-          className={`calendar-day ${
-            selectedDate === formattedDate ? "selected" : ""
-          }`}
+          className={dateClasses}
           onClick={() => handleDateClick(formattedDate)}
         >
           <div className="day">{i}</div>
         </div>
       );
     }
-
     return calendarDays;
   };
 
