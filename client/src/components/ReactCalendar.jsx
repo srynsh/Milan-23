@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
-import Loading from './Loading';
-import axios from 'axios';
-import '../profile & calender.css';
+import { useEffect, useState } from "react";
+import Loading from "./Loading";
+import axios from "axios";
+import "../profile & calender.css";
 
 const ReactCalendar = () => {
   // Constants
   // State variables
   const [User, setUser] = useState({
-    avatar: '',
-    name: '',
-    email: '',
+    avatar: "",
+    name: "",
+    email: "",
     supportedTeams: [],
     events: [],
   });
   const [loading, setLoading] = useState(false);
   const [transformedEventData, setTransformedEventData] = useState({});
   const [filteredEvents, setFilteredEvents] = useState({});
-  const [currentMonth, setCurrentMonth] = useState('SEPTEMBER');
+  const [currentMonth, setCurrentMonth] = useState("SEPTEMBER");
   const [selectedDate, setSelectedDate] = useState(null);
   const [filtertoogle, setFiltertoogle] = useState(false);
 
@@ -30,22 +30,22 @@ const ReactCalendar = () => {
     // Fetch events data
 
     axios
-      .get(import.meta.env.VITE_BACKEND_URL + 'eventsSchedule')
+      .get(import.meta.env.VITE_BACKEND_URL + "eventsSchedule")
       .then((res) => {
-        console.log('res:', res);
+        console.log("res:", res);
         if (res.status !== 200) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         setTransformedEventData(res.data);
       })
 
       .catch((error) => {
-        console.error('Error fetching or parsing JSON:', error);
+        console.error("Error fetching or parsing JSON:", error);
       });
 
     // Fetch user profile data using Axios
     axios
-      .get(import.meta.env.VITE_BACKEND_URL + 'profile', {
+      .get(import.meta.env.VITE_BACKEND_URL + "profile", {
         withCredentials: true,
       })
       .then((response) => {
@@ -57,11 +57,11 @@ const ReactCalendar = () => {
           supportedTeams: userData.supportedTeams,
           events: userData.preferedEvents,
         });
-        console.log('response data:', response.data.user);
+        console.log("response data:", response.data.user);
         setUserDataLoaded(true); // Signal that user data has loaded
       })
       .catch((error) => {
-        console.error('Error fetching user details: ', error);
+        console.error("Error fetching user details: ", error);
         setUserDataLoaded(true); // Signal that user data has loaded even in case of an error
       })
       .finally(() => {
@@ -72,7 +72,7 @@ const ReactCalendar = () => {
     if (userDataLoaded) {
       // Perform actions that rely on the updated User state here
       filterEvents();
-      console.log('User Data:', User);
+      console.log("User Data:", User);
     }
   }, [userDataLoaded, User]);
 
@@ -93,18 +93,18 @@ const ReactCalendar = () => {
 
   // Handle month change
   const handleMonthChange = () => {
-    setCurrentMonth(currentMonth === 'SEPTEMBER' ? 'OCTOBER' : 'SEPTEMBER');
+    setCurrentMonth(currentMonth === "SEPTEMBER" ? "OCTOBER" : "SEPTEMBER");
   };
 
   const handlefilter = () => {
-    console.log('filter toogle:', filtertoogle);
+    console.log("filter toogle:", filtertoogle);
 
-    if (User.name == '') {
+    if (User.name == "") {
       //redirect to login
       confirm(
-        'Please Login to view this page , Click OK to redirect to login page'
+        "Please Login to view this page , Click OK to redirect to login page"
       );
-      window.location.href = '/login';
+      window.location.href = "/login";
     }
 
     setFiltertoogle(!filtertoogle);
@@ -114,15 +114,15 @@ const ReactCalendar = () => {
   const filterEvents = () => {
     // Filter events based on user's preferred events and supported teams
     setLoading(true);
-    console.log('User Data inside :', User);
-    if (User.name == '') {
+    console.log("User Data inside :", User);
+    if (User.name == "") {
       setLoading(false);
       return;
     }
 
     const userPreferredEvents = User.events;
     const userSupportedTeams = User.supportedTeams;
-    console.log('userPreferredEvents:', userPreferredEvents);
+    console.log("userPreferredEvents:", userPreferredEvents);
     const filteredData = {};
 
     for (const date in transformedEventData) {
@@ -134,11 +134,11 @@ const ReactCalendar = () => {
           userPreferredEvents.includes(event.title) ||
           team.includes(User.supportedTeams[0].toLowerCase())
         )
-          console.log('event title:', event.id);
+          console.log("event title:", event.id);
         return (
           userPreferredEvents.includes(event.title) &&
           (team.includes(userSupportedTeams[0].toLowerCase()) ||
-            team.includes('all blocks'))
+            team.includes("all blocks"))
         );
       });
 
@@ -154,14 +154,14 @@ const ReactCalendar = () => {
 
   // Render calendar
   const renderCalendar = () => {
-    const month = currentMonth === 'SEPTEMBER' ? 8 : 9;
+    const month = currentMonth === "SEPTEMBER" ? 8 : 9;
     const year = 2023;
     const calendarDays = [];
     const DAYS_IN_MONTH = new Date(year, month + 1, 0).getDate();
     const daysArray =
-      currentMonth === 'SEPTEMBER'
-        ? ['Su', 'Mn', 'Tu', 'Wd', 'Th', 'Fr', 'St', ' ', ' ', ' ', ' ', ' ']
-        : ['Sn', 'Mn', 'Tu', 'Wd', 'Th', 'Fr', 'St'];
+      currentMonth === "SEPTEMBER"
+        ? ["Su", "Mn", "Tu", "Wd", "Th", "Fr", "St", " ", " ", " ", " ", " "]
+        : ["Sn", "Mn", "Tu", "Wd", "Th", "Fr", "St"];
 
     // Render day headers
     for (let i = 0; i < daysArray.length; i++) {
@@ -174,14 +174,14 @@ const ReactCalendar = () => {
 
     // Render calendar days
     for (let i = 1; i <= DAYS_IN_MONTH; i++) {
-      const formattedDate = `${(month + 1).toString().padStart(2, '0')}/${i
+      const formattedDate = `${(month + 1).toString().padStart(2, "0")}/${i
         .toString()
-        .padStart(2, '0')}/${year}`;
+        .padStart(2, "0")}/${year}`;
       calendarDays.push(
         <div
           key={i + 36}
           className={`calendar-day ${
-            selectedDate === formattedDate ? 'selected' : ''
+            selectedDate === formattedDate ? "selected" : ""
           }`}
           onClick={() => handleDateClick(formattedDate)}
         >
@@ -201,6 +201,14 @@ const ReactCalendar = () => {
 
     return (
       <div>
+        <div className="button-right">
+          <button
+            onClick={() => setSelectedDate(null)}
+            className="close-button"
+          >
+            Close
+          </button>
+        </div>
         {categories.map((category) => (
           <EventsDialog
             key={category}
@@ -250,7 +258,7 @@ const ReactCalendar = () => {
           <div className="calendar-container">
             <div className="calendar-header">
               <h2>{currentMonth}</h2>
-              <button onClick={handleMonthChange}>{'</>'}</button>
+              <button onClick={handleMonthChange}>{"</>"}</button>
               <button onClick={handlefilter}>Filter</button>
             </div>
             <div className="calendar">{renderCalendar()}</div>
