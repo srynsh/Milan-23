@@ -12,7 +12,7 @@ function Tennis({ id, team1, team2, score1, score2, setscore1, setscore2 }) {
   const [setindex2, updatesetindex2] = useState(0);
   const socket = useContext(SocketContext);
 
-  const setscores = ["0", "10", "20", "30", "40", "Adv", "_"];
+  const setscores = ["0", "15", "30", "40", "Adv", "_"];
   useEffect(() => {
     settupdatescore1(score1);
   }, [score1]);
