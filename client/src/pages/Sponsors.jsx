@@ -13,7 +13,7 @@ const Sponsors = () => {
         <div className="[font-family:Amboy] text-[#ffd1a8] text-center tracking-[0] leading-[normal] bg-[#20001E] mt-24 mb-0 p-2 text-3xl md:text-6xl rounded-md">
           Sponsors
         </div>
-        <div className="grid grid-cols-1 mx-12 sm:mx-32 md:mx-56 lg:mx-[24rem]">
+        <div className="grid grid-cols-1 mx-12 sm:mx-32 md:mx-56 lg:flex lg:w-[30rem]">
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000] my-24 justify-center">
             <h2 className="text-2xl text-center font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
               <a href="https://pureev.in/" target="_blank">Purev - Title sponsor</a>
