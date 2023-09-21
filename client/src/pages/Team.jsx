@@ -42,6 +42,7 @@ const TeamList = () =>
           <div className="tp-domain-head-name">
             {head
               .replace("./assets/team/", "")
+              .replace(".JPEG", "")
               .replace(".jpg", "")
               .replace(".JPG", "")
               .replace(".jpeg", "")
@@ -62,6 +63,7 @@ const TeamList = () =>
             {core
               .replace("./assets/team/", "")
               .replace(".jpeg", "")
+              .replace(".JPEG", "")
               .replace(".jpg", "")
               .replace(".png", "")
               .replace(".PNG", "")
