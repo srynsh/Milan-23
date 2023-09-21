@@ -3,7 +3,6 @@ import "../mainpage.css";
 const Sponsors = () => {
   return (
     <>
-    
       <img
         className="absolute lg:top-5 lg:left-28 lg:w-24 lg:h-24 md:top-7 md:left-12 md:w-16 md:h-16 top-7 left-12 w-12 h-12"
         alt="logo"
@@ -17,51 +16,46 @@ const Sponsors = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-24 mx-24">
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000] ">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
-              SPONSOR
+              <a href="https://pureev.in/" target="_blank">Purev - Title sponsor</a>
             </h2>
-            <img className="" alt="sponsor" src="https://placehold.co/300"/>
+            <img className="" alt="sponsor" src="../../public/sponsors/Pureev.jpeg"/>
           </div>
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
-              SPONSOR
+            <a href="https://galaxe.com/" target="_blank">Galaxe Solutions - Co-Title Sponsor</a>
             </h2>
-            <img className="" alt="sponsor" src="https://placehold.co/300"/>
+            <img className="" alt="sponsor" src="../../public/sponsors/galaxySolutions.jpeg"/>
           </div>
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
-              SPONSOR
+            <a href="https://www.onlinesbi.sbi/" target="_blank">Sbi - Banking partner</a>
             </h2>
-            <img className="" alt="sponsor" src="https://placehold.co/300"/>
+            <img className="" alt="sponsor" src="../../public/sponsors/SBI_bank.jpeg"/>
           </div>
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
-              SPONSOR
+            <a href="https://canarabank.com/" target="_blank">Canara - Silver sponsor</a>
             </h2>
-            <img className="" alt="sponsor" src="https://placehold.co/300"/>
+            <img className="" alt="sponsor" src="../../public/sponsors/Canara_bank.jpeg"/>
           </div>
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
-              SPONSOR
+            <a href="https://tihan.iith.ac.in/" target="_blank">Tihan - Innovation partner</a>
             </h2>
-            <img className="" alt="sponsor" src="https://placehold.co/300"/>
+            <img className="" alt="sponsor" src="../../public/sponsors/Tihan.jpeg"/>
           </div>
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
-              SPONSOR
+            <a href="https://instagram.com/choco.stone.ice.creams?igshid=NzZhOTFlYzFmZQ==" target="_blank">Chocostone - Hospitality partner</a>
+            
             </h2>
-            <img className="" alt="sponsor" src="https://placehold.co/300"/>
+            <img className="" alt="sponsor" src="../../public/sponsors/Chocostone.jpeg"/>
           </div>
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
-              SPONSOR
+            <a href="https://www.monsterenergy.com/en-us/" target="_blank">Monster - Energy partner</a>
             </h2>
-            <img className="" alt="sponsor" src="https://placehold.co/300"/>
-          </div>
-          <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
-            <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
-              SPONSOR
-            </h2>
-            <img className="" alt="sponsor" src="https://placehold.co/300"/>
+            <img className="" alt="sponsor" src="../../public/sponsors/Monster.jpeg"/>
           </div>
         </div>
       </div>
