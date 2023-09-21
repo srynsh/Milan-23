@@ -185,14 +185,14 @@ a {
   width: 38vw;
   background: #390035;
   border-radius: 5rem;
-  background: rgba(112, 0, 53, 0.16);
+  background: rgba(112, 0, 53, 0.81);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 3vw;
   flex-grow: 1;
 }
 
 .main-mid-text-head h2 {
-  font-size: 3.3rem;
+  font-size: 3rem;
   color: #ffd1a8;
   font-family: "ArianaPro";
   letter-spacing: 0.1rem;
@@ -200,7 +200,7 @@ a {
 }
 
 .main-mid-text-desc p {
-  font-size: 2rem;
+  font-size: 1.55rem;
   color: #ffd1a8;
   font-family: "ArianaPro";
   margin-top: 45px;
@@ -286,7 +286,7 @@ a {
 .mascot-desc {
   font-family: "ArianaPro";
   width: 50vw;
-  font-size: 1.9rem;
+  font-size: 1.7rem;
   color: #390035;
   padding-right: 5vw;
 }
@@ -446,7 +446,7 @@ footer {
 
 ion-icon {
   color: #a11a2b;
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 /* SWIPER MOTION */
