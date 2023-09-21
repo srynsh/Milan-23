@@ -26,6 +26,7 @@ function LoginPage() {
       justifyContent:"center",
       alignItems:"center",
     }}>
+      <img src='/assets/logos/logocream.png' className="milan-top-logo" alt="milan-logo"/>
       <button type="button" class="google-sign-in-button" onClick={handleLogin}>
         Sign in with Google
       </button>

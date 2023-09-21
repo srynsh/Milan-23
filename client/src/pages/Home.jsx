@@ -27,6 +27,7 @@ const Home = () => {
   }
   return (
     <>
+    <img src='/assets/logos/logocream.png' className="milan-top-logo" alt="milan-logo"/>
       <div className="main">
         <div className="main-bg">
           <div className="main-bg-vector">

@@ -3,6 +3,7 @@ import "../mainpage.css";
 const Sponsors = () => {
   return (
     <>
+    
       <img
         className="absolute lg:top-5 lg:left-28 lg:w-24 lg:h-24 md:top-7 md:left-12 md:w-16 md:h-16 top-7 left-12 w-12 h-12"
         alt="logo"

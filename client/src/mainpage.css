@@ -48,6 +48,26 @@ a {
   text-decoration: none;
 }
 
+.milan-top-logo {
+  position: absolute;
+  top: 2.5vh;
+  left: 2.5vw;
+  height: 80px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .milan-top-logo {
+    position: absolute;
+    top: 2.5vh;
+    left: 3vw;
+    height: 60px;
+  }
+
+  .team-page .milan-top-logo {
+    display: none;
+  }
+}
+
 .main {
   width: 100vw;
   /* height: 100vh; */

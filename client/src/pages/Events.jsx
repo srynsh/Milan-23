@@ -8,12 +8,14 @@ import { SportsGirlsTable } from "../components/SportsGirlsTable";
 import { CultiTable } from "../components/CultiTable";
 import { TechyTable } from "../components/TechyTable";
 import "../events.css";
+import Footer from "../components/Footer";
 
 export const Events = () => {
   const [WhichEvent, setWhichEvent] = useState("sportsboys");
 
   return (
     <>
+    <img src='/assets/logos/red logo.png' className="milan-top-logo" alt="milan-logo"/>
     <div className="events-page p-8">
       <div className="text-[#390035] events-container">
         <div className="events-heading text-center text-[#390035] bg-[#f6b276] p-2 mx-auto flex justify-center items-center w-2/5 sm:w-2/5 lg:w-1/6 rounded-lg">
@@ -67,6 +69,7 @@ export const Events = () => {
         </div>
       </div>
       </div>
+      <Footer/>
     </>
   );
 };

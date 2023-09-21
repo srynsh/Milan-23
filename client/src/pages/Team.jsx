@@ -6,6 +6,7 @@ const Team = () => {
   return (
     <>
       <div className="team-page">
+    <img src='/assets/logos/red logo.png' className="milan-top-logo" alt="milan-logo"/>
         <OCsection />
         <TeamList />
       </div>

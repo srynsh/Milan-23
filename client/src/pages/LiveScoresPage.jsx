@@ -10,6 +10,7 @@ import { TableTennis } from "../components/TableTennis";
 import { Tennis } from "../components/Tennis";
 import { Volleyball } from "../components/Volleyball";
 import { LiveScoreState } from '../context/LiveScoreProvider';
+import Footer from '../components/Footer';
 
 export const LiveScoresPage = () => {
   const livescore = LiveScoreState()
@@ -66,6 +67,7 @@ export const LiveScoresPage = () => {
   return (
     
     <>
+    <img src='/assets/logos/logocream.png' className="milan-top-logo" alt="milan-logo"/>
     <div className='liveScore-box p-4'>
     <div className='text-center rounded-xl bg-[#a40035] mx-auto my-12 lg:my-16 w-2/5 md:w-1/5 lg:w-1/6 text-2xl lg:text-4xl p-2 Parkinson text-white shadow-md shadow-[#00000078]'>
       Live Score
@@ -82,6 +84,7 @@ export const LiveScoresPage = () => {
       )   : null
     }
     </div>
+    <Footer/>
    </>
   )
 }
