@@ -10,52 +10,55 @@ const Sponsors = () => {
       />
 
       <div className=" bg-[#390035] w-full h-fit overflow-x-hidden bg-center bg-cover flex flex-col items-center bg-[url('./assets/bg-vectors/team-bg.svg')] bg-no-repeat pb-28">
-        <div className="[font-family:Amboy] text-[#ffd1a8] text-center tracking-[0] leading-[normal] bg-[#20001E] my-24 p-2 text-3xl md:text-6xl rounded-md md:my-36">
+        <div className="[font-family:Amboy] text-[#ffd1a8] text-center tracking-[0] leading-[normal] bg-[#20001E] mt-24 mb-0 p-2 text-3xl md:text-6xl rounded-md">
           Sponsors
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-24 mx-24">
-          <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000] ">
-            <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
+        <div className="grid grid-cols-1 mx-12 sm:mx-32 md:mx-56 lg:mx-[24rem]">
+          <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000] my-24 justify-center">
+            <h2 className="text-2xl text-center font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
               <a href="https://pureev.in/" target="_blank">Purev - Title sponsor</a>
             </h2>
-            <img className="" alt="sponsor" src="/sponsors/Pureev.jpeg"/>
+            <img className="" alt="sponsor" src="sponsors/Pureev.jpeg"/>
           </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24 mx-12 md:mx-24">
+          
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
             <a href="https://galaxe.com/" target="_blank">Galaxe Solutions - Co-Title Sponsor</a>
             </h2>
-            <img className="" alt="sponsor" src="/sponsors/galaxySolutions.jpeg"/>
+            <img className="" alt="sponsor" src="sponsors/galaxySolutions.jpeg"/>
           </div>
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
             <a href="https://www.onlinesbi.sbi/" target="_blank">Sbi - Banking partner</a>
             </h2>
-            <img className="" alt="sponsor" src="/sponsors/SBI_bank.jpeg"/>
+            <img className="" alt="sponsor" src="sponsors/SBI_bank.jpeg"/>
           </div>
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
             <a href="https://canarabank.com/" target="_blank">Canara - Silver sponsor</a>
             </h2>
-            <img className="" alt="sponsor" src="/sponsors/Canara_bank.jpeg"/>
+            <img className="" alt="sponsor" src="sponsors/Canara_bank.jpeg"/>
           </div>
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
             <a href="https://tihan.iith.ac.in/" target="_blank">Tihan - Innovation partner</a>
             </h2>
-            <img className="" alt="sponsor" src="/sponsors/Tihan.jpeg"/>
+            <img className="" alt="sponsor" src="sponsors/Tihan.jpeg"/>
           </div>
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
             <a href="https://instagram.com/choco.stone.ice.creams?igshid=NzZhOTFlYzFmZQ==" target="_blank">Chocostone - Hospitality partner</a>
             
             </h2>
-            <img className="" alt="sponsor" src="/sponsors/Chocostone.jpeg"/>
+            <img className="" alt="sponsor" src="sponsors/Chocostone.jpeg"/>
           </div>
           <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
             <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
             <a href="https://www.monsterenergy.com/en-us/" target="_blank">Monster - Energy partner</a>
             </h2>
-            <img className="" alt="sponsor" src="/sponsors/Monster.jpeg"/>
+            <img className="" alt="sponsor" src="sponsors/Monster.jpeg"/>
           </div>
         </div>
       </div>
