@@ -248,6 +248,7 @@ useEffect(() => {
                   <h4>{event.title}</h4>
                   <p>{event.body}</p>
                   <p>Time: {event.time}</p>
+                  {event.winner!=='' && <p>Winner : {event.winner}</p> }
                 </li>
               ))}
             </ul>
