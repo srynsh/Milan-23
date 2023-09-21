@@ -4,7 +4,8 @@
 
 @layer components{
     .events-page{
-        background: url('./assets/bg-vectors/team-bg.svg') , #FFD1A8;   
+        background: url('./assets/bg-vectors/team-bg.svg') , #FFD1A8 no-repeat;
+        width: 100vw;
         min-height: 100vh;
     }
     .OverallScoresContainer{
