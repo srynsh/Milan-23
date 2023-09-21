@@ -189,7 +189,6 @@ useEffect(() => {
       const dateClasses = [
         "calendar-day",
         selectedDate === formattedDate ? "selected" : "",
-        isDateWithEvents ? "white-background" : "", // Apply the white background class
       ].join(" ");
 
       calendarDays.push(
