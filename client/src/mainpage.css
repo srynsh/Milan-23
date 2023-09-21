@@ -996,14 +996,14 @@ ion-icon {
     width: 100vw;
     padding: 10vh 0;
     position: absolute;
-    gap: 3.5vh;
+    gap: 3vh;
     justify-content: center;
   }
   .navbar-options-hide {
     width: 100vw;
     padding: 10vh 0;
     position: absolute;
-    gap: 3.5vh;
+    gap: 3vh;
     justify-content: center;
   }
   .navbar-pending {
