@@ -185,14 +185,14 @@ a {
   width: 38vw;
   background: #390035;
   border-radius: 5rem;
-  background: rgba(112, 0, 53, 0.16);
+  background: rgba(112, 0, 53, 0.81);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 3vw;
   flex-grow: 1;
 }
 
 .main-mid-text-head h2 {
-  font-size: 3.3rem;
+  font-size: 3rem;
   color: #ffd1a8;
   font-family: "ArianaPro";
   letter-spacing: 0.1rem;
@@ -200,7 +200,7 @@ a {
 }
 
 .main-mid-text-desc p {
-  font-size: 2rem;
+  font-size: 1.55rem;
   color: #ffd1a8;
   font-family: "ArianaPro";
   margin-top: 45px;
@@ -286,7 +286,7 @@ a {
 .mascot-desc {
   font-family: "ArianaPro";
   width: 50vw;
-  font-size: 1.9rem;
+  font-size: 1.7rem;
   color: #390035;
   padding-right: 5vw;
 }
@@ -398,7 +398,7 @@ footer {
 }
 
 .footer-img img {
-  width: 150px;
+  width: 120px;
 }
 
 .footer-links {
@@ -446,7 +446,7 @@ footer {
 
 ion-icon {
   color: #a11a2b;
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 /* SWIPER MOTION */
@@ -773,7 +773,7 @@ ion-icon {
   font-weight: 700;
   letter-spacing: 0.1rem;
   padding: 1px 17px;
-  margin: -15px;
+  margin: 2px 0;
   border-radius: 15px;
   transition: 0.2s;
   cursor: default;
@@ -811,12 +811,11 @@ ion-icon {
   gap: 5px;
   cursor: pointer;
   transition: 0.3s;
+  box-shadow: 0px 3px 4px 2px rgba(0, 0, 0, 0.25);
 }
 
 .hamburger:hover {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: 0px 3px 4px 2px rgba(0, 0, 0, 0.25);
   scale: 1.05;
 }
 
