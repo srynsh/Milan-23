@@ -21,6 +21,7 @@ const oAuth2Client = new google.auth.OAuth2(process.env.CLIENT_ID, process.env.C
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
 
+
 //function to get events from the sheet
 const getevents = async () => {
     try {
@@ -44,28 +45,37 @@ pool.connect()
 
 
 // ...
-const interval = 3
-const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
+const rule = `0 0,15,30,45 * * * *`
+
+const interval = 15
+const job = schedule.scheduleJob({ rule: rule, tz: 'Asia/Kolkata' }, async function () {
     console.log(`running a task every ${interval} minutes`);
     let events = await getevents();
+    console.log(events.length)
 
-    events.forEach((event) => {
-        event.StartTime = new Date(event.StartTime);
-        event.Teams = event.Teams.split(',').map((team) => team.trim());
-    })
-
-    events.sort((a, b) => a.StartTime - b.StartTime);
-
-
-    console.log('after sorting:', events);
-
-    const now = new Date();
-    const minTime = new Date(now.getTime() + interval * 60 * 1000);
-    const maxTime = new Date(now.getTime() + (2 * interval) * 60 * 1000 - 1);
-
-    events = events.filter((event) => {
-        return (event.StartTime > minTime && event.StartTime <= maxTime);
+    events.map((event) => {
+    
+            console.log(event.StartTime)
+        
+        // Check if event.Teams is a string before splitting
+        if (typeof event.Teams === 'string') {
+            event.Teams = event.Teams.split(',').map((team) => team.trim());
+        }
     });
+    
+    const now = new Date();
+    now.setSeconds(0);
+    now.setMilliseconds(0);
+    const minTime = new Date(now.getTime() + interval * 60 * 1000);
+    const maxTime = new Date(now.getTime() + (2 * interval-1) * 60 * 1000);
+
+        events = events.filter((event) => {
+            const startTime = new Date(event.StartTime);
+            console.log('StartTime:', startTime);
+            console.log('minTime:', minTime);
+            console.log('maxTime:', maxTime);
+            return startTime >= minTime && startTime <= maxTime;
+        });
 
 
     console.log('after filtering as per time gap:', events);
@@ -76,7 +86,7 @@ const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
             let recipientsArray = [];
             
             //if the event is for all teams, get all the users
-            if (event.Teams.includes('All Blocks')) {
+            if (event.includes('All Blocks')) {
                 recipientsArray = [
                     'bdb23@iith.ac.in',
                     'btech@iith.ac.in',
@@ -116,102 +126,106 @@ const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
             console.log('recipients: ', recipientsArray);
 
 
-            const imageSrc = `https://drive.google.com/uc?export=view&id=1JZiD6fngGxj2NFwBrJrLjjxkuuW3WUp9`;
-
 
             //body of the email
-            const body = `<html>
+            const htmlContent = `
+            <html>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Join us in Milan!</title>
-</head>
-
-<body>
-    <table cellpadding="0" cellspacing="0" border="0" width="100%">
-        <tr>
-            <td align="center" bgcolor="#f4f4f4">
-                <table cellpadding="0" cellspacing="0" border="0" width="600" style="border-collapse:collapse;">
+            <head>
+                <meta charset="UTF-8">
+                <title>Join us in Milan!</title>
+            </head>
+            
+            <body>
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
                     <tr>
-                        <td align="center" bgcolor="#ffffff" style="padding: 40px 0 30px 0;">
-                            <img src="${imageSrc}" alt="Event Banner" width="300" height="150">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
-                            <table cellpadding="0" cellspacing="0" border="0" width="100%"
-                                style="border-collapse:collapse;">
+                        <td align="center" bgcolor="#f4f4f4">
+                            <table cellpadding="0" cellspacing="0" border="0" width="600" style="border-collapse:collapse;">
                                 <tr>
-                                    <td style="color: #333333; font-family: Arial, sans-serif; font-size: 24px;">
-                                        <strong>Join us in Milan!</strong>
+                                    <td align="center" bgcolor="#ffffff" style="">
+                                        <img src="https://drive.google.com/uc?export=view&id=1SDgJFvZeZLIWLFAOPjnhdH6Ch-z6X74W" alt="Event Banner" width="300" height="300">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td
-                                        style="padding: 20px 0 30px 0; color: #666666; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;">
-                                        We're excited to invite you to our upcoming event in Milan. It's going to be a
-                                        thrilling day filled with fun, games, and excitement!
+                                    <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+                                        <table cellpadding="0" cellspacing="0" border="0" width="100%"
+                                            style="border-collapse:collapse;">
+                                            <tr>
+                                                <td style="color: #333333; font-family: Arial, sans-serif; font-size: 24px;">
+                                                    <strong>Join us in Milan!</strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td
+                                                    style="padding: 20px 0 30px 0; color: #666666; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;">
+                                                    We're excited to invite you to our upcoming event in Milan. It's going to be a
+                                                    thrilling day filled with fun, games, and excitement!
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td
+                                                    style="padding: 0 0 20px 0; color: #666666; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;">
+                                                    <strong>Event Details:</strong>
+                                                    <br>
+                                                    <strong>Name:${event.Name}</strong>
+                                                    <br>
+                                                    <strong>Time:${event.Time}</strong>
+                                                    <br>
+                                                    <strong> status : ${event.Status} </strong>
+                                                    <br>
+                                                    <strong>Participating Blocks:${event.Teams.join(' ,')}</strong>
+                                                    <br>
+                                                    <strong>Location:${event.location}</strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td
+                                                    style="color: #666666; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;">
+                                                    Come and cheer for your team as they aim for victory. It's going to be an
+                                                    unforgettable experience!
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td
+                                                    style="padding: 30px 0 0 0; color: #666666; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;">
+                                                    <br>
+                                                    We look forward to your participation..
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td
-                                        style="padding: 0 0 20px 0; color: #666666; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;">
-                                        <strong>Event Details:</strong>
-                                        <br>
-                                        <strong>Name:${event.Name}</strong>
-                                        <br>
-                                        <strong>Time:${event.StartTime}  (status : ${event.Status})</strong>
-                                        <br>
-                                        <strong>Participating Blocks:${event.Teams.join(' ,')}</strong>
-                                        <br>
-                                        <strong>Location:</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                        style="color: #666666; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;">
-                                        Come and cheer for your team as they aim for victory. It's going to be an
-                                        unforgettable experience!
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                        style="padding: 30px 0 0 0; color: #666666; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;">
-                                        <strong>RSVP:</strong>
-                                        <br>
-                                        We look forward to your participation. Please RSVP by [Insert RSVP Deadline].
+                                    <td bgcolor="#333333"
+                                        style="padding: 20px 30px 20px 30px; color: #ffffff; font-family: Arial, sans-serif; font-size: 14px; text-align: center;">
+                                        © 2023 Milan . All rights reserved.
                                     </td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
-                    <tr>
-                        <td bgcolor="#333333"
-                            style="padding: 20px 30px 20px 30px; color: #ffffff; font-family: Arial, sans-serif; font-size: 14px; text-align: center;">
-                            © 2023 Milan Event. All rights reserved.
-                        </td>
-                    </tr>
                 </table>
-            </td>
-        </tr>
-    </table>
-</body>
+            </body>
+            
+            </html>
+        `;
+        
+        // You can now use the "htmlContent" variable within your Nodemailer "mailOptions" object.
+        
 
-</html>`
-
-            if (recipientsArray.length > 0) {
+            if (recipientsArray.length > 0 ) {
 
                 const mailDetails = {
-                    from: 'abhinay.sadineni@gmail.com',
-                    to: recipientsArray.join(', '),
-                    subject: `Event Reminder MILAN 23: ${event.name} `,
-                    html: body
+                    from: 'milan@gymkhana.iith.ac.in',
+                    bcc: recipientsArray.join(', '),
+                    subject: `Event Reminder MILAN 23: ${event.Name} `,
+                    html: htmlContent
                 };
 
                 console.log(mailDetails);
 
-                const send_time = event.StartTime;
-                send_time.setMinutes(event.StartTime.getMinutes() - interval+1);
+                const send_time = new Date(event.StartTime);
+                send_time.setMinutes(send_time.getMinutes() - interval + 1);
 
                 return schedule.scheduleJob(send_time, async function () {
                     const result = await sendMail(mailDetails, oAuth2Client);
@@ -229,6 +243,7 @@ const job = schedule.scheduleJob(`*/${interval} * * * *`, async function () {
 
 
 export default job;
+
 
 
 
