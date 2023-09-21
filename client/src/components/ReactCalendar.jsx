@@ -262,7 +262,7 @@ useEffect(() => {
 
   // Render calendar container
   return (
-    <div>
+    <>
       {loading ? (
         <Loading />
       ) : (
@@ -278,7 +278,7 @@ useEffect(() => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -263,6 +263,7 @@ h1 {
   color:black;
 }
 
+
 .calendar-day:hover {
   background-color: var(--primary-color);
   color: #fff;

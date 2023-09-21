@@ -304,7 +304,7 @@ const Profile = () => {
                           height: "32px",
                         },
                         chips: {
-                          display: windowWidth <= 500 ? "none" : "flex-box",
+                          display:"none" ,
                         },
                       }}
                     />
