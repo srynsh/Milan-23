@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../mainpage.css";
 import { useCookies } from "react-cookie";
 
 function Navbar({ showNav, setShowNav }) {
   const loginStyle = {
     position: "relative",
-    top: "-4vh",
+    top: "-3vh",
     right: "0vh",
     background: "#700035",
     padding: "10px 20px",
@@ -151,6 +151,13 @@ function Navbar({ showNav, setShowNav }) {
         >
           Profile
         </NavLink>
+        <Link
+        to={'https://heyzine.com/flip-book/f0633bc529.html'}
+        target="_blank"
+        className="navbar-pending"
+        >
+          RULEBOOK
+          </Link>
       </div>
     </div>
   );

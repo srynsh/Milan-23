@@ -723,7 +723,7 @@ ion-icon {
 }
 
 .navbar-options {
-  padding: 10vh 0;
+  padding: 8vh 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -739,7 +739,7 @@ ion-icon {
 }
 
 .navbar-options-hide {
-  padding: 10vh 0;
+  padding: 8vh 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -756,7 +756,7 @@ ion-icon {
 
 .navbar-pending {
   text-decoration: none;
-  font-size: 3.2rem;
+  font-size: 3rem;
   color: #390035;
   font-family: "Amboy";
   font-weight: 700;
@@ -766,13 +766,13 @@ ion-icon {
 
 .navbar-active {
   text-decoration: none;
-  font-size: 3.5rem;
+  font-size: 3.1rem;
   background: #390035;
   color: #ffd1a8;
   font-family: "Amboy";
   font-weight: 700;
   letter-spacing: 0.1rem;
-  padding: 5px 20px;
+  padding: 1px 17px;
   margin: -15px;
   border-radius: 15px;
   transition: 0.2s;
@@ -788,8 +788,8 @@ ion-icon {
   text-decoration: none;
   background: #390035;
   color: #ffd1a8;
-  padding: 5px 20px;
-  margin: -5px;
+  padding: 1px 17px;
+  margin: -1px;
   border-radius: 15px;
   transition: 0.2s;
   cursor: pointer;
