@@ -191,7 +191,7 @@ const Profile = () => {
   };
 
   return (
-    <div>
+    <>
       {loading ? (
         <Loading />
       ) : (
@@ -304,7 +304,7 @@ const Profile = () => {
                           height: "32px",
                         },
                         chips: {
-                          display:"none" ,
+                          display: "none",
                         },
                       }}
                     />
@@ -320,10 +320,9 @@ const Profile = () => {
               </button>
             </form>
           </div>
-          <div></div>
         </>
       )}
-    </div>
+    </>
   );
 };
 
