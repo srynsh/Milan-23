@@ -32,7 +32,7 @@ async function fetchDataAndWriteToFile(url, fileName) {
 
 
 //update the data folder with new data for every 20 minutes
-const updateData = schedule.scheduleJob('*/20 * * * *', async function () {
+const updateData = schedule.scheduleJob('0 * 1 * * *', async function () {
     // Fetch and write leaderboard data
     console.log('Updating data...');
     await fetchDataAndWriteToFile(process.env.LEADERBOARD, 'leaderboard.json');
