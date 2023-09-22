@@ -156,6 +156,12 @@
   padding: 15px;
 }
 
+@media screen and (max-width: 800px) {
+  .fhtb {
+    margin-top: -5vh;
+  }
+}
+
 .fhtb h1 {
   all:unset;
   font-size: 1.3rem;

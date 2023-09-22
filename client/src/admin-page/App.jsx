@@ -61,7 +61,7 @@ function AdminPage() {
           >
             LOGOUT
           </div>
-          <div>
+          {/* <div>  */}
             <NewEvent seteventdata={seteventdata} />
             {eventdata &&
               eventdata.map((event) => {
@@ -173,7 +173,7 @@ function AdminPage() {
                 }
                 return null;
               })}
-          </div>
+          {/* </div> */}
         </div>
       ) : (
         <div
