@@ -78,6 +78,7 @@ const job = schedule.scheduleJob({ rule: rule, tz: 'Asia/Kolkata' }, async funct
         });
 
 
+
     console.log('after filtering as per time gap:', events);
 
     const emailPromises = events.map(async (event) => {
@@ -86,7 +87,7 @@ const job = schedule.scheduleJob({ rule: rule, tz: 'Asia/Kolkata' }, async funct
             let recipientsArray = [];
             
             //if the event is for all teams, get all the users
-            if (event.includes('All Blocks')) {
+            if (event.Teams.includes('All Blocks')) {
                 recipientsArray = [
                     'bdb23@iith.ac.in',
                     'btech@iith.ac.in',
