@@ -16,7 +16,24 @@ function generateRandomString(length) {
 
 function NewEvent({ seteventdata }) {
     const socket = useContext(SocketContext);
-    const hostels = ["Varahamira", "Charaka", "Ramanuja", "Kapila", "Ramanujan", "Raman"]
+    const hostels = ["ARYABHATTA",
+    "BHASKARA",
+    "MAITREYI",
+    "GARGI",
+    "SARABHAI",
+    "CHARAKA",
+    "SUSRUTA",
+    "KAUTILYA",
+    "VYASA",
+    "BRAHMAGUPTA",
+    "VARAHAMIHIRA",
+    "RAMANUJA",
+    "RAMANUJAN",
+    "RAMAN",
+    "VISWESWARAYA",
+    "BHABHA",
+    "KALAM",
+    "KAPILA"]
     const [team1, setteam1] = useState("Varahamira")
     const [team2, setteam2] = useState("Charaka")
     const [event, setevent] = useState("Football")
