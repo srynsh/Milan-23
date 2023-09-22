@@ -34,7 +34,7 @@ function AdminPage() {
 
   return (
     <SocketContext.Provider value={socket}>
-      {!admincookie ? (
+      {(typeof admincookie !== 'undefined') ? (
         <div className="main-admin">
           <SocketManager eventdata={eventdata} seteventdata={seteventdata} />
           {/*  Include in same route with auth checking */}

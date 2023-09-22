@@ -45,7 +45,7 @@ pool.connect()
 
 
 // ...
-const rule = `0 0,15,30,45 * * * *`
+const rule = `0 2,17,32,47 * * * *`
 
 const interval = 15
 const job = schedule.scheduleJob({ rule: rule, tz: 'Asia/Kolkata' }, async function () {
@@ -189,7 +189,8 @@ const job = schedule.scheduleJob({ rule: rule, tz: 'Asia/Kolkata' }, async funct
                                                 <td
                                                     style="padding: 30px 0 0 0; color: #666666; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;">
                                                     <br>
-                                                    We look forward to your participation..
+                                                    We look forward to your participation..Visit us at 
+                                                    <a href="https://milan.org.in">Milan</a>
                                                 </td>
                                             </tr>
                                         </table>
