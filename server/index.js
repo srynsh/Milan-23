@@ -43,49 +43,7 @@ const io = new Server(server, {
     }
 });
 
-let eventdata = [
- {
-        id: 'adfasd',
-        sport: 'Football',
-        name: 'Football Finals',
-        score1: 2,
-        score2: 3,
-        team1: 'Charaka',
-        team2: 'Bhabha',
-        data: 'myran'
-    },
-    {
-        sport: 'Football',
-        event: 'Football',
-        id: 'mvrzVIb7f2',
-        team1: 'Varahamira',
-        team2: 'Charaka',
-        score1: 0,
-        score2: 0
-    },
-    {
-        sport: 'Basketball',
-        event: 'Basketball',
-        id: 'InKz8TOSSx',
-        team1: 'Varahamira',
-        team2: 'Charaka',
-        score1: 0,
-        score2: 0
-    },
-    {
-        sport: 'Cricket',
-        event: 'Cricket',
-        id: '6X69TiRFvy',
-        team1: 'Varahamira',
-        team2: 'Charaka',
-        score1: 0,
-        score2: 0,
-        wicket1: 0,
-        wicket2: 0,
-        over1: 0,
-        over2: 0
-    },
-]
+let eventdata = []
 
 //Socket code goes here
 io.on('connection', (socket) => {
