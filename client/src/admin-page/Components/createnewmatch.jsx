@@ -34,8 +34,8 @@ function NewEvent({ seteventdata }) {
     "BHABHA",
     "KALAM",
     "KAPILA"]
-    const [team1, setteam1] = useState("Varahamira")
-    const [team2, setteam2] = useState("Charaka")
+    const [team1, setteam1] = useState("ARYABHATTA")
+    const [team2, setteam2] = useState("BHASKARA")
     const [event, setevent] = useState("Football")
     const addnewevent = async () => {
         const idgenerated = generateRandomString(10)
@@ -100,7 +100,10 @@ function NewEvent({ seteventdata }) {
                 {hostels.map(hostel => { return <option value={hostel}>{hostel}</option> })}
             </select>
             <h3>VS</h3>
-            <select name='team2' value={team2} onChange={(e) => { setteam2(e.target.value) }}>
+            <select name='team2' value={team2} onChange={(e) => { 
+                                if(e.target.value == team1){
+                                    setteam2(team2);
+                                }else{ setteam2(e.target.value)} }}>
                 {hostels.map(hostel => { return <option value={hostel}>{hostel}</option> })}
             </select>
             </div>
