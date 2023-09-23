@@ -11,7 +11,7 @@ export const TableTennis = (parse) => {
   return (
     <div className='rounded-3xl livescore-sports-box w-5/6 mx-auto my-4 flex flex-col justify-center items-center p-4'>
         <div className='text-center rounded-3xl bg-[#a40035] mx-auto my-2 inline-block lg:text-2xl py-2 px-4 Parkinson text-white shadow-md shadow-[#00000078]'>
-            TableTennis
+            Table Tennis
         </div>
         <div className='flex justify-around items-center w-full md:w-4/5 Parkinson text-[#ffbf86] my-1 bg-[#ffffff76] rounded-full shadow-sm'>
         <div className='bg-[#a40035] rounded-3xl text-xs md:text-xl py-2 w-2/5 md:1/5 lg:w-1/5 text-center shadow-md shadow-[#00000078]'>

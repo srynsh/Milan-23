@@ -93,7 +93,7 @@ function NewEvent({ seteventdata }) {
                 <option value="Badminton">Badminton</option>
                 <option value="Volleyball">Volleyball</option>
                 <option value="Squash">Squash</option>
-                <option value="TableTennis">Table Tennis</option>
+                <option value="Table Tennis">Table Tennis</option>
             </select>
             <div className="sports-sel-div1">
             <select name="team1" value={team1} onChange={(e) => { setteam1(e.target.value) }} >
