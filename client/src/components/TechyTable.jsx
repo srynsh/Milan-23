@@ -140,7 +140,7 @@ export const TechyTable = () => {
 
   const tableHeaders = ["Block", "Points"].map((el) => el.toUpperCase());
   let itemRows = [];
-  for (var event = 0; event < 11; event++) {
+  for (var event = 0; event < scores.length; event++) {
     let game = gameNames[event];
     const rows = scores[event + 1];
 
