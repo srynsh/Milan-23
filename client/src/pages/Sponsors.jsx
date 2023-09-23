@@ -60,6 +60,18 @@ const Sponsors = () => {
             </h2>
             <img className="" alt="sponsor" src="sponsors/Monster.jpeg"/>
           </div>
+          <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
+            <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
+            <a href="https://qoptars.com/" target="_blank">Qoptars - Media partner</a>
+            </h2>
+            <img className="" alt="sponsor" src="sponsors/qoptars.jpeg"/>
+          </div>
+          <div className="bg-[#20001E] rounded-3xl p-6 flex flex-col items-center w-fit shadow-lg shadow-[#000]">
+            <h2 className="text-xl font-bold text-[#FFD1A8] mb-4 bg-[#700035] p-4 rounded-lg">
+            <a href="https://makersofmilkshakes.com/india/index.html" target="_blank">Makers of Milkshakes - Food and beverages partner</a>
+            </h2>
+            <img className="" alt="sponsor" src="sponsors/makers_of_milkshakes.jpeg"/>
+          </div>
         </div>
       </div>
       <Footer></Footer>
