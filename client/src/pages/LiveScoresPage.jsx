@@ -41,7 +41,7 @@ export const LiveScoresPage = () => {
           <Badminton key={indData.id} team1={indData.team1} team2={indData.team2} score1={indData.score1} score2={indData.score2} />
         )
       }
-      else if(indData.sport === "TableTennis"){
+      else if(indData.sport === "Table Tennis"){
         return(
           <TableTennis key={indData.id} team1={indData.team1} team2={indData.team2} score1={indData.score1} score2={indData.score2} />
         )

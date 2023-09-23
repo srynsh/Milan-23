@@ -92,6 +92,7 @@ io.on('connection', (socket) => {
             }
         }
         console.log("NEW DATA IS", newdata)
+        console.log("data from client", data)
         eventdata = eventdata.concat(newdata);
         console.log("NEW EVENTDATA IS ", eventdata)
         socket.broadcast.emit("new_event_broadcast", newdata)

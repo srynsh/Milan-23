@@ -33,7 +33,7 @@ function TableTennis({ id, team1, team2, score1, score2 }) {
 
     return (
         <div className="fhtb" style={{gap:'10px'}}>
-      <h1>Badminton</h1>
+      <h1>Table Tennis</h1>
 
       <button className="rm-match" onClick={removematch}>
         End Match
